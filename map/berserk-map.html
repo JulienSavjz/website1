@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Interactive du Monde de Berserk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:wght@400;600;700&display=swap');
+        
+        /* Variables */
+        :root {
+            --primary-color: #8b0000;
+            --primary-dark: #650000;
+            --primary-light: #a52828;
+            --primary-accent: #d18282;
+            --background-color: #1a1a1a;
+            --background-light: #2a2a2a;
+            --background-dark: #111111;
+            --text-color: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --red-glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s ease;
+        }
+        
+        /* Conteneur principal */
+        .berserk-map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-dark);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* En-tête */
+        .map-header {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background-color: var(--background-dark);
+            border-bottom: 1px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/placeholders.dev/50/300x100');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            filter: brightness(0.5) saturate(0.7);
+        }
+        
+        .map-title {
+            position: relative;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .behelit-icon {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.7));
+        }
+        
+        .map-description {
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Contrôles de la carte */
+        .map-controls {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--background-light);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+            z-index: 10;
+        }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .control-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--red-glow);
+        }
+        
+        .era-filter {
+            position: relative;
+        }
+        
+        .era-select {
+            padding: 10px 35px 10px 15px;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            appearance: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 180px;
+        }
+        
+        .era-select:hover, .era-select:focus {
+            border-color: var(--primary-light);
+            box-shadow: var(--red-glow);
+        }
+        
+        .era-filter::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            pointer-events: none;
+        }
+        
+        /* Conteneur de la carte */
+        .map-viewport {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+            background-color: #111;
+            cursor: grab;
+        }
+        
+        .map-viewport.grabbing {
+            cursor: grabbing;
+        }
+        
+        .map-image-container {
+            position: absolute;
+            transition: transform 0.1s ease-out;
+            transform-origin: 0 0;
+            will-change: transform;
+        }
+        
+        .map-image {
+            display: block;
+            max-width: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .map-image.loaded {
+            opacity: 1;
+        }
+        
+        /* Marqueurs de lieux */
+        .map-marker {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .marker-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .marker-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .marker-label {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 5px;
+            padding: 4px 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--text-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .map-marker:hover .marker-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .map-marker:hover .marker-dot {
+            transform: scale(1.5);
+            background-color: var(--primary-light);
+            border-color: white;
+        }
+        
+        .map-marker.active .marker-dot {
+            background-color: white;
+            border-color: var(--primary-color);
+            transform: scale(1.5);
+        }
+        
+        .map-marker.active .marker-ring {
+            opacity: 1;
+        }
+        
+        .map-marker.active .marker-label {
+            opacity: 1;
+            font-weight: bold;
+            background-color: var(--primary-color);
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Panneaux d'information */
+        .info-panel {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 320px;
+            max-height: calc(100% - 100px);
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            overflow-y: auto;
+            transform: translateX(110%);
+            transition: transform 0.5s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-panel.visible {
+            transform: translateX(0);
+        }
+        
+        .info-header {
+            padding: 15px;
+            background-color: var(--primary-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        
+        .info-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .info-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+        
+        .info-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .info-close:hover {
+            opacity: 1;
+        }
+        
+        .info-content {
+            padding: 15px;
+        }
+        
+        .info-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-section-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .event-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .event-item::before {
+            content: '\f111';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 0.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+        
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .card-link {
+            padding: 5px 10px;
+            background-color: var(--background-light);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--red-glow);
+        }
+        
+        .info-footer {
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Légende */
+        .map-legend {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            padding: 10px;
+            z-index: 10;
+            max-width: 200px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .legend-title {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--primary-light);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .legend-icon {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+        }
+        
+        .legend-icon.marker {
+            background-color: var(--primary-color);
+            border: 1px solid white;
+            border-radius: 50%;
+        }
+        
+        .legend-icon.path {
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .legend-icon.border {
+            height: 2px;
+            background: linear-gradient(to right, transparent 0%, transparent 20%, rgba(255, 0, 0, 0.8) 20%, rgba(255, 0, 0, 0.8) 40%, transparent 40%, transparent 60%, rgba(255, 0, 0, 0.8) 60%, rgba(255, 0, 0, 0.8) 80%, transparent 80%, transparent 100%);
+        }
+        
+        /* Mini-carte */
+        .minimap {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .minimap:hover {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .minimap-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .minimap-viewport {
+            position: absolute;
+            border: 2px solid var(--primary-color);
+            background-color: rgba(139, 0, 0, 0.1);
+            pointer-events: none;
+        }
+        
+        /* Animation pour le marqueur actif */
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.2;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.8);
+                opacity: 0;
+            }
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            z-index: 4;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(139, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Message d'instruction */
+        .instruction-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            z-index: 3;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .instruction-message.visible {
+            opacity: 1;
+            animation: fadeOut 3s forwards 1s;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        /* Zoom level indicator */
+        .zoom-level {
+            position: absolute;
+            bottom: 180px;
+            right: 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Legend toggle button */
+        .toggle-legend {
+            position: absolute;
+            bottom: 180px;
+            left: 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .toggle-legend:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Footer */
+        .map-footer {
+            padding: 15px 20px;
+            background-color: var(--background-dark);
+            border-top: 1px solid var(--primary-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copyright {
+            font-style: italic;
+        }
+        
+        .berserk-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .berserk-link:hover {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .map-viewport {
+                height: 600px;
+            }
+            
+            .info-panel {
+                width: 280px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .map-viewport {
+                height: 500px;
+            }
+            
+            .map-title {
+                font-size: 1.8rem;
+            }
+            
+            .map-description {
+                font-size: 1rem;
+            }
+            
+            .info-panel {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                max-height: 60%;
+                border-radius: 10px 10px 0 0;
+                transform: translateY(100%);
+            }
+            
+            .info-panel.visible {
+                transform: translateY(0);
+            }
+            
+            .minimap {
+                bottom: 70px;
+                right: 10px;
+                width: 100px;
+                height: 100px;
+            }
+            
+            .minimap:hover {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .zoom-level {
+                bottom: 130px;
+                right: 10px;
+            }
+            
+            .toggle-legend {
+                bottom: 130px;
+                left: 10px;
+            }
+            
+            .map-legend {
+                left: 10px;
+                bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .map-viewport {
+                height: 400px;
+            }
+            
+            .map-controls {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .control-buttons {
+                justify-content: center;
+            }
+            
+            .era-filter {
+                width: 100%;
+            }
+            
+            .era-select {
+                width: 100%;
+            }
+            
+            .map-title {
+                font-size: 1.5rem;
+            }
+            
+            .map-legend, .minimap, .zoom-level, .toggle-legend {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="berserk-map-container">
+        <!-- En-tête de la carte -->
+        <div class="map-header">
+            <h1 class="map-title">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZWxsaXBzZSBjeD0iMzAiIGN5PSIzMCIgcng9IjI1IiByeT0iMjAiIGZpbGw9IiM4YjAwMDAiLz48cGF0aCBkPSJNMjMsMjBDMjMsMjAgMzAsMzAgMzcsMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTIzLDQwQzIzLDQwIDMwLDMwIDM3LDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0yMCwyM0MyMCwyMyAzMCwzMCAyMCwzNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNDAsMjNDNDAsMjMgMzAsMzAgNDAsMzciIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" alt="Behelit" class="behelit-icon">
+                Carte Interactive du Monde de Berserk
+            </h1>
+            <p class="map-description">
+                Explorez l'univers sombre et fascinant créé par Kentaro Miura. Découvrez les royaumes, les villes et les lieux emblématiques où se déroule l'épopée tragique de Guts, le Guerrier Noir, dans sa quête de vengeance contre Griffith et la Main de Dieu.
+            </p>
+        </div>
+        
+        <!-- Contrôles de la carte -->
+        <div class="map-controls">
+            <div class="control-buttons">
+                <button class="control-button" id="zoom-in" title="Zoom avant">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="control-button" id="zoom-out" title="Zoom arrière">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="control-button" id="reset-view" title="Réinitialiser la vue">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="control-button" id="toggle-fullscreen" title="Plein écran">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+            
+            <div class="era-filter">
+                <select class="era-select" id="era-select">
+                    <option value="all">Toutes les époques</option>
+                    <option value="golden-age">Âge d'Or</option>
+                    <option value="conviction">Tour de Conviction</option>
+                    <option value="millennium-falcon">Faucon Millénaire</option>
+                    <option value="fantasia">Fantasia</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Viewport de la carte -->
+        <div class="map-viewport" id="map-viewport">
+            <div class="map-image-container" id="map-container">
+                <img src="berserkworldmap2.png" alt="Carte du monde de Berserk" class="map-image" id="map-image">
+            </div>
+            
+            <!-- Spin de chargement -->
+            <div class="loading-spinner" id="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+            
+            <!-- Message d'instruction -->
+            <div class="instruction-message" id="instruction-message">
+                <p>Faites glisser pour naviguer • Utilisez les boutons pour zoomer • Cliquez sur les marqueurs pour plus d'informations</p>
+            </div>
+        </div>
+        
+        <!-- Panneau d'information -->
+        <div class="info-panel" id="info-panel">
+            <div class="info-header">
+                <h2 class="info-title" id="info-title">Nom du lieu</h2>
+                <p class="info-subtitle" id="info-subtitle">Catégorie</p>
+                <button class="info-close" id="info-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="info-content" id="info-content">
+                <p class="info-description" id="info-description">Chargement...</p>
+                
+                <div class="info-section">
+                    <h3 class="info-section-title">Événements Majeurs</h3>
+                    <ul class="event-list" id="event-list">
+                        <li class="event-item">Chargement des événements...</li>
+                    </ul>
+                </div>
+                
+                <div class="info-section">
+                    <h3 class="info-section-title">Cartes Associées</h3>
+                    <div class="card-links" id="card-links">
+                        <span class="card-link">Chargement...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info-footer">
+                Cliquez sur une carte pour afficher ses détails dans la collection.
+            </div>
+        </div>
+        
+        <!-- Mini-carte -->
+        <div class="minimap" id="minimap">
+            <img src="https://i.ibb.co/8xtNZ40/berserk-map-large.jpg" alt="Mini-carte" class="minimap-image">
+            <div class="minimap-viewport" id="minimap-viewport"></div>
+        </div>
+        
+        <!-- Légende de la carte -->
+        <div class="map-legend" id="map-legend">
+            <h3 class="legend-title">Légende</h3>
+            <div class="legend-item">
+                <div class="legend-icon marker"></div>
+                <span>Lieux importants</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon path"></div>
+                <span>Route de Guts</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon border"></div>
+                <span>Frontières</span>
+            </div>
+        </div>
+        
+        <!-- Bouton pour afficher/masquer la légende -->
+        <button class="toggle-legend" id="toggle-legend">
+            <i class="fas fa-map-signs"></i>
+            <span>Légende</span>
+        </button>
+        
+        <!-- Indicateur de zoom -->
+        <div class="zoom-level" id="zoom-level">Zoom: 100%</div>
+        
+        <!-- Pied de page -->
+        <div class="map-footer">
+            <div class="copyright">
+                Carte basée sur l'œuvre de Kentaro Miura. Adapté pour <a href="#" class="berserk-link">BerserkCCG.com</a>
+            </div>
+            <div class="credits">
+                © 2025 Berserk CCG
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments du DOM
+            const mapViewport = document.getElementById('map-viewport');
+            const mapContainer = document.getElementById('map-container');
+            const mapImage = document.getElementById('map-image');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const instructionMessage = document.getElementById('instruction-message');
+            const infoPanel = document.getElementById('info-panel');
+            const infoTitle = document.getElementById('info-title');
+            const infoSubtitle = document.getElementById('info-subtitle');
+            const infoDescription = document.getElementById('info-description');
+            const eventList = document.getElementById('event-list');
+            const cardLinks = document.getElementById('card-links');
+            const infoClose = document.getElementById('info-close');
+            const minimap = document.getElementById('minimap');
+            const minimapViewport = document.getElementById('minimap-viewport');
+            const mapLegend = document.getElementById('map-legend');
+            const toggleLegend = document.getElementById('toggle-legend');
+            const zoomLevel = document.getElementById('zoom-level');
+            const eraSelect = document.getElementById('era-select');
+            
+            // Boutons de contrôle
+            const zoomInButton = document.getElementById('zoom-in');
+            const zoomOutButton = document.getElementById('zoom-out');
+            const resetViewButton = document.getElementById('reset-view');
+            const toggleFullscreenButton = document.getElementById('toggle-fullscreen');
+            
+            // Variables d'état
+            let isMapLoaded = false;
+            let isDragging = false;
+            let startPos = { x: 0, y: 0 };
+            let currentPos = { x: 0, y: 0 };
+            let zoom = 1;
+            let selectedMarker = null;
+            let mapWidth = 0;
+            let mapHeight = 0;
+            let viewportWidth = 0;
+            let viewportHeight = 0;
+            let markerElements = [];
+            
+            // Configuration
+            const MAX_ZOOM = 4;
+            const MIN_ZOOM = 0.8;
+            const ZOOM_STEP = 0.2;
+            const INITIAL_CENTER = { x: 0.5, y: 0.5 }; // Centre relatif initial (0-1)
+            
+            // Définition des lieux importants
+            const locations = [
+                {
+                    id: "midland",
+                    name: "Royaume de Midland",
+                    category: "Royaume",
+                    position: { x: 38, y: 35 },
+                    description: "Royaume central de l'histoire, où Guts a rejoint initialement la Troupe du Faucon. Midland est le théâtre des principales batailles de l'Âge d'Or et connaît une période de chaos après la disparition de Griffith et l'invasion Kushan.",
+                    events: [
+                        "Guerre contre l'Empire Tudor",
+                        "Ascension et chute de la Troupe du Faucon",
+                        "Règne de terreur du Roi Fou",
+                        "Invasion de l'Empire Kushan"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-031", name: "Guts Compagnon du Faucon" },
+                        { id: "BCCG-040", name: "Bataille de Doldrey" },
+                        { id: "BCCG-050", name: "Griffith le Faucon Blanc" }
+                    ],
+                    eras: ["golden-age", "conviction", "millennium-falcon"]
+                },
+                {
+                    id: "tudor",
+                    name: "Empire de Tudor",
+                    category: "Royaume",
+                    position: { x: 22, y: 42 },
+                    description: "Nation ennemie de Midland durant l'Âge d'Or. La forteresse de Doldrey, considérée comme imprenable, était située à sa frontière avec Midland jusqu'à sa prise par la Troupe du Faucon, marquant un tournant dans la guerre.",
+                    events: [
+                        "Guerre contre Midland pendant l'Âge d'Or",
+                        "Chute de la forteresse de Doldrey",
+                        "Défaite face à la Troupe du Faucon"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-040", name: "Bataille de Doldrey" },
+                        { id: "BCCG-031", name: "Guts Compagnon du Faucon" },
+                        { id: "BCCG-050", name: "Griffith le Faucon Blanc" }
+                    ],
+                    eras: ["golden-age"]
+                },
+                {
+                    id: "kushan",
+                    name: "Empire Kushan",
+                    category: "Royaume",
+                    position: { x: 85, y: 81 },
+                    description: "Puissant empire dirigé par l'empereur Ganishka, un apôtre rebelle défiant la Main de Dieu. Ses forces envahissent Midland après l'emprisonnement de Griffith, utilisant des créatures démoniaques et une technologie militaire avancée.",
+                    events: [
+                        "Invasion de Midland",
+                        "Transformation cosmique de Ganishka",
+                        "Défaite face aux forces de Griffith",
+                        "Création de l'arbre-monde après la défaite de Ganishka"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-007", name: "Empereur Ganishka Souverain" },
+                        { id: "BCCG-022", name: "Guerriers Kushans" },
+                        { id: "BCCG-063", name: "Daiba" }
+                    ],
+                    eras: ["millennium-falcon", "fantasia"]
+                },
+                {
+                    id: "falconia",
+                    name: "Falconia",
+                    category: "Cité",
+                    position: { x: 43, y: 45 },
+                    description: "Cité utopique créée par Griffith après la fusion des mondes. Construite sur le site où se trouvait auparavant la capitale de Midland, elle sert de refuge unique à l'humanité dans un monde désormais envahi par des créatures fantastiques.",
+                    events: [
+                        "Fondation après la convergence des mondes",
+                        "Établissement du nouveau royaume de Griffith",
+                        "Refuge pour les humains contre les créatures de l'astral"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-055", name: "Griffith Réincarné" },
+                        { id: "BCCG-060", name: "Griffith Souverain de Falconia" },
+                        { id: "BCCG-100", name: "Griffith Maître de Falconia" }
+                    ],
+                    eras: ["fantasia"]
+                },
+                {
+                    id: "skellig",
+                    name: "Île de Skellig",
+                    category: "Île mystique",
+                    position: { x: 23, y: 81 },
+                    description: "Île mystérieuse où se trouve Elfhelm, le royaume des elfes dirigé par la Reine Danann. Ce lieu, normalement inaccessible aux humains, est protégé par des enchantements. Guts et ses compagnons s'y rendent pour tenter de guérir Casca de son trauma causé par l'Éclipse.",
+                    events: [
+                        "Voyage périlleux de Guts et ses compagnons",
+                        "Rencontre avec la Reine Danann",
+                        "Guérison de Casca",
+                        "Révélations sur le monde astral"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-010", name: "Isma Fille de la Mer" },
+                        { id: "BCCG-016", name: "Morda Sorcière Rebelle" },
+                        { id: "BCCG-018", name: "Puck Elfe de Lumière" }
+                    ],
+                    eras: ["fantasia"]
+                },
+                {
+                    id: "albion",
+                    name: "Tour de la Conviction",
+                    category: "Site religieux",
+                    position: { x: 30, y: 25 },
+                    description: "Centre religieux de la Sainte Voir Pontificale, dirigé par l'inquisition. Ce lieu de pèlerinage transformé en prison est le théâtre d'une cérémonie macabre similaire à l'Éclipse, orchestrée par des apôtres pour la renaissance physique de Griffith.",
+                    events: [
+                        "Emprisonnement et torture des hérétiques",
+                        "Affrontement entre Guts et Mozgus",
+                        "Cérémonie du Monde de l'Idée",
+                        "Renaissance incarnée de Griffith"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-055", name: "Griffith Réincarné" },
+                        { id: "BCCG-092", name: "Farnese de Vandimion" },
+                        { id: "BCCG-057", name: "Guts Rage Incarnée" }
+                    ],
+                    eras: ["conviction"]
+                },
+                {
+                    id: "vritannis",
+                    name: "Vritannis",
+                    category: "Port marchand",
+                    position: { x: 23, y: 59 },
+                    description: "Grand port commercial et siège de la Fédération des Marchands. Cette ville neutre et cosmopolite est un centre économique majeur où se croisent diverses cultures. Elle devient le théâtre d'affrontements entre les pirates Kushan, les forces de Griffith et le groupe de Guts.",
+                    events: [
+                        "Rencontre avec Roderick et les pirates",
+                        "Bataille navale contre les forces Kushan",
+                        "Acquisition du navire qui conduira à Skellig"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-010", name: "Isma Fille de la Mer" },
+                        { id: "BCCG-022", name: "Guerriers Kushans" },
+                        { id: "BCCG-025", name: "Guts & Schierke Lien Astral" }
+                    ],
+                    eras: ["millennium-falcon"]
+                },
+                {
+                    id: "doldrey",
+                    name: "Forteresse de Doldrey",
+                    category: "Forteresse",
+                    position: { x: 29, y: 42 },
+                    description: "Forteresse réputée imprenable située à la frontière entre Midland et Tudor. Sa prise par la Troupe du Faucon lors d'une bataille légendaire marque l'apogée de la carrière militaire de Griffith et scelle la victoire de Midland dans la guerre de Cent Ans.",
+                    events: [
+                        "Siège par la Troupe du Faucon",
+                        "Duel entre Guts et Boscogn",
+                        "Victoire décisive pour Midland",
+                        "Consécration de Griffith comme héros"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-040", name: "Bataille de Doldrey" },
+                        { id: "BCCG-035", name: "Guts & Griffith Camaraderie" },
+                        { id: "BCCG-041", name: "Guts Jeune Guerrier" }
+                    ],
+                    eras: ["golden-age"]
+                },
+                {
+                    id: "qliphoth",
+                    name: "Qliphoth",
+                    category: "Lieu mystique",
+                    position: { x: 55, y: 36 },
+                    description: "Grotte mystique servant de passerelle entre le monde physique et le plan astral inférieur. Ce lieu corrompu est habité par des trolls et d'autres créatures démoniaques. Slan, membre de la Main de Dieu, y apparaît à Guts sous la forme d'entrailles vivantes.",
+                    events: [
+                        "Confrontation entre Guts et Slan",
+                        "Sauvetage des villageois capturés par les trolls",
+                        "Première utilisation complète de l'Armure du Berserker",
+                        "Révélations sur le monde astral"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-006", name: "Guts Armure du Berserker" },
+                        { id: "BCCG-025", name: "Guts & Schierke Lien Astral" },
+                        { id: "BCCG-085", name: "Guts Bête Intérieure" }
+                    ],
+                    eras: ["millennium-falcon"]
+                },
+                {
+                    id: "wyndham",
+                    name: "Wyndham",
+                    category: "Capitale",
+                    position: { x: 39, y: 43 },
+                    description: "Capitale du royaume de Midland et siège du pouvoir royal. Cette ville fortifiée abrite le palais où Griffith fut emprisonné et torturé pendant un an. Elle tombe aux mains des Kushans après l'effondrement de Midland, avant de disparaître lors de la création de Falconia.",
+                    events: [
+                        "Bal royal où Griffith rencontre la princesse Charlotte",
+                        "Emprisonnement et torture de Griffith",
+                        "Sauvetage de Griffith par Guts et la Troupe du Faucon",
+                        "Occupation par les forces Kushan"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-091", name: "Confrontation Arc Millénaire" },
+                        { id: "BCCG-055", name: "Griffith Réincarné" },
+                        { id: "BCCG-102", name: "Griffith et la Colline aux Épées" }
+                    ],
+                    eras: ["golden-age", "millennium-falcon"]
+                },
+                {
+                    id: "eclipse",
+                    name: "Site de l'Éclipse",
+                    category: "Lieu mystique",
+                    position: { x: 47, y: 49 },
+                    description: "Lieu spirituel où s'est déroulée la cérémonie de l'Éclipse, événement traumatique durant lequel Griffith a sacrifié la Troupe du Faucon pour devenir Femto. Cette dimension alternative créée par la Main de Dieu n'existe pas physiquement mais représente un point pivot dans l'histoire.",
+                    events: [
+                        "Sacrifice de la Troupe du Faucon",
+                        "Transformation de Griffith en Femto",
+                        "Viol de Casca par Femto",
+                        "Intervention du Chevalier du Crâne"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-012", name: "Casca Durant l'Éclipse" },
+                        { id: "BCCG-005", name: "Femto L'Aile Noire" },
+                        { id: "BCCG-042", name: "Couverture Tome 30" },
+                        { id: "BCCG-056", name: "Femto La Naissance" }
+                    ],
+                    eras: ["golden-age"]
+                },
+                {
+                    id: "godo",
+                    name: "Forge de Godo",
+                    category: "Refuge",
+                    position: { x: 37, y: 37 },
+                    description: "Retraite isolée du forgeron Godo, créateur de l'épée Dragon Slayer et figure paternelle pour Guts et Rickert. Ce lieu sert de refuge temporaire pour Casca après l'Éclipse et devient la base de Rickert pour développer de nouvelles armes.",
+                    events: [
+                        "Création du bras mécanique de Guts",
+                        "Refuge de Casca après l'Éclipse",
+                        "Rencontre entre Rickert et Griffith réincarné",
+                        "Confrontation de Rickert avec les apôtres"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-019", name: "Guts Bras Mécanique" },
+                        { id: "BCCG-028", name: "Guts Cicatrices" },
+                        { id: "BCCG-036", name: "Casca & Puck Après le Trauma" }
+                    ],
+                    eras: ["golden-age", "conviction", "millennium-falcon"]
+                }
+            ];
+            
+            // Initialiser la carte
+            function initMap() {
+                // Attendre le chargement de l'image
+                mapImage.onload = function() {
+                    isMapLoaded = true;
+                    mapWidth = this.width;
+                    mapHeight = this.height;
+                    updateViewportDimensions();
+                    centerMap(INITIAL_CENTER.x, INITIAL_CENTER.y);
+                    updateMinimapViewport();
+                    
+                    // Masquer le spinner
+                    loadingSpinner.style.display = 'none';
+                    this.classList.add('loaded');
+                    
+                    // Afficher le message d'instruction
+                    instructionMessage.classList.add('visible');
+                    
+                    // Créer les marqueurs
+                    createMarkers();
+                };
+                
+                mapImage.onerror = function() {
+                    loadingSpinner.style.display = 'none';
+                    alert('Erreur de chargement de la carte. Veuillez réessayer.');
+                };
+                
+                // Gestion du déplacement
+                mapViewport.addEventListener('mousedown', startDrag);
+                mapViewport.addEventListener('touchstart', startDragTouch, { passive: false });
+                window.addEventListener('mousemove', drag);
+                window.addEventListener('touchmove', dragTouch, { passive: false });
+                window.addEventListener('mouseup', endDrag);
+                window.addEventListener('touchend', endDrag);
+                
+                // Gestion du zoom avec la molette
+                mapViewport.addEventListener('wheel', handleWheel);
+                
+                // Boutons de contrôle
+                zoomInButton.addEventListener('click', zoomIn);
+                zoomOutButton.addEventListener('click', zoomOut);
+                resetViewButton.addEventListener('click', resetView);
+                toggleFullscreenButton.addEventListener('click', toggleFullscreen);
+                
+                // Gestion du panneau d'information
+                infoClose.addEventListener('click', closeInfoPanel);
+                
+                // Gestion de la légende
+                toggleLegend.addEventListener('click', function() {
+                    mapLegend.style.display = mapLegend.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                // Filtre par époque
+                eraSelect.addEventListener('change', filterByEra);
+                
+                // Gestion du redimensionnement
+                window.addEventListener('resize', handleResize);
+            }
+            
+            // Mettre à jour les dimensions du viewport
+            function updateViewportDimensions() {
+                viewportWidth = mapViewport.clientWidth;
+                viewportHeight = mapViewport.clientHeight;
+            }
+            
+            // Centrer la carte
+            function centerMap(relX, relY) {
+                // Calculer la position pour centrer le point relX, relY
+                currentPos.x = -(relX * mapWidth * zoom - viewportWidth / 2);
+                currentPos.y = -(relY * mapHeight * zoom - viewportHeight / 2);
+                
+                // Appliquer les contraintes
+                applyPositionConstraints();
+                
+                // Mettre à jour la transformation
+                updateMapTransform();
+            }
+            
+            // Mettre à jour la transformation CSS
+            function updateMapTransform() {
+                mapContainer.style.transform = `translate(${currentPos.x}px, ${currentPos.y}px) scale(${zoom})`;
+                zoomLevel.textContent = `Zoom: ${Math.round(zoom * 100)}%`;
+                updateMinimapViewport();
+            }
+            
+            // Démarrer le déplacement
+            function startDrag(e) {
+                if (!isMapLoaded) return;
+                isDragging = true;
+                startPos.x = e.clientX - currentPos.x;
+                startPos.y = e.clientY - currentPos.y;
+                mapViewport.classList.add('grabbing');
+                e.preventDefault();
+            }
+            
+            // Démarrer le déplacement (touch)
+            function startDragTouch(e) {
+                if (!isMapLoaded || e.touches.length !== 1) return;
+                isDragging = true;
+                startPos.x = e.touches[0].clientX - currentPos.x;
+                startPos.y = e.touches[0].clientY - currentPos.y;
+                mapViewport.classList.add('grabbing');
+                e.preventDefault();
+            }
+            
+            // Déplacer la carte
+            function drag(e) {
+                if (!isDragging) return;
+                
+                currentPos.x = e.clientX - startPos.x;
+                currentPos.y = e.clientY - startPos.y;
+                
+                // Appliquer les contraintes
+                applyPositionConstraints();
+                
+                // Mettre à jour la transformation
+                updateMapTransform();
+                
+                e.preventDefault();
+            }
+            
+            // Déplacer la carte (touch)
+            function dragTouch(e) {
+                if (!isDragging || e.touches.length !== 1) return;
+                
+                currentPos.x = e.touches[0].clientX - startPos.x;
+                currentPos.y = e.touches[0].clientY - startPos.y;
+                
+                // Appliquer les contraintes
+                applyPositionConstraints();
+                
+                // Mettre à jour la transformation
+                updateMapTransform();
+                
+                e.preventDefault();
+            }
+            
+            // Terminer le déplacement
+            function endDrag() {
+                isDragging = false;
+                mapViewport.classList.remove('grabbing');
+            }
+            
+            // Gérer le zoom avec la molette
+            function handleWheel(e) {
+                if (!isMapLoaded) return;
+                
+                e.preventDefault();
+                
+                // Obtenir la position du curseur par rapport au viewport
+                const rect = mapViewport.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                
+                // Obtenir la position du curseur par rapport à l'image
+                const mouseImageX = (mouseX - currentPos.x) / zoom;
+                const mouseImageY = (mouseY - currentPos.y) / zoom;
+                
+                // Modifier le zoom
+                const zoomDelta = e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
+                const newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom + zoomDelta));
+                
+                if (newZoom !== zoom) {
+                    // Calculer la nouvelle position pour garder le point sous le curseur
+                    currentPos.x = mouseX - mouseImageX * newZoom;
+                    currentPos.y = mouseY - mouseImageY * newZoom;
+                    
+                    zoom = newZoom;
+                    
+                    // Appliquer les contraintes
+                    applyPositionConstraints();
+                    
+                    // Mettre à jour la transformation
+                    updateMapTransform();
+                    
+                    // Mettre à jour l'échelle des marqueurs
+                    updateMarkersScale();
+                }
+            }
+            
+            // Zoom avant
+            function zoomIn() {
+                if (!isMapLoaded) return;
+                
+                // Obtenir le centre du viewport
+                const centerX = viewportWidth / 2;
+                const centerY = viewportHeight / 2;
+                
+                // Obtenir le point central de l'image visible
+                const centerImageX = (centerX - currentPos.x) / zoom;
+                const centerImageY = (centerY - currentPos.y) / zoom;
+                
+                // Modifier le zoom
+                const newZoom = Math.min(MAX_ZOOM, zoom + ZOOM_STEP);
+                
+                if (newZoom !== zoom) {
+                    // Calculer la nouvelle position pour garder le centre
+                    currentPos.x = centerX - centerImageX * newZoom;
+                    currentPos.y = centerY - centerImageY * newZoom;
+                    
+                    zoom = newZoom;
+                    
+                    // Appliquer les contraintes
+                    applyPositionConstraints();
+                    
+                    // Mettre à jour la transformation
+                    updateMapTransform();
+                    
+                    // Mettre à jour l'échelle des marqueurs
+                    updateMarkersScale();
+                }
+            }
+            
+            // Zoom arrière
+            function zoomOut() {
+                if (!isMapLoaded) return;
+                
+                // Obtenir le centre du viewport
+                const centerX = viewportWidth / 2;
+                const centerY = viewportHeight / 2;
+                
+                // Obtenir le point central de l'image visible
+                const centerImageX = (centerX - currentPos.x) / zoom;
+                const centerImageY = (centerY - currentPos.y) / zoom;
+                
+                // Modifier le zoom
+                const newZoom = Math.max(MIN_ZOOM, zoom - ZOOM_STEP);
+                
+                if (newZoom !== zoom) {
+                    // Calculer la nouvelle position pour garder le centre
+                    currentPos.x = centerX - centerImageX * newZoom;
+                    currentPos.y = centerY - centerImageY * newZoom;
+                    
+                    zoom = newZoom;
+                    
+                    // Appliquer les contraintes
+                    applyPositionConstraints();
+                    
+                    // Mettre à jour la transformation
+                    updateMapTransform();
+                    
+                    // Mettre à jour l'échelle des marqueurs
+                    updateMarkersScale();
+                }
+            }
+            
+            // Réinitialiser la vue
+            function resetView() {
+                if (!isMapLoaded) return;
+                
+                zoom = 1;
+                centerMap(INITIAL_CENTER.x, INITIAL_CENTER.y);
+                updateMarkersScale();
+            }
+            
+            // Basculer en plein écran
+            function toggleFullscreen() {
+                const container = document.querySelector('.berserk-map-container');
+                
+                if (!document.fullscreenElement) {
+                    if (container.requestFullscreen) {
+                        container.requestFullscreen();
+                    } else if (container.mozRequestFullScreen) {
+                        container.mozRequestFullScreen();
+                    } else if (container.webkitRequestFullscreen) {
+                        container.webkitRequestFullscreen();
+                    } else if (container.msRequestFullscreen) {
+                        container.msRequestFullscreen();
+                    }
+                    toggleFullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                    toggleFullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            }
+            
+            // Gérer le redimensionnement
+            function handleResize() {
+                updateViewportDimensions();
+                applyPositionConstraints();
+                updateMapTransform();
+            }
+            
+            // Appliquer les contraintes de position
+            function applyPositionConstraints() {
+                // Calculer les limites
+                const minX = -mapWidth * zoom + viewportWidth;
+                const minY = -mapHeight * zoom + viewportHeight;
+                
+                // Empêcher la carte de sortir des limites
+                currentPos.x = Math.min(0, Math.max(minX, currentPos.x));
+                currentPos.y = Math.min(0, Math.max(minY, currentPos.y));
+            }
+            
+            // Mettre à jour le viewport de la mini-carte
+            function updateMinimapViewport() {
+                if (!isMapLoaded) return;
+                
+                const minimapWidth = minimap.clientWidth;
+                const minimapHeight = minimap.clientHeight;
+                
+                // Calculer le rapport de taille entre la mini-carte et l'image complète
+                const ratioX = minimapWidth / mapWidth;
+                const ratioY = minimapHeight / mapHeight;
+                
+                // Calculer la taille et la position du viewport dans la mini-carte
+                const vpWidth = Math.min(minimapWidth, viewportWidth * ratioX / zoom);
+                const vpHeight = Math.min(minimapHeight, viewportHeight * ratioY / zoom);
+                
+                // Calculer la position relative dans l'image
+                const relX = -currentPos.x / (mapWidth * zoom);
+                const relY = -currentPos.y / (mapHeight * zoom);
+                
+                // Calculer la position dans la mini-carte
+                const vpX = relX * minimapWidth;
+                const vpY = relY * minimapHeight;
+                
+                // Appliquer les dimensions et la position
+                minimapViewport.style.width = `${vpWidth}px`;
+                minimapViewport.style.height = `${vpHeight}px`;
+                minimapViewport.style.left = `${vpX}px`;
+                minimapViewport.style.top = `${vpY}px`;
+            }
+            
+            // Créer les marqueurs sur la carte
+            function createMarkers() {
+                // Supprimer les marqueurs existants
+                const existingMarkers = mapContainer.querySelectorAll('.map-marker');
+                existingMarkers.forEach(marker => marker.remove());
+                markerElements = [];
+                
+                // Créer les nouveaux marqueurs
+                locations.forEach(location => {
+                    const marker = document.createElement('div');
+                    marker.className = 'map-marker';
+                    marker.id = `marker-${location.id}`;
+                    marker.dataset.locationId = location.id;
+                    
+                    // Positionner le marqueur
+                    marker.style.left = `${location.position.x}%`;
+                    marker.style.top = `${location.position.y}%`;
+                    
+                    // Créer le point du marqueur
+                    const dot = document.createElement('div');
+                    dot.className = 'marker-dot';
+                    
+                    // Créer l'effet d'anneau pulsant
+                    const ring = document.createElement('div');
+                    ring.className = 'marker-ring';
+                    
+                    // Créer le libellé
+                    const label = document.createElement('div');
+                    label.className = 'marker-label';
+                    label.textContent = location.name;
+                    
+                    // Assembler le marqueur
+                    marker.appendChild(dot);
+                    marker.appendChild(ring);
+                    marker.appendChild(label);
+                    
+                    // Ajouter l'événement de clic
+                    marker.addEventListener('click', function() {
+                        selectLocation(location.id);
+                    });
+                    
+                    // Ajouter au DOM
+                    mapContainer.appendChild(marker);
+                    markerElements.push(marker);
+                });
+                
+                // Appliquer le filtre initial
+                filterByEra();
+            }
+            
+            // Mettre à jour l'échelle des marqueurs
+            function updateMarkersScale() {
+                markerElements.forEach(marker => {
+                    marker.style.transform = `translate(-50%, -50%) scale(${1/zoom})`;
+                });
+            }
+            
+            // Sélectionner un lieu
+            function selectLocation(locationId) {
+                const location = locations.find(loc => loc.id === locationId);
+                if (!location) return;
+                
+                // Mettre à jour l'état du marqueur actif
+                if (selectedMarker) {
+                    document.getElementById(`marker-${selectedMarker}`).classList.remove('active');
+                }
+                
+                document.getElementById(`marker-${locationId}`).classList.add('active');
+                selectedMarker = locationId;
+                
+                // Mettre à jour le panneau d'information
+                infoTitle.textContent = location.name;
+                infoSubtitle.textContent = location.category;
+                infoDescription.textContent = location.description;
+                
+                // Mettre à jour la liste des événements
+                eventList.innerHTML = '';
+                location.events.forEach(event => {
+                    const eventItem = document.createElement('li');
+                    eventItem.className = 'event-item';
+                    eventItem.textContent = event;
+                    eventList.appendChild(eventItem);
+                });
+                
+                // Mettre à jour les liens vers les cartes
+                cardLinks.innerHTML = '';
+                if (location.relatedCards && location.relatedCards.length > 0) {
+                    location.relatedCards.forEach(card => {
+                        const cardLink = document.createElement('span');
+                        cardLink.className = 'card-link';
+                        cardLink.textContent = card.id;
+                        cardLink.title = card.name;
+                        cardLink.addEventListener('click', function() {
+                            // Rediriger vers la page de la carte (à implémenter selon votre système)
+                            alert(`Affichage de la carte: ${card.name} (${card.id})`);
+                        });
+                        cardLinks.appendChild(cardLink);
+                    });
+                } else {
+                    const noCards = document.createElement('span');
+                    noCards.textContent = 'Aucune carte associée';
+                    cardLinks.appendChild(noCards);
+                }
+                
+                // Afficher le panneau
+                infoPanel.classList.add('visible');
+                
+                // Centrer la vue sur le lieu si zoom élevé
+                if (zoom > 1.5) {
+                    const centerX = location.position.x / 100;
+                    const centerY = location.position.y / 100;
+                    centerMap(centerX, centerY);
+                }
+            }
+            
+            // Fermer le panneau d'information
+            function closeInfoPanel() {
+                infoPanel.classList.remove('visible');
+                
+                // Désélectionner le marqueur
+                if (selectedMarker) {
+                    document.getElementById(`marker-${selectedMarker}`).classList.remove('active');
+                    selectedMarker = null;
+                }
+            }
+            
+            // Filtrer par époque
+            function filterByEra() {
+                const selectedEra = eraSelect.value;
+                
+                markerElements.forEach(marker => {
+                    const locationId = marker.dataset.locationId;
+                    const location = locations.find(loc => loc.id === locationId);
+                    
+                    if (selectedEra === 'all' || location.eras.includes(selectedEra)) {
+                        marker.style.display = 'block';
+                    } else {
+                        marker.style.display = 'none';
+                        
+                        // Si le marqueur actif est maintenant caché, fermer le panneau
+                        if (selectedMarker === locationId) {
+                            closeInfoPanel();
+                        }
+                    }
+                });
+            }
+            
+            // Initialiser la carte
+            initMap();
+        });
+    </script>
+</body>
+</html>
