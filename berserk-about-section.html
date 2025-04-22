@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos de Berserk - BerserkCCG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:wght@400;600;700&display=swap');
+        
+        /* Variables */
+        :root {
+            --primary-color: #8b0000;
+            --primary-dark: #650000;
+            --primary-light: #a52828;
+            --primary-accent: #d18282;
+            --background-color: #1a1a1a;
+            --background-light: #2a2a2a;
+            --background-dark: #111111;
+            --text-color: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --red-glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Stylisation générale */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Bannière */
+        .berserk-banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url('https://i.ibb.co/xqG59LQ/berserk-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .berserk-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(26, 26, 26, 0.4) 100%);
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .banner-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .banner-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-style: italic;
+        }
+        
+        /* Système d'onglets */
+        .tabs-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--primary-dark);
+            margin-bottom: 30px;
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-right: 4px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        
+        .tab-btn:hover {
+            background-color: var(--background-dark);
+            color: var(--primary-light);
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-dark);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: var(--background-light);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Content Styling */
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-light);
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .content-columns {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .content-col {
+            flex: 1;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .highlight-box {
+            background-color: var(--background-dark);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .highlight-box-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+        }
+        
+        /* Section Personnages */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .character-card {
+            background-color: var(--background-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        
+        .character-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+        }
+        
+        .character-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(0deg, rgba(17, 17, 17, 1) 0%, rgba(17, 17, 17, 0) 100%);
+        }
+        
+        .character-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .character-name {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        
+        .character-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .character-desc {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .character-card-link {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .character-card-link:hover {
+            background-color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Section Impact Culturel */
+        .influence-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .influence-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .influence-item::before {
+            content: '\f0da';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.2rem;
+        }
+        
+        .influence-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary-light);
+        }
+        
+        /* Section Œuvre Inachevée */
+        .timeline {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-dark);
+        }
+        
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            width: 50%;
+            padding: 0 30px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            top: 10px;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -8px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -8px;
+        }
+        
+        .timeline-date {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content {
+            background-color: var(--background-dark);
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Citations */
+        .quote {
+            font-style: italic;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .content-columns {
+                flex-direction: column;
+            }
+            
+            .banner-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .tabs-nav {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            
+            .tab-btn {
+                margin-right: 0;
+                margin-bottom: 2px;
+                border-radius: 4px;
+            }
+            
+            .tab-btn.active::after {
+                display: none;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: 22px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .characters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .berserk-banner {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bannière -->
+        <div class="berserk-banner">
+            <div class="banner-content">
+                <h1 class="banner-title">L'Univers de Berserk</h1>
+                <p class="banner-subtitle">L'œuvre légendaire de Kentaro Miura</p>
+            </div>
+        </div>
+        
+        <!-- Système d'onglets -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="histoire">Histoire et Univers</button>
+                <button class="tab-btn" data-tab="personnages">Personnages Principaux</button>
+                <button class="tab-btn" data-tab="impact">Impact Culturel</button>
+                <button class="tab-btn" data-tab="legacy">Œuvre Inachevée</button>
+            </div>
+            
+            <!-- Tab: Histoire et Univers -->
+            <div id="histoire" class="tab-content active">
+                <div class="content-section">
+                    <h2 class="section-title">L'Univers Sombre de Berserk</h2>
+                    
+                    <div class="content-columns">
+                        <div class="content-col">
+                            <p>Berserk se déroule dans un monde médiéval-fantastique s'inspirant fortement de l'Europe médiévale, mais avec des éléments surnaturels. Ce monde est gouverné par la causalité, une force cosmique qui dirige le destin des êtres humains, et qui est manipulée par des entités presque divines connues sous le nom de la Main de Dieu (God Hand).</p>
+                            
+                            <p>L'univers de Berserk est stratifié en différents plans d'existence: le monde physique que les personnages habitent, et le plan astral, lieu d'origine des démons, fantômes et autres entités surnaturelles. Ces deux mondes sont normalement séparés, mais peuvent se chevaucher en certains lieux ou durant certains événements.</p>
+                            
+                            <p>Ce qui distingue Berserk d'autres œuvres dark fantasy est son atmosphère impitoyable. C'est un monde où le mal triomphe souvent, où les innocents souffrent sans raison, et où le "bien" est une notion relative plutôt qu'absolue. La cruauté, la violence et l'horreur sont omniprésentes, reflétant la vision nihiliste mais nuancée de Miura.</p>
+                        </div>
+                        
+                        <div class="content-col">
+                            <img src="https://i.ibb.co/HpG4STn/berserk-world.jpg" alt="Le monde de Berserk">
+                            <p class="image-caption">Le monde sombre et sans pitié où se déroule l'histoire de Berserk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3 class="highlight-box-title">Thèmes Centraux</h3>
+                        <p>Berserk explore plusieurs thèmes profonds qui résonnent avec les lecteurs:</p>
+                        <ul>
+                            <li><strong>La Lutte contre le Destin</strong> - La détermination de Guts à défier un destin qui semble inéluctable</li>
+                            <li><strong>L'Ambition et son Prix</strong> - L'ascension et la chute de Griffith, prêt à tout sacrifier pour son rêve</li>
+                            <li><strong>Traumatisme et Guérison</strong> - Le parcours des personnages pour surmonter des horreurs indicibles</li>
+                            <li><strong>Humanité face à la Monstruosité</strong> - L'exploration des limites entre l'humain et le monstrueux</li>
+                            <li><strong>Camaraderie et Trahison</strong> - Les relations complexes entre les personnages et leurs évolutions dramatiques</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>L'Âge d'Or et sa Chute</h3>
+                    <p>Le récit principal de Berserk tourne autour de Guts, un mercenaire marqué par un passé traumatisant, et de son ancien compagnon d'armes Griffith, chef charismatique de la Troupe du Faucon. Leur histoire commence comme une chronique médiévale classique - la montée en puissance d'une compagnie de mercenaires dans un royaume en guerre - mais prend un tournant radicalement sombre après l'événement connu sous le nom d'Éclipse.</p>
+                    
+                    <p>L'Éclipse représente la confrontation ultime de Berserk avec l'horreur cosmique, lorsque Griffith sacrifie ses compagnons pour renaître en tant que Femto, membre de la Main de Dieu. Cet événement pivotal transforme Berserk d'un récit de dark fantasy médiévale en une odyssée de vengeance contre des forces quasi divines, explorant les limites de la volonté humaine face à un cosmos indifférent ou activement hostile.</p>
+                    
+                    <div class="quote">
+                        <p>"Dans ce monde, est-ce que la destinée de l'Homme est contrôlée par quelque loi transcendante, ou n'est-elle que le jouet d'un hasard démoniaque... Quoi qu'il en soit, l'Homme n'a pas d'emprise sur sa propre volonté."</p>
+                        <p class="quote-author">— Inscription sur le Behelit</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab: Personnages Principaux -->
+            <div id="personnages" class="tab-content">
+                <div class="content-section">
+                    <h2 class="section-title">Les Personnages qui Façonnent l'Histoire</h2>
+                    
+                    <p>L'œuvre de Kentaro Miura est peuplée de personnages complexes et nuancés dont le développement s'étend sur des décennies de publication. Loin des archétypes simplistes, les protagonistes et antagonistes de Berserk évoluent constamment, révélant de nouvelles facettes de leur personnalité au fil de l'histoire.</p>
+                    
+                    <div class="characters-grid">
+                        <!-- Guts -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/QpcG58n/guts.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Guts</h3>
+                                <p class="character-role">Le Guerrier Noir / Le Spadassin Noir</p>
+                                <p class="character-desc">Protagoniste principal de l'histoire, Guts est un guerrier imposant maniant une épée démesurée nommée Dragon Slayer. Né d'une femme pendue, son existence a été marquée par la violence et la trahison. Sa quête de vengeance contre Griffith et la Main de Dieu est motivée par une volonté inébranlable qui défie même le destin.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Griffith -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/jTkMhKC/griffith.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Griffith / Femto</h3>
+                                <p class="character-role">Le Faucon Blanc / L'Aile Noire</p>
+                                <p class="character-desc">Ancien leader de la Troupe du Faucon et ami de Guts, Griffith est doté d'une beauté presque surnaturelle et d'un charisme magnétique. Son ambition dévorante le pousse à sacrifier tout ce qui lui est cher pour atteindre son rêve. Après sa renaissance en tant que Femto, il devient l'antagoniste principal et l'antithèse de Guts.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Casca -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/cLZkRvg/casca.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Casca</h3>
+                                <p class="character-role">Commandante de la Troupe du Faucon</p>
+                                <p class="character-desc">Seule femme commandante au sein de la Troupe du Faucon, Casca est une guerrière exceptionnelle dont la loyauté envers Griffith se transforme progressivement en sentiments plus profonds pour Guts. Suite aux événements traumatisants de l'Éclipse, elle perd sa mémoire et régresse mentalement, son cheminement vers la guérison devenant un fil narratif majeur.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Puck -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/ZxH1Lpj/puck.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Puck</h3>
+                                <p class="character-role">Elfe de la Vallée de la Brume</p>
+                                <p class="character-desc">Petit elfe qui devient le premier compagnon de voyage de Guts après l'Éclipse. Malgré sa petite taille, Puck apporte une touche d'humour nécessaire dans l'univers sombre de Berserk. Ses pouvoirs curatifs et sa loyauté envers Guts en font un allié précieux, même si le guerrier est réticent à l'admettre.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Schierke -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/qJf9TNT/schierke.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Schierke</h3>
+                                <p class="character-role">Jeune Sorcière</p>
+                                <p class="character-desc">Apprentie de la puissante sorcière Flora, Schierke rejoint le groupe de Guts et lui apporte une compréhension vitale du monde astral. Ses connaissances magiques sont essentielles pour permettre à Guts de contrôler l'Armure du Berserker sans perdre son humanité. Son lien spirituel avec Guts devient une ancre importante pour le guerrier.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Skull Knight -->
+                        <div class="character-card">
+                            <div class="character-image" style="background-image: url('https://i.ibb.co/C2C3tVk/skull-knight.jpg');"></div>
+                            <div class="character-info">
+                                <h3 class="character-name">Chevalier du Crâne</h3>
+                                <p class="character-role">Mystérieux Allié / Ennemi de la Main de Dieu</p>
+                                <p class="character-desc">Figure énigmatique qui intervient à des moments critiques pour aider Guts. Ce cavalier spectral vêtu d'une armure ornée de crânes possède une épée capable de déchirer le voile entre les dimensions. Son passé semble lié au roi Gaiseric et à la création de la première Main de Dieu, ce qui en fait un personnage central de la mythologie de Berserk.</p>
+                                <a href="#" class="character-card-link">Voir les cartes associées</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab: Impact Culturel -->
+            <div id="impact" class="tab-content">
+                <div class="content-section">
+                    <h2 class="section-title">L'Héritage d'une Œuvre Majeure</h2>
+                    
+                    <div class="content-columns">
+                        <div class="content-col">
+                            <p>Berserk a profondément marqué la culture populaire japonaise et mondiale depuis sa création en 1989. L'œuvre de Kentaro Miura a influencé de nombreux créateurs à travers différents médias, laissant une empreinte indélébile sur le genre dark fantasy.</p>
+                            
+                            <p>Son style artistique détaillé, souvent comparé à des gravures, et son univers sombre ont inspiré des générations d'artistes et d'écrivains. Sa capacité à mêler un réalisme brutal et des éléments fantastiques a élargi les possibilités narratives du médium manga et au-delà.</p>
+                        </div>
+                        
+                        <div class="content-col">
+                            <img src="https://i.ibb.co/YkLfkZk/berserk-impact.jpg" alt="Impact culturel de Berserk">
+                            <p class="image-caption">L'influence visuelle et thématique de Berserk s'étend bien au-delà du manga</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Influences Majeures</h3>
+                    <div class="influence-list">
+                        <div class="influence-item">
+                            <h4 class="influence-title">Jeux Vidéo</h4>
+                            <p>La série Dark Souls d'Hidetaka Miyazaki s'inspire directement de l'esthétique et de l'ambiance de Berserk. Des jeux comme Dragon's Dogma, Final Fantasy VII, et Monster Hunter contiennent des références directes à l'œuvre de Miura, notamment dans le design d'armes surdimensionnées et de créatures démoniaques.</p>
+                        </div>
+                        
+                        <div class="influence-item">
+                            <h4 class="influence-title">Manga et Anime</h4>
+                            <p>Des séries comme Claymore, Vagabond, Vinland Saga et L'Attaque des Titans portent l'empreinte indéniable de Berserk, tant dans leur ton sombre que dans leur exploration de thèmes matures. La représentation graphique de la violence et la profondeur psychologique des personnages de Miura ont redéfini les standards du seinen manga.</p>
+                        </div>
+                        
+                        <div class="influence-item">
+                            <h4 class="influence-title">Littérature et Cinéma</h4>
+                            <p>L'œuvre a influencé des auteurs de dark fantasy contemporains et a contribué à l'essor du genre "grimdark" en littérature. Des cinéastes comme Guillermo del Toro ont ouvertement reconnu l'influence du travail de Miura sur leur approche visuelle des créatures fantastiques et de l'horreur gothique.</p>
+                        </div>
+                        
+                        <div class="influence-item">
+                            <h4 class="influence-title">Art et Design</h4>
+                            <p>Le style méticuleux et détaillé de Miura, rappelant les gravures médiévales, a influencé de nombreux illustrateurs et designers. Son approche du design de monstres, mélangeant éléments organiques et architecture gothique, a créé une école esthétique distinctive dans l'art fantastique.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3 class="highlight-box-title">Adaptations Officielles</h3>
+                        <p>Berserk a connu plusieurs adaptations en anime et jeux vidéo:</p>
+                        <ul>
+                            <li><strong>Berserk (1997)</strong> - Série animée couvrant l'Arc de l'Âge d'Or, appréciée pour sa fidélité à l'œuvre originale</li>
+                            <li><strong>Berserk: The Golden Age Arc (2012-2013)</strong> - Trilogie de films d'animation reprenant l'Arc de l'Âge d'Or</li>
+                            <li><strong>Berserk (2016-2017)</strong> - Série animée en CGI couvrant les arcs suivant l'Âge d'Or</li>
+                            <li><strong>Berserk and the Band of the Hawk (2016)</strong> - Jeu vidéo de type musou développé par Koei Tecmo</li>
+                            <li><strong>Berserk: Millennium Falcon Hen Seima Senki no Shō (2004)</strong> - Jeu vidéo sur PlayStation 2</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quote">
+                        <p>"Berserk n'est pas seulement un chef-d'œuvre du manga, c'est une œuvre qui transcende son médium pour devenir un pilier de la dark fantasy moderne."</p>
+                        <p class="quote-author">— Critique littéraire anonyme</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab: Œuvre Inachevée -->
+            <div id="legacy" class="tab-content">
+                <div class="content-section">
+                    <h2 class="section-title">L'Héritage et la Continuation</h2>
+                    
+                    <div class="content-columns">
+                        <div class="content-col">
+                            <p>Le 6 mai 2021, le monde du manga perdait l'un de ses plus grands artistes avec le décès de Kentaro Miura à l'âge de 54 ans, des suites d'une dissection aortique aiguë. Sa disparition a laissé Berserk inachevé après plus de 30 ans de publication, plongeant les fans dans l'incertitude quant au sort de cette œuvre monumentale.</p>
+                            
+                            <p>Miura avait cependant partagé la direction générale de l'histoire avec son ami d'enfance et assistant Kouji Mori, ainsi qu'avec son équipe de Studio Gaga. Après une période de réflexion, la décision a été prise de poursuivre le manga sur la base des discussions que Miura avait eues avec Mori et des notes qu'il avait laissées.</p>
+                        </div>
+                        
+                        <div class="content-col">
+                            <img src="https://i.ibb.co/R2n3SV9/kentaro-miura.jpg" alt="Kentaro Miura">
+                            <p class="image-caption">Kentaro Miura (1966-2021), créateur de Berserk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">1989</div>
+                            <div class="timeline-content">
+                                <p>Premières publications de Berserk dans le magazine Young Animal. Le style artistique de Miura, déjà remarquable, va continuer à s'affiner au fil des années.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">1992-1997</div>
+                            <div class="timeline-content">
+                                <p>Publication de l'Arc de l'Âge d'Or, considéré par beaucoup comme le sommet narratif de la série. Cette période établit Berserk comme une œuvre majeure du manga.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2000-2010</div>
+                            <div class="timeline-content">
+                                <p>Développement des arcs de la Tour de Conviction et du Faucon Millénaire. Le rythme de publication ralentit progressivement, avec des hiatus de plus en plus fréquents alors que Miura peaufine son art.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2010-2021</div>
+                            <div class="timeline-content">
+                                <p>Publication de l'arc Fantasia, avec des sorties irrégulières. La qualité artistique atteint des sommets, mais les fans s'inquiètent de la lenteur du récit et craignent de ne jamais voir la conclusion.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mai 2021</div>
+                            <div class="timeline-content">
+                                <p>Décès de Kentaro Miura, laissant Berserk inachevé au chapitre 364. Un chapitre posthume est publié en septembre 2021, le dernier entièrement réalisé par Miura.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">Juin 2022</div>
+                            <div class="timeline-content">
+                                <p>Annonce de la continuation de Berserk par Kouji Mori et Studio Gaga, basée sur les discussions qu'ils avaient eues avec Miura sur la conclusion prévue de l'histoire.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>La Continuation Post-Miura</h3>
+                    <p>Depuis juin 2022, Berserk est continué par Kouji Mori et l'équipe de Studio Gaga. Cette décision n'a pas été prise à la légère et a été précédée d'intenses discussions avec l'éditeur Hakusensha. La continuation s'appuie sur plusieurs sources:</p>
+                    <ul>
+                        <li>Les discussions détaillées que Miura avait eues avec Mori sur la progression et la conclusion de l'histoire</li>
+                        <li>Les notes et croquis laissés par Miura</li>
+                        <li>L'expertise des assistants qui ont travaillé avec Miura pendant des années</li>
+                    </ul>
+                    
+                    <p>Le style artistique post-Miura, bien que ne pouvant égaler la maîtrise du créateur original, tente de rester fidèle à son approche tout en assumant sa propre identité. La réception par les fans a été mitigée mais globalement respectueuse, beaucoup préférant une conclusion imparfaite à une œuvre éternellement inachevée.</p>
+                    
+                    <div class="highlight-box">
+                        <h3 class="highlight-box-title">Message de l'Équipe de Continuation</h3>
+                        <p>"Nous ferons de notre mieux pour recréer le monde de Berserk avec ses personnages charismatiques afin de suivre les idées et les lignes directrices de l'histoire de Kentaro Miura autant que possible. Nous serons fidèles à notre engagement de vous raconter l'histoire de Berserk jusqu'à la fin. Nous espérons que vous continuerez à nous soutenir dans cette voie."</p>
+                        <p>— Studio Gaga et Kouji Mori</p>
+                    </div>
+                    
+                    <h3>Un Héritage Éternel</h3>
+                    <p>Quelle que soit la conclusion qui sera donnée à Berserk, l'héritage de Kentaro Miura est déjà assuré. Son œuvre a redéfini les limites de ce qu'un manga pouvait accomplir, tant artistiquement que narrativement. La profondeur psychologique de ses personnages, son style visuel inimitable et son exploration de thèmes universels tels que le traumatisme, l'ambition et la nature humaine continueront d'inspirer des générations de créateurs.</p>
+                    
+                    <p>Berserk demeure un témoignage de la vision singulière d'un artiste qui a consacré sa vie à raconter une histoire sans compromis, une œuvre majeure qui transcende les frontières culturelles et les catégorisations faciles.</p>
+                    
+                    <div class="quote">
+                        <p>"Je pense que l'essence de la fantaisie n'est pas de s'évader du monde réel, mais d'y revenir avec une nouvelle perspective."</p>
+                        <p class="quote-author">— Kentaro Miura</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Système d'onglets
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Désactiver tous les onglets
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Activer l'onglet cliqué
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Gestion des liens de cartes de personnages
+            const characterLinks = document.querySelectorAll('.character-card-link');
+            
+            characterLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const characterName = this.closest('.character-info').querySelector('.character-name').textContent;
+                    alert(`Affichage des cartes associées à ${characterName}`);
+                    // Ici vous pourriez rediriger vers une page filtrée de votre collection de cartes
+                });
+            });
+        });
+    </script>
+</body>
+</html>

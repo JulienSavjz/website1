@@ -1,0 +1,16 @@
+# Masquer les extensions .html
+RewriteEngine On
+
+# Ne pas appliquer la règle aux fichiers et dossiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Vérifier si la version .html du fichier existe
+RewriteCond %{REQUEST_FILENAME}.html -f
+
+# Réécrire l'URL sans extension vers la version avec .html
+RewriteRule ^(.*)$ $1.html [L]
+
+# Rediriger les URL avec .html vers la version sans extension
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.*)\.html\ HTTP
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]

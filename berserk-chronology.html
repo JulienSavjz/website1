@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronologie de Berserk - BerserkCCG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:wght@400;600;700&display=swap');
+        
+        /* Variables */
+        :root {
+            --primary-color: #8b0000;
+            --primary-dark: #650000;
+            --primary-light: #a52828;
+            --primary-accent: #d18282;
+            --background-color: #1a1a1a;
+            --background-light: #2a2a2a;
+            --background-dark: #111111;
+            --text-color: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --red-glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Stylisation générale */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Bannière */
+        .chrono-banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url('https://i.ibb.co/HYLwMYN/berserk-chrono-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .chrono-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(26, 26, 26, 0.4) 100%);
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .banner-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .banner-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-style: italic;
+        }
+        
+        /* Introduction */
+        .intro-text {
+            background-color: var(--background-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .intro-text p {
+            max-width: 800px;
+            margin: 0 auto 15px;
+        }
+        
+        /* Filtres Chronologie */
+        .timeline-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+        
+        .filter-btn-group {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-dark);
+        }
+        
+        .search-filter {
+            margin-left: auto;
+            position: relative;
+        }
+        
+        .search-filter input {
+            padding: 8px 15px 8px 35px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border: 1px solid var(--background-dark);
+            border-radius: 4px;
+            width: 250px;
+            font-family: 'Crimson Text', serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-filter input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: var(--red-glow);
+        }
+        
+        .search-filter i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        
+        /* Timeline Interactif */
+        .timeline-container {
+            position: relative;
+            margin: 50px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: var(--primary-dark);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .timeline-item.filtered {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot,
+        .timeline-item.expanded .timeline-dot {
+            transform: translateX(-50%) scale(1.3);
+            background-color: var(--primary-light);
+            box-shadow: var(--red-glow);
+        }
+        
+        .timeline-content {
+            width: 42%;
+            background-color: var(--background-light);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 60px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -12px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid var(--background-light);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -12px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 12px solid var(--background-light);
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .timeline-desc {
+            margin-bottom: 15px;
+        }
+        
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .timeline-tag {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            background-color: var(--background-dark);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+        
+        .timeline-expand {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .expand-btn {
+            background: none;
+            border: none;
+            color: var(--primary-light);
+            font-family: 'Crimson Text', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .expand-btn:hover {
+            color: var(--primary-accent);
+        }
+        
+        .timeline-extra {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease;
+        }
+        
+        .timeline-item.expanded .timeline-extra {
+            max-height: 1000px;
+            margin-top: 20px;
+        }
+        
+        .expanded-content {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        .timeline-image {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .timeline-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .related-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .card-link {
+            padding: 5px 10px;
+            background-color: var(--background-dark);
+            border: 1px solid var(--primary-dark);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card-link:hover {
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        /* Zoom Controls */
+        .zoom-controls {
+            position: sticky;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .zoom-btn {
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            border: 1px solid var(--primary-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .zoom-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--red-glow);
+        }
+        
+        .zoom-level {
+            padding: 0 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Button to Go To Present */
+        .go-to-present {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            border: none;
+            z-index: 100;
+        }
+        
+        .go-to-present.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .go-to-present:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--red-glow);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-filter {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .search-filter input {
+                width: 100%;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .chrono-banner {
+                height: 200px;
+            }
+            
+            .timeline-line {
+                left: 40px;
+            }
+            
+            .timeline-dot {
+                left: 40px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -12px;
+                right: auto;
+                border-right: 12px solid var(--background-light);
+                border-left: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .filter-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .timeline-date {
+                font-size: 0.85rem;
+            }
+            
+            .timeline-title {
+                font-size: 1.1rem;
+            }
+            
+            .timeline-content {
+                padding: 15px;
+            }
+            
+            .go-to-present {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bannière -->
+        <div class="chrono-banner">
+            <div class="banner-content">
+                <h1 class="banner-title">Chronologie de Berserk</h1>
+                <p class="banner-subtitle">L'histoire de Midland et du destin de Guts</p>
+            </div>
+        </div>
+        
+        <!-- Introduction -->
+        <div class="intro-text">
+            <p>La chronologie de Berserk s'étend sur des millénaires, depuis la formation de la première Main de Dieu et l'Empire de Gaiseric jusqu'aux événements récents de Falconia. Cette timeline interactive vous permet d'explorer les moments clés de l'œuvre de Kentaro Miura, offrant un aperçu chronologique cohérent d'un récit souvent présenté de manière non-linéaire.</p>
+            <p><strong>Note:</strong> Certaines dates sont approximatives ou déduites d'indices du manga, l'univers de Berserk ne fournissant pas de chronologie officielle complète.</p>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="timeline-filters">
+            <div>
+                <span class="filter-label">Ère:</span>
+                <div class="filter-btn-group">
+                    <button class="filter-btn active" data-filter="all">Toutes</button>
+                    <button class="filter-btn" data-filter="ancient">Antique</button>
+                    <button class="filter-btn" data-filter="golden-age">Âge d'Or</button>
+                    <button class="filter-btn" data-filter="eclipse">Après l'Éclipse</button>
+                    <button class="filter-btn" data-filter="fantasia">Fantasia</button>
+                </div>
+            </div>
+            
+            <div>
+                <span class="filter-label">Personnage:</span>
+                <div class="filter-btn-group">
+                    <button class="filter-btn active" data-character="all">Tous</button>
+                    <button class="filter-btn" data-character="guts">Guts</button>
+                    <button class="filter-btn" data-character="griffith">Griffith</button>
+                    <button class="filter-btn" data-character="casca">Casca</button>
+                </div>
+            </div>
+            
+            <div class="search-filter">
+                <i class="fas fa-search"></i>
+                <input type="text" id="timeline-search" placeholder="Rechercher un événement...">
+            </div>
+        </div>
+        
+        <!-- Contrôles de Zoom -->
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoom-out"><i class="fas fa-minus"></i></button>
+            <div class="zoom-level" id="zoom-level">100%</div>
+            <button class="zoom-btn" id="zoom-in"><i class="fas fa-plus"></i></button>
+        </div>
+        
+        <!-- Timeline Interactif -->
+        <div class="timeline-container" id="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <!-- Points de la chronologie -->
+            <div class="timeline-item" data-era="ancient" data-characters="gaiseric,godhand">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">~1000 ans avant l'histoire principale</span>
+                    <h3 class="timeline-title">Empire de Gaiseric</h3>
+                    <p class="timeline-desc">Le roi Gaiseric, connu sous le nom de "Roi Squelette", unifie le continent sous sa bannière et établit un puissant empire s'étendant sur tout le monde connu.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Ère Antique</span>
+                        <span class="timeline-tag">Gaiseric</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>L'Empire de Gaiseric était réputé pour sa brutalité et son expansion agressive. Selon les récits, le roi portait un casque en forme de crâne sur le champ de bataille, inspirant terreur et soumission.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/m5W0hRY/gaiseric-empire.jpg" alt="Illustration de l'Empire de Gaiseric">
+                            </div>
+                            <p>Des textes anciens suggèrent que la chute de son empire coïncide avec l'apparition de quatre "anges" (possiblement la première Main de Dieu), envoyés pour punir l'arrogance du roi. Sa capitale fut engloutie en une nuit, créant ce qui deviendra plus tard connu sous le nom de Tour de la Conviction.</p>
+                            <p>Certaines théories suggèrent un lien direct entre Gaiseric et le Chevalier du Crâne, bien que cette connexion reste mystérieuse.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-004</a>
+                                <a href="#" class="card-link">BCCG-017</a>
+                                <a href="#" class="card-link">BCCG-030</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="ancient" data-characters="godhand,skull-knight">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">~1000 ans avant l'histoire principale</span>
+                    <h3 class="timeline-title">Chute de la capitale et création de la Main de Dieu</h3>
+                    <p class="timeline-desc">La capitale de Gaiseric s'effondre dans les profondeurs de la terre après une catastrophe mystérieuse. Les ruines deviendront plus tard le site de la Tour de la Conviction.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Ère Antique</span>
+                        <span class="timeline-tag">Godhand</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Les ruines de cette ancienne capitale contiennent des indices troublants. Des corps préservés montrent tous la Marque du Sacrifice, suggérant qu'un événement similaire à l'Éclipse s'est produit là. De plus, des piliers en forme de visages déformés rappellent les membres de la Main de Dieu.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/Sf0B5cW/ancient-capital.jpg" alt="Ruines de la capitale antique">
+                            </div>
+                            <p>La destruction de la capitale semble coïncider avec la création de la première Main de Dieu, suggérant un cycle cosmique qui se répète. Des preuves laissent penser que le Chevalier du Crâne pourrait être Gaiseric lui-même, ayant échappé d'une façon inconnue à ce cataclysme.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-004</a>
+                                <a href="#" class="card-link">BCCG-017</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1075</span>
+                    <h3 class="timeline-title">Naissance de Guts</h3>
+                    <p class="timeline-desc">Guts naît d'une femme pendue, retrouvé sous son cadavre par un groupe de mercenaires dirigé par Gambino et Sys.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après avoir accouché au milieu d'un champ de pendus, la mère de Guts meurt, laissant l'enfant à naître sous son cadavre. Découvert par Sys, la compagne de Gambino, l'enfant est adopté malgré la réticence du chef mercenaire, qui considère sa naissance comme un mauvais présage.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/3RRzBrj/guts-birth.jpg" alt="Naissance de Guts">
+                            </div>
+                            <p>Cette naissance sous les pendus symbolise le destin de Guts, né dans la mort et la souffrance. C'est aussi un premier indice de sa capacité à survivre dans les conditions les plus extrêmes, qui deviendra sa caractéristique définitoire.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-029</a>
+                                <a href="#" class="card-link">BCCG-038</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1084</span>
+                    <h3 class="timeline-title">Première bataille de Guts</h3>
+                    <p class="timeline-desc">À l'âge de 9 ans, Guts participe à sa première bataille sous la tutelle de Gambino, initiant ainsi sa vie de mercenaire.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Malgré son jeune âge, Guts est forcé par Gambino à participer aux combats. Durant cette première bataille, il parvient miraculeusement à tuer un ennemi, bien que davantage par chance que par compétence.</p>
+                            <p>Cette expérience prématurée de la violence et de la mort forge le caractère de Guts et marque le début de son apprentissage brutal du combat. Les années suivantes, il s'entraîne sans relâche avec une épée trop grande pour lui, préfigurant son style de combat futur.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-029</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1087</span>
+                    <h3 class="timeline-title">Mort de Gambino</h3>
+                    <p class="timeline-desc">Après avoir été vendu par Gambino à un soldat pédophile, puis attaqué par son père adoptif rendu fou par l'alcool et sa jambe amputée, Guts tue Gambino en légitime défense et fuit le camp de mercenaires.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Cet événement traumatisant marque un tournant dans la vie de Guts. Après avoir tué Gambino, il est poursuivi par les autres mercenaires et doit s'enfuir, commençant une période de vie solitaire et itinérante.</p>
+                            <p>Les années suivantes, Guts survit en vendant son épée au plus offrant, perfectionnant ses talents de combattant à travers d'innombrables batailles. Cette période forge sa méfiance envers les autres et son indépendance farouche.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-029</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="griffith,midland">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">~1094</span>
+                    <h3 class="timeline-title">Formation de la Troupe du Faucon</h3>
+                    <p class="timeline-desc">Griffith rassemble un groupe de mercenaires qui deviendra la célèbre Troupe du Faucon, rapidement reconnue pour son efficacité sur le champ de bataille.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Griffith</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Originaire des bas-fonds, Griffith a toujours nourri le rêve de posséder son propre royaume. La Troupe du Faucon commence comme une petite bande de jeunes désœuvrés qu'il inspire et dirige vers un avenir meilleur.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/wRsL7Gv/band-of-the-hawk.jpg" alt="La Troupe du Faucon">
+                            </div>
+                            <p>Parmi les premiers membres se trouve Casca, une jeune fille que Griffith sauve d'une tentative de viol et qui devient l'une de ses plus fidèles lieutenantes. Sous la direction stratégique de Griffith, la troupe gagne en taille et en réputation, attirant l'attention de la noblesse de Midland.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-050</a>
+                                <a href="#" class="card-link">BCCG-097</a>
+                                <a href="#" class="card-link">BCCG-101</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts,griffith,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1095</span>
+                    <h3 class="timeline-title">Rencontre entre Guts et Griffith</h3>
+                    <p class="timeline-desc">Guts affronte Griffith en duel et perd. Contraint de rejoindre la Troupe du Faucon, il devient rapidement le plus puissant guerrier de l'unité.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Griffith</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après avoir vaincu Bazuso, un guerrier légendaire, Guts attire l'attention de Griffith qui défie le mercenaire solitaire. Leur duel se solde par la défaite de Guts, qui est forcé de rejoindre la Troupe du Faucon selon leur accord préalable.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/HgnXJPy/guts-griffith-first-meeting.jpg" alt="Première rencontre entre Guts et Griffith">
+                            </div>
+                            <p>Initialement réticent, Guts s'intègre progressivement au groupe, trouvant pour la première fois un sentiment d'appartenance. Sa relation avec Griffith se développe en une amitié complexe mêlée d'admiration et de rivalité. Pendant ce temps, Casca, jalouse de l'attention que Griffith porte à Guts, entretient une relation antagoniste avec le nouveau venu.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-020</a>
+                                <a href="#" class="card-link">BCCG-031</a>
+                                <a href="#" class="card-link">BCCG-035</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts,griffith,casca,midland">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1097</span>
+                    <h3 class="timeline-title">Bataille de Doldrey</h3>
+                    <p class="timeline-desc">La Troupe du Faucon remporte une victoire décisive en capturant la forteresse réputée imprenable de Doldrey, mettant fin à la guerre de cent ans entre Midland et Tudor.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Griffith</span>
+                        <span class="timeline-tag">Casca</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Considérée comme l'apogée de la Troupe du Faucon, la bataille de Doldrey marque l'exploit militaire le plus impressionnant de Griffith. Grâce à une stratégie audacieuse et au courage de ses troupes, la forteresse tombe entre leurs mains malgré des forces largement supérieures en nombre.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/2qvLnRw/battle-of-doldrey.jpg" alt="Bataille de Doldrey">
+                            </div>
+                            <p>Pendant cette bataille, Guts affronte et tue Boscogn, le général le plus redouté de Tudor, tandis que Casca mène une charge contre les forces ennemies. Cette victoire élève Griffith au statut de héros national et le rapproche de son rêve de posséder son propre royaume en lui ouvrant les portes de la noblesse.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-040</a>
+                                <a href="#" class="card-link">BCCG-041</a>
+                                <a href="#" class="card-link">BCCG-050</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts,griffith,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1098</span>
+                    <h3 class="timeline-title">Départ de Guts</h3>
+                    <p class="timeline-desc">Après avoir entendu Griffith affirmer qu'il ne considère comme amis que ceux qui poursuivent leur propre rêve, Guts décide de quitter la Troupe du Faucon pour trouver sa propre voie.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Griffith</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Suite à la victoire de Doldrey et aux célébrations qui s'ensuivent, Guts surprend une conversation où Griffith explique à la princesse Charlotte qu'il ne peut considérer comme ami quelqu'un qui ne poursuit pas son propre rêve. Cette révélation pousse Guts à réévaluer sa position au sein de la Troupe.</p>
+                            <p>Le soir même, Guts et Casca partagent un moment d'intimité où ils discutent de leurs sentiments complexes envers Griffith. Le lendemain, Guts annonce son intention de quitter la Troupe, provoquant la colère de Griffith qui le défie en duel. Cette fois, Guts l'emporte, brisant l'épée de Griffith et symboliquement, son emprise sur lui.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/ZBNKMkG/guts-leaving.jpg" alt="Départ de Guts">
+                            </div>
+                            <p>Ce départ marque le début de la chute de Griffith, incapable d'accepter la perte de celui qu'il considérait comme son égal et ami le plus proche.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-037</a>
+                                <a href="#" class="card-link">BCCG-046</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="griffith">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1098</span>
+                    <h3 class="timeline-title">Chute de Griffith</h3>
+                    <p class="timeline-desc">Dévasté par le départ de Guts, Griffith cherche du réconfort auprès de la princesse Charlotte, conduisant à son arrestation pour haute trahison et à une année de torture dans les donjons royaux.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Griffith</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après le départ de Guts, Griffith, mentalement instable, s'introduit dans les appartements de la princesse Charlotte et a une relation sexuelle avec elle. Découvert, il est arrêté pour haute trahison et condamné à la torture par le roi, obsédé par sa propre fille.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/85q20xh/griffith-torture.jpg" alt="Griffith torturé">
+                            </div>
+                            <p>Pendant un an, il est soumis aux pires sévices sous la supervision du bourreau royal. On lui coupe les tendons, arrache les ongles, et brûle la peau. Parallèlement, la Troupe du Faucon est déclarée hors-la-loi et pourchassée. Casca prend le commandement des survivants qui se cachent dans les forêts en périphérie de Midland.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-099</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="golden-age" data-characters="guts,griffith,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1099</span>
+                    <h3 class="timeline-title">Sauvetage de Griffith</h3>
+                    <p class="timeline-desc">Guts revient après un an d'absence et aide la Troupe du Faucon à secourir Griffith des donjons royaux, le découvrant brisé physiquement et mentalement par la torture.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Âge d'Or</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Griffith</span>
+                        <span class="timeline-tag">Casca</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>En apprenant la situation de ses anciens compagnons, Guts décide de les rejoindre pour sauver Griffith. Durant cette période, Guts et Casca se rapprochent et finissent par devenir amants après avoir survécu ensemble à une bataille périlleuse.</p>
+                            <p>L'opération de sauvetage réussit, mais les rescapés découvrent Griffith méconnaissable : émacié, mutilé, incapable de parler ou de se déplacer seul. Son état est si désespéré qu'il tente de se suicider en apprenant qu'il ne pourra jamais réaliser son rêve.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/dpRQJYb/griffith-rescue.jpg" alt="Griffith secouru">
+                            </div>
+                            <p>Pourchassés par l'armée de Midland, les membres de la Troupe fuient avec leur chef brisé, ignorant que Griffith a en sa possession un Behelit qui les conduira tous à un destin tragique.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-026</a>
+                                <a href="#" class="card-link">BCCG-047</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="eclipse" data-characters="guts,griffith,casca,godhand">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1099</span>
+                    <h3 class="timeline-title">L'Éclipse</h3>
+                    <p class="timeline-desc">Le Behelit de Griffith s'active, transportant la Troupe du Faucon dans une dimension alternative où il sacrifie ses compagnons pour renaître en tant que Femto, le cinquième membre de la Main de Dieu.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Éclipse</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Griffith</span>
+                        <span class="timeline-tag">Casca</span>
+                        <span class="timeline-tag">Main de Dieu</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>L'Éclipse représente le point culminant et la fin tragique de l'Arc de l'Âge d'Or. Lorsque Griffith, dans son désespoir, active involontairement le Behelit Écarlate (ou "Œuf du Roi Démon"), la Troupe du Faucon est transportée dans une dimension cauchemardesque dominée par les membres de la Main de Dieu.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/LPHXf8w/eclipse.jpg" alt="L'Éclipse">
+                            </div>
+                            <p>Offrant tous ses compagnons en sacrifice, Griffith renaît sous la forme de Femto, un être démoniaque aux pouvoirs divins. Pendant que les apôtres dévorent la Troupe, Femto viole Casca devant Guts impuissant, qui perd un œil et un bras en tentant de la sauver.</p>
+                            <p>Seuls Guts et Casca survivent à ce massacre grâce à l'intervention du Chevalier du Crâne, mais portent désormais la Marque du Sacrifice. Casca, traumatisée par l'horreur vécue, perd la raison et régresse mentalement au niveau d'un enfant.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-005</a>
+                                <a href="#" class="card-link">BCCG-012</a>
+                                <a href="#" class="card-link">BCCG-042</a>
+                                <a href="#" class="card-link">BCCG-056</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="eclipse" data-characters="guts">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1100-1102</span>
+                    <h3 class="timeline-title">Quête de vengeance solitaire</h3>
+                    <p class="timeline-desc">Après avoir confié Casca aux soins de Godo et Rickert, Guts entreprend une quête de vengeance solitaire contre les apôtres et la Main de Dieu, devenant le redouté "Spadassin Noir".</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Après l'Éclipse</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Cette période correspond narrativement à l'Arc de l'Épéiste Noir, présenté au début du manga. Équipé d'un bras mécanique créé par Godo et d'une immense épée nommée Dragon Slayer (initialement conçue pour tuer des dragons, créatures mythiques dans cet univers), Guts traque et élimine méthodiquement les apôtres.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/xfp1VHH/black-swordsman.jpg" alt="Le Spadassin Noir">
+                            </div>
+                            <p>Marqué du Sacrifice, il est pourchassé chaque nuit par des esprits et créatures démoniaques, le forçant à développer une endurance surhumaine. Durant cette période, il rencontre Puck, un elfe qui devient son premier compagnon, bien que Guts refuse initialement de le reconnaître comme tel.</p>
+                            <p>C'est également durant cette période que Guts est confronté pour la première fois à la Bête des Ténèbres, une manifestation de sa rage et de ses pulsions violentes qui menace de consumer son humanité.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-011</a>
+                                <a href="#" class="card-link">BCCG-018</a>
+                                <a href="#" class="card-link">BCCG-019</a>
+                                <a href="#" class="card-link">BCCG-024</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="eclipse" data-characters="guts,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1103</span>
+                    <h3 class="timeline-title">Retour à la forge</h3>
+                    <p class="timeline-desc">Guts apprend que Casca a disparu de la forge de Godo. Il abandonne sa quête solitaire pour la retrouver, découvrant qu'elle a été emmenée vers la Tour de la Conviction.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Tour de Conviction</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Casca</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après deux ans de chasse aux apôtres, Guts retourne à la forge pour découvrir que Casca a disparu lors d'une attaque. Il apprend de Rickert qu'elle a été aperçue près de la Tour de la Conviction, un centre religieux devenu refuge pour ceux fuyant la peste et la famine.</p>
+                            <p>Ce retour marque un tournant important dans la psychologie de Guts, qui réalise que sa quête de vengeance l'a éloigné de ce qui était réellement important pour lui. Il décide de prioriser la protection de Casca sur sa vengeance contre Griffith.</p>
+                            <p>Sur son chemin vers la Tour, Guts rencontre Isidro, un jeune garçon aspirant à devenir un grand épéiste, qui finira par le suivre, ainsi que Farnese et Serpico, membres des Chevaliers de la Sainte Chaîne, chargés de le capturer comme hérétique.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-027</a>
+                                <a href="#" class="card-link">BCCG-036</a>
+                                <a href="#" class="card-link">BCCG-092</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="eclipse" data-characters="guts,casca,griffith">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1103</span>
+                    <h3 class="timeline-title">Incarnation de Griffith</h3>
+                    <p class="timeline-desc">La Tour de la Conviction devient le théâtre d'une cérémonie menant à la réincarnation physique de Griffith dans le monde matériel, mettant fin à son existence exclusivement démoniaque.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Tour de Conviction</span>
+                        <span class="timeline-tag">Griffith</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Guts parvient à atteindre la Tour de la Conviction et retrouve Casca, mais tous deux sont pris au piège lorsqu'une cérémonie démoniaque similaire à l'Éclipse, appelée "la Naissance du Monde Parfait", commence. Cette cérémonie utilise l'enfant démoniaque de Guts et Casca (corrompu par Femto durant l'Éclipse) comme vaisseau pour permettre la réincarnation de Griffith.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/x2P5wLK/griffith-rebirth.jpg" alt="Renaissance de Griffith">
+                            </div>
+                            <p>Au terme d'un massacre massif orchestré par des apôtres infiltrés, Griffith renaît dans une forme physique identique à son apparence d'origine, mais possédant toujours les pouvoirs de Femto. Sa renaissance marque le début de l'ère du "Faucon Blanc", prophétisée comme l'avènement d'un sauveur de l'humanité.</p>
+                            <p>Après ces événements, Farnese et Serpico, dont les convictions religieuses ont été ébranlées, décident de suivre Guts dans son voyage.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-055</a>
+                                <a href="#" class="card-link">BCCG-092</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="eclipse" data-characters="guts,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1104</span>
+                    <h3 class="timeline-title">Acquisition de l'Armure du Berserker</h3>
+                    <p class="timeline-desc">Guts rencontre Schierke, jeune apprentie sorcière, et reçoit l'Armure du Berserker, une relique elfique qui augmente considérablement ses capacités au prix de son humanité.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Faucon Millénaire</span>
+                        <span class="timeline-tag">Guts</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>En cherchant un refuge pour Casca, le groupe de Guts est guidé vers le domaine de Flora, une puissante sorcière. Là, ils rencontrent Schierke, son apprentie, qui leur offre une compréhension plus profonde du monde astral et des forces surnaturelles qui gouvernent leur univers.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/Gd06Dzn/berserker-armor.jpg" alt="Armure du Berserker">
+                            </div>
+                            <p>Suite à une attaque d'apôtres menée par Griffith, Flora sacrifie sa vie pour permettre la fuite du groupe. Avant de mourir, elle confie à Guts l'Armure du Berserker, une relique elfique maudite. Cette armure supprime la douleur et les limites du corps humain, permettant à son porteur de combattre au-delà de ses capacités normales.</p>
+                            <p>Cependant, l'armure attise aussi la Bête des Ténèbres en Guts, risquant de le transformer en une machine à tuer sans conscience. Schierke devient essentielle pour aider Guts à maintenir son humanité lorsqu'il porte l'armure, en créant un lien psychique qui l'ancre à sa raison.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-006</a>
+                                <a href="#" class="card-link">BCCG-025</a>
+                                <a href="#" class="card-link">BCCG-059</a>
+                                <a href="#" class="card-link">BCCG-085</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="fantasia" data-characters="griffith,midland">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1105</span>
+                    <h3 class="timeline-title">Confluance des Plans et création de Falconia</h3>
+                    <p class="timeline-desc">Griffith affronte l'Empereur Ganishka, transformé en une entité monstrueuse. Leur combat provoque la Confluance des Plans, fusionnant partiellement les mondes physique et astral, et donne naissance à la cité-utopie de Falconia.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Fantasia</span>
+                        <span class="timeline-tag">Griffith</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après avoir rassemblé une nouvelle armée, les "Néo-Faucons" (incluant des apôtres déguisés en guerriers d'élite), Griffith affronte l'Empire Kushan dirigé par Ganishka, un empereur transformé en apôtre qui défie la Main de Dieu.</p>
+                            <p>Lors de leur confrontation finale, Ganishka, ayant absorbé d'innombrables êtres vivants, devient une entité colossale menaçant le monde entier. Griffith, chevauchant Zodd, frappe Ganishka avec le Chevalier du Crâne, provoquant un phénomène cataclysmique : la Confluance des Plans.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/SRjqMrp/falconia.jpg" alt="Falconia">
+                            </div>
+                            <p>Cet événement transforme radicalement le monde : le plan astral et le monde physique se fondent partiellement, permettant aux créatures fantastiques et monstrueuses d'exister librement dans la réalité. De l'immense forme de Ganishka émerge l'Arbre-Monde, une gigantesque structure cristalline reliant le ciel et la terre.</p>
+                            <p>Sur les ruines de Wyndham, capitale de Midland, Griffith établit Falconia, une cité-forteresse utopique qui devient le seul refuge pour les humains dans un monde désormais peuplé de créatures fantastiques hostiles. Cette réalisation représente l'accomplissement du rêve de Griffith : son propre royaume.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-007</a>
+                                <a href="#" class="card-link">BCCG-060</a>
+                                <a href="#" class="card-link">BCCG-098</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="fantasia" data-characters="guts,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1106</span>
+                    <h3 class="timeline-title">Voyage vers Elfhelm</h3>
+                    <p class="timeline-desc">Guts et ses compagnons entreprennent un périlleux voyage maritime vers l'île de Skellig, où se trouve Elfhelm, le royaume des elfes, dans l'espoir de guérir l'esprit brisé de Casca.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Fantasia</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Casca</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>Après la Confluance des Plans, Guts décide de se concentrer sur la guérison de Casca plutôt que sur sa vengeance contre Griffith. Sur les conseils de Schierke, le groupe cherche à atteindre Elfhelm, un royaume elfique protégé où la Reine Danann pourrait potentiellement restaurer l'esprit de Casca.</p>
+                            <p>Le voyage est rendu encore plus dangereux par la transformation du monde suite à la Confluance des Plans. Le groupe s'agrandit avec l'arrivée d'Isma, une jeune fille ayant des origines marines, et de Roderick, un noble qui leur fournit un navire et ses compétences de navigateur.</p>
+                            <p>Durant leur périple en mer, ils affrontent des pirates, des monstres marins et des créatures fantastiques tout en développant des liens plus profonds entre eux, formant une nouvelle "famille" pour Guts.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-010</a>
+                                <a href="#" class="card-link">BCCG-016</a>
+                                <a href="#" class="card-link">BCCG-087</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-era="fantasia" data-characters="guts,casca">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">1107</span>
+                    <h3 class="timeline-title">Guérison de Casca</h3>
+                    <p class="timeline-desc">Guts et ses compagnons atteignent enfin Elfhelm. Avec l'aide de la Reine Danann, ils entreprennent un voyage psychique dans l'esprit fragmenté de Casca pour restaurer sa conscience.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Fantasia</span>
+                        <span class="timeline-tag">Guts</span>
+                        <span class="timeline-tag">Casca</span>
+                    </div>
+                    <div class="timeline-expand">
+                        <button class="expand-btn">
+                            <span>En savoir plus</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-extra">
+                        <div class="expanded-content">
+                            <p>À Elfhelm, le groupe rencontre la Reine Danann, souveraine des elfes, qui utilise sa magie pour créer un processus de guérison pour Casca. Schierke et Farnese sont envoyées dans son subconscient pour récupérer les fragments de son esprit brisé, représentés symboliquement par des pièces de poupée.</p>
+                            <div class="timeline-image">
+                                <img src="https://i.ibb.co/sqCK5Qr/casca-healing.jpg" alt="Guérison de Casca">
+                            </div>
+                            <p>Ce voyage révèle l'ampleur du traumatisme de Casca et explique pourquoi son esprit s'est fragmenté comme mécanisme de défense. Avec l'aide de manifestations psychiques, notamment celle de Guts et de la petite fée représentant les souvenirs de Casca, elles parviennent à reconstruire son esprit.</p>
+                            <p>Casca retrouve finalement sa conscience et sa mémoire, mais développe un blocage psychologique à l'égard de Griffith si intense qu'elle ne peut supporter la vue de Guts, qui lui rappelle trop ce traumatisme. Cette guérison représente à la fois une victoire et un nouveau défi pour Guts et Casca.</p>
+                            <div class="related-cards">
+                                <a href="#" class="card-link">BCCG-018</a>
+                                <a href="#" class="card-link">BCCG-087</a>
+                                <a href="#" class="card-link">BCCG-092</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bouton pour revenir au présent -->
+        <button class="go-to-present" id="go-to-present" title="Revenir au présent">
+            <i class="fas fa-history"></i>
+        </button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments DOM
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const expandBtns = document.querySelectorAll('.expand-btn');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const timelineSearch = document.getElementById('timeline-search');
+            const goToPresentBtn = document.getElementById('go-to-present');
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const zoomLevelEl = document.getElementById('zoom-level');
+            
+            // Variables d'état
+            let timelineScale = 1;
+            let scrollPosition = 0;
+            
+            // Fonction pour développer un élément de chronologie
+            function expandTimelineItem(item) {
+                // Fermer tous les autres éléments développés
+                timelineItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('expanded')) {
+                        otherItem.classList.remove('expanded');
+                        const btn = otherItem.querySelector('.expand-btn');
+                        btn.innerHTML = '<span>En savoir plus</span><i class="fas fa-chevron-down"></i>';
+                    }
+                });
+                
+                // Développer/réduire l'élément actuel
+                item.classList.toggle('expanded');
+                const btn = item.querySelector('.expand-btn');
+                
+                if (item.classList.contains('expanded')) {
+                    btn.innerHTML = '<span>Réduire</span><i class="fas fa-chevron-up"></i>';
+                } else {
+                    btn.innerHTML = '<span>En savoir plus</span><i class="fas fa-chevron-down"></i>';
+                }
+            }
+            
+            // Ajout des événements pour développer les éléments
+            expandBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const timelineItem = this.closest('.timeline-item');
+                    expandTimelineItem(timelineItem);
+                });
+            });
+            
+            // Filtrage par ère
+            const eraBtns = document.querySelectorAll('[data-filter]');
+            eraBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mise à jour des boutons actifs
+                    eraBtns.forEach(b => {
+                        if (b.dataset.filter) {
+                            b.classList.remove('active');
+                        }
+                    });
+                    this.classList.add('active');
+                    
+                    filterTimeline();
+                });
+            });
+            
+            // Filtrage par personnage
+            const characterBtns = document.querySelectorAll('[data-character]');
+            characterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mise à jour des boutons actifs
+                    characterBtns.forEach(b => {
+                        if (b.dataset.character) {
+                            b.classList.remove('active');
+                        }
+                    });
+                    this.classList.add('active');
+                    
+                    filterTimeline();
+                });
+            });
+            
+            // Recherche dans la chronologie
+            timelineSearch.addEventListener('input', filterTimeline);
+            
+            // Fonction de filtrage combinée
+            function filterTimeline() {
+                const selectedEra = document.querySelector('[data-filter].active').dataset.filter;
+                const selectedCharacter = document.querySelector('[data-character].active').dataset.character;
+                const searchTerm = timelineSearch.value.toLowerCase();
+                
+                timelineItems.forEach(item => {
+                    const era = item.dataset.era;
+                    const characters = item.dataset.characters ? item.dataset.characters.split(',') : [];
+                    const title = item.querySelector('.timeline-title').textContent.toLowerCase();
+                    const description = item.querySelector('.timeline-desc').textContent.toLowerCase();
+                    
+                    const matchesEra = selectedEra === 'all' || era === selectedEra;
+                    const matchesCharacter = selectedCharacter === 'all' || characters.includes(selectedCharacter);
+                    const matchesSearch = searchTerm === '' || 
+                                        title.includes(searchTerm) || 
+                                        description.includes(searchTerm);
+                    
+                    if (matchesEra && matchesCharacter && matchesSearch) {
+                        item.classList.remove('filtered');
+                    } else {
+                        item.classList.add('filtered');
+                        
+                        // Si l'élément est développé, le réduire
+                        if (item.classList.contains('expanded')) {
+                            const btn = item.querySelector('.expand-btn');
+                            item.classList.remove('expanded');
+                            btn.innerHTML = '<span>En savoir plus</span><i class="fas fa-chevron-down"></i>';
+                        }
+                    }
+                });
+            }
+            
+            // Zoom sur la chronologie
+            function updateTimelineZoom() {
+                const timelineContainer = document.getElementById('timeline-container');
+                timelineContainer.style.transform = `scale(${timelineScale})`;
+                timelineContainer.style.transformOrigin = 'center top';
+                zoomLevelEl.textContent = `${Math.round(timelineScale * 100)}%`;
+                
+                // Afficher/masquer le bouton "Revenir au présent"
+                if (timelineScale !== 1 || window.scrollY > 500) {
+                    goToPresentBtn.classList.add('visible');
+                } else {
+                    goToPresentBtn.classList.remove('visible');
+                }
+            }
+            
+            zoomInBtn.addEventListener('click', function() {
+                if (timelineScale < 1.5) {
+                    timelineScale += 0.1;
+                    updateTimelineZoom();
+                }
+            });
+            
+            zoomOutBtn.addEventListener('click', function() {
+                if (timelineScale > 0.7) {
+                    timelineScale -= 0.1;
+                    updateTimelineZoom();
+                }
+            });
+            
+            // Revenir à la vue par défaut
+            goToPresentBtn.addEventListener('click', function() {
+                timelineScale = 1;
+                updateTimelineZoom();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Gérer l'affichage du bouton Revenir au présent lors du défilement
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500 || timelineScale !== 1) {
+                    goToPresentBtn.classList.add('visible');
+                } else {
+                    goToPresentBtn.classList.remove('visible');
+                }
+            });
+            
+            // Gestion des liens vers les cartes
+            const cardLinks = document.querySelectorAll('.card-link');
+            cardLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const cardId = this.textContent;
+                    alert(`Affichage de la carte: ${cardId}`);
+                    // Ici, vous pouvez rediriger vers la page de la carte ou ouvrir un modal
+                });
+            });
+        });
+    </script>
+</body>
+</html>

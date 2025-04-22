@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserk CCG Cardex - Fan CCG </title>
+    <meta name="description" content="Explorez notre collection de cartes Berserk à collectionner.">
+    
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn, etc.) -->
+    <meta property="og:url" content="https://berserkccg.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Berserk CCG Cardex - Collection de cartes">
+    <meta property="og:description" content="Explorez notre collection de cartes Berserk à collectionner.">
+    <meta property="og:image" content="https://berserkccg.com/images/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="berserkccg.com">
+    <meta property="twitter:url" content="https://berserkccg.com">
+    <meta name="twitter:title" content="Berserk CCG Cardex - Collection de cartes">
+    <meta name="twitter:description" content="Explorez notre collection de cartes Berserk à collectionner.">
+    <meta name="twitter:image" content="https://berserkccg.com/images/og-preview.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:wght@400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #8b0000;
+            --primary-dark: #650000;
+            --background-color: #1a1a1a;
+            --background-light: #2a2a2a;
+            --text-color: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --delete-color: #ff4444;
+            --success-color: #00aa55;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--primary-color);
+        }
+        
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+        }
+        
+        /* Empêcher le clic droit sur les images */
+        img {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        /* Splash Screen Animation */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+        
+        .splash-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #berserk-title {
+            position: absolute;
+            width: 700px;
+            max-width: 80%;
+            top: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            z-index: 11;
+        }
+        
+        #sacrifice-mark {
+            width: 300px;
+            height: 360px;
+            opacity: 0;
+            animation: pulse 5s forwards;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            margin-top: 50px;
+        }
+        
+        #left-gif {
+            position: absolute;
+            bottom: 15%;
+            left: 15%;
+            height: 150px;
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+        }
+        
+        #right-gif {
+            position: absolute;
+            bottom: 15%;
+            right: 15%;
+            height: 150px;
+            opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        /* Header */
+        header {
+            background-color: black;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .search-bar {
+            position: relative;
+            width: 50%;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 8px 12px 8px 35px;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        /* Navigation principale */
+        .main-nav {
+            background-color: var(--background-light);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            padding: 0.5rem 1.5rem;
+            color: var(--text-color);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        .nav-item:hover::after, .nav-item.active::after {
+            width: 70%;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: none; /* Hidden initially, shown after splash screen */
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            margin-bottom: 1.5rem;
+            background-color: var(--background-light);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .filter-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .filter-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .filter-row.expanded {
+            max-height: 500px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .filter-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 8px 10px;
+            background-color: var(--background-color);
+            border: 1px solid #3a3a3a;
+            color: var(--text-color);
+            border-radius: 4px;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        /* Series Navigation */
+        .serie-nav {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .serie-btn {
+            padding: 10px 20px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .serie-btn.active, .serie-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Categories */
+        .categories {
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--background-light);
+            padding-bottom: 10px;
+        }
+        
+        .category-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 10px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .card-item {
+            background-color: var(--background-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+            transform: scale(1.00); /* Zoom réduit selon demande */
+        }
+        
+        .card-item:hover {
+            transform: translateY(-10px) scale(1.03); /* Zoom légèrement augmenté au survol */
+        }
+        
+        .card-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            margin: -2.5% -2.5% 0 -2.5%; /* Bordures moins cachées */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-image img {
+            width: 105%; /* Image moins agrandie */
+            height: 105%;
+            object-fit: contain;
+            object-position: center calc(50% + 3px);
+            transition: transform 0.5s;
+        }
+        
+        .card-item:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .card-info {
+            padding: 1rem;
+        }
+        
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .card-serie {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .card-id-display {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: var(--background-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            z-index: 10;
+            transition: opacity 0.3s;
+        }
+        
+        .modal-close:hover {
+            opacity: 1;
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .modal-body {
+                flex-direction: row;
+                align-items: stretch;
+            }
+        }
+        
+        .modal-image-container {
+            position: relative;
+            flex: 1;
+            min-height: 400px;
+            background-color: black;
+        }
+        
+        .modal-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(1.1);
+    	    transition: transform 0.3s ease;
+        }
+        
+        .flip-card-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .flip-card-btn:hover {
+            opacity: 1;
+        }
+        
+        .modal-info {
+            flex: 1;
+            padding: 1.5rem;
+        }
+        
+        .modal-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .modal-serie {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .modal-category {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .modal-id {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: right;
+            margin-top: 20px;
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            background-color: var(--background-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .stats-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stats-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-item {
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Series Section */
+        .series-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--background-light);
+        }
+        
+        .series-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .series-item {
+            background-color: var(--background-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .series-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .series-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s, filter 0.5s;
+        }
+        
+        .series-item:hover .series-image {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+        
+        .series-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+        
+        .series-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .series-count {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Collection Progress */
+        .collection-progress {
+            margin-top: 2rem;
+            background-color: var(--background-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .progress-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar-container {
+            height: 30px;
+            background-color: var(--background-color);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0;
+            transition: width 1s ease;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+        }
+        
+        .notification.success {
+            background-color: var(--success-color);
+        }
+        
+        .notification.error {
+            background-color: var(--delete-color);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Loading Indicator */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 100%;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Chart & Visualizations */
+        .chart-container {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .chart-header {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .donut-chart-container, .bar-chart-container {
+            height: 350px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            display: block;
+        }
+        
+        .donut-chart-container canvas, .bar-chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .nav-icons {
+                display: flex;
+                justify-content: center;
+            }
+            
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .modal-content {
+                margin: 20px;
+            }
+            
+            .modal-image-container {
+                min-height: 300px;
+            }
+            
+            #left-gif, #right-gif {
+                height: 100px;
+                bottom: 10%;
+            }
+            
+            #left-gif {
+                left: 5%;
+            }
+            
+            #right-gif {
+                right: 5%;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .series-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        /* Pour les tablettes */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        
+        /* Scrollbar Customization */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--background-color);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* À propos de la collection section */
+        .about-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--background-light);
+            border-radius: 10px;
+        }
+        
+        .about-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: black;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Styles for about section */
+        .about-text {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-container">
+            <!-- Titre BERSERK CCG -->
+            <img id="berserk-title" src="images/titre-berserk-ccg.png" alt="BERSERK CCG">
+            
+            <!-- Marque du sacrifice (au centre) -->
+            <img id="sacrifice-mark" src="images/logo.png" alt="Marque du Sacrifice">
+            
+            <!-- GIF à gauche -->
+            <img id="left-gif" src="images/logo_gif.gif" alt="Animation gauche">
+            
+            <!-- GIF à droite -->
+            <img id="right-gif" src="images/logo_gif.gif" alt="Animation droite">
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/header-logo.png" alt="Logo Berserk CCG">
+                <h1>Berserk CCG Cardex</h1>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Rechercher une carte...">
+            </div>
+            <div class="nav-icons">
+                <a href="#about" class="nav-icon" title="À propos">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation principale -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-item active" data-section="cards-section">Collection</a>
+            <a href="#" class="nav-item" data-section="stats-section">Statistiques</a>
+            <a href="#" class="nav-item" data-section="series-section">Séries</a>
+            <a href="univers.html" class="nav-item">Univers Berserk</a>
+            <a href="#" class="nav-item" data-section="about-section">À propos</a>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Section Collection -->
+        <div id="cards-section" class="section active">
+            <!-- Filters Section -->
+            <div class="filter-section">
+                <div class="filter-title" id="filter-toggle">
+                    <i class="fas fa-filter"></i>
+                    <span>Filtres</span>
+                    <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
+                </div>
+                <div class="filter-row" id="filter-container">
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-serie">Série</label>
+                        <select id="filter-serie" class="filter-select">
+                            <option value="all">Toutes les séries</option>
+                            <option value="serie1">Série 1</option>
+                            <option value="serie2">Série 2</option>
+                            <option value="serieSpeciale">Série Spéciale</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-category">Catégorie</label>
+                        <select id="filter-category" class="filter-select">
+                            <option value="all">Toutes les catégories</option>
+                            <option value="heroes">Héros</option>
+                            <option value="apostles">Apôtres</option>
+                            <option value="godhand">Main de Dieu</option>
+                            <option value="special">Spéciale</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-sort">Trier par</label>
+                        <select id="filter-sort" class="filter-select">
+                            <option value="id-asc">Numéro (croissant)</option>
+                            <option value="id-desc">Numéro (décroissant)</option>
+                            <option value="name-asc">Nom (A-Z)</option>
+                            <option value="name-desc">Nom (Z-A)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Series Navigation -->
+            <div class="serie-nav" id="serie-nav">
+                <button class="serie-btn active" data-serie="all">Toutes les séries</button>
+                <button class="serie-btn" data-serie="serie1">Série 1</button>
+                <button class="serie-btn" data-serie="serie2">Série 2</button>
+                <button class="serie-btn" data-serie="serieSpeciale">Série Spéciale</button>
+            </div>
+            
+            <!-- Categories -->
+            <div class="categories" id="categories">
+                <button class="category-btn active" data-category="all">Toutes</button>
+                <button class="category-btn" data-category="heroes">Héros</button>
+                <button class="category-btn" data-category="apostles">Apôtres</button>
+                <button class="category-btn" data-category="godhand">Main de Dieu</button>
+                <button class="category-btn" data-category="special">Spéciale</button>
+            </div>
+            
+            <!-- Card Grid -->
+            <div class="card-grid" id="card-grid">
+                <!-- Cards will be loaded here dynamically -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section Statistiques -->
+        <div id="stats-section" class="section" style="display: none;">
+            <h2 class="stats-title">
+                <i class="fas fa-chart-pie"></i>
+                Statistiques de la collection
+            </h2>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="total-cards-count">0</div>
+                    <div class="stat-label">Cartes au total</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-series-count">0</div>
+                    <div class="stat-label">Séries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="heroes-count">0</div>
+                    <div class="stat-label">Héros</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="apostles-count">0</div>
+                    <div class="stat-label">Apôtres</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="godhand-count">0</div>
+                    <div class="stat-label">Main de Dieu</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="special-count">0</div>
+                    <div class="stat-label">Spéciales</div>
+                </div>
+            </div>
+            
+            <!-- Graphiques -->
+            <div class="chart-container">
+                <h3 class="chart-header">Répartition des cartes par catégorie</h3>
+                <div class="donut-chart-container" id="category-chart">
+                    <canvas></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-header">Répartition des cartes par série</h3>
+                <div class="bar-chart-container" id="series-chart">
+                    <canvas></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section Séries -->
+        <div id="series-section" class="section" style="display: none;">
+            <h2 class="series-title">Les Séries de Cartes Berserk</h2>
+            
+            <div class="series-grid" id="series-grid">
+                <!-- Series will be loaded here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Section À propos -->
+        <div id="about-section" class="section" style="display: none;">
+            <div class="about-section">
+                <h2 class="about-title">À propos de Berserk Cardex</h2>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/header-logo.png" alt="Berserk Cardex">
+                    </div>
+                    <div class="about-text">
+                        <p>Bienvenue sur Berserk Cardex, un fan project créé par des passionnés pour les passionnés. Ce catalogue en ligne dédié à la collection de cartes à collectionner Berserk a été conçu pour permettre aux fans de découvrir et explorer toutes les cartes de cet univers captivant.</p>
+                        
+                        <p>Inspiré par le chef-d'œuvre manga de Kentaro Miura, notre collection de cartes représente les personnages emblématiques, les créatures terrifiantes et les moments clés de l'histoire de Guts et de ses compagnons. En tant que projet non officiel créé par des fans, nous rendons hommage à cette œuvre exceptionnelle.</p>
+                        
+                        <p>Un travail de restauration minutieux : Chaque illustration a été méticuleusement retravaillée et recolorisée, un processus complexe et de longue haleine. Pour de nombreuses images, les fichiers originaux étaient de trop mauvaise qualité ou n'avaient jamais été numérisés en haute définition, nécessitant un travail complet de redessin. Certaines cartes sont même des créations originales, conçues pour compléter harmonieusement la collection.</p>
+                        
+                        <p>Pourquoi un CCG ? Le jeu de cartes officiel Berserk ayant été abandonné, il est aujourd'hui presque impossible de faire découvrir cet univers sous forme de cartes à collectionner. Ce projet est né de cette passion et de cette volonté de préserver cet aspect de l'héritage de Berserk.</p>
+                        
+                        <p>Du virtuel au réel : Chaque carte présentée sur ce site sera imprimée en version physique, y compris dans sa variante holographique, pour offrir une expérience de collection tangible et fidèle à l'esprit des TCG traditionnels. L'impression est réalisée selon les plus hauts standards de qualité possible, représentant un véritable gage d'excellence pour les collectionneurs exigeants.</p>
+                        
+                        <p>Ce site a été entièrement conçu et développé par mes soins, dans le seul but de partager ce travail avec la communauté des fans de Berserk. Il est régulièrement mis à jour avec de nouvelles cartes et séries, alors n'hésitez pas à revenir pour découvrir les dernières créations. Berserk Cardex est un projet créé par un fan, pour les fans, sans aucune affiliation officielle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Card Detail Modal -->
+    <div class="modal" id="card-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" src="" alt="Card Image">
+                    <button class="flip-card-btn" id="flip-card-btn"><i class="fas fa-sync-alt"></i></button>
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-name" id="modal-name">Nom de la Carte</h2>
+                    <div class="modal-serie" id="modal-serie">Série 1</div>
+                    <div class="modal-category" id="modal-category">Héros</div>
+                    <div class="modal-description" id="modal-description">
+                        Description de la carte...
+                    </div>
+                    <div class="modal-id" id="modal-id">BCCG-001</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    
+    <!-- Footer -->
+    <footer>
+        <img src="images/header-logo.png" alt="Berserk Cardex" class="footer-logo">
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link">Accueil</a>
+            <a href="#" class="footer-link">Collection</a>
+            <a href="#" class="footer-link">Statistiques</a>
+            <a href="#" class="footer-link">Séries</a>
+            <a href="#" class="footer-link">À propos</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2025 Berserk Cardex. Tous droits réservés. Berserk est une création de Kentaro Miura.
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Désactiver le clic droit sur tout le site
+            document.addEventListener('contextmenu', event => {
+                event.preventDefault();
+                return false;
+            });
+            
+            // Éléments DOM
+            const splashScreen = document.getElementById('splash-screen');
+            const mainContent = document.querySelector('.main-content');
+            const cardGrid = document.getElementById('card-grid');
+            const seriesGrid = document.getElementById('series-grid');
+            const searchInput = document.getElementById('search-input');
+            const filterSerie = document.getElementById('filter-serie');
+            const filterCategory = document.getElementById('filter-category');
+            const filterSort = document.getElementById('filter-sort');
+            const filterToggle = document.getElementById('filter-toggle');
+            const filterContainer = document.getElementById('filter-container');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const serieBtns = document.querySelectorAll('.serie-btn');
+            const cardModal = document.getElementById('card-modal');
+            const modalClose = document.getElementById('modal-close');
+            const flipCardBtn = document.getElementById('flip-card-btn');
+            const modalImage = document.getElementById('modal-image');
+            const modalName = document.getElementById('modal-name');
+            const modalSerie = document.getElementById('modal-serie');
+            const modalCategory = document.getElementById('modal-category');
+            const modalDescription = document.getElementById('modal-description');
+            const modalId = document.getElementById('modal-id');
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.section');
+
+            // Compteurs statistiques
+            const totalCardsCount = document.getElementById('total-cards-count');
+            const totalSeriesCount = document.getElementById('total-series-count');
+            const heroesCount = document.getElementById('heroes-count');
+            const apostlesCount = document.getElementById('apostles-count');
+            const godhandCount = document.getElementById('godhand-count');
+            const specialCount = document.getElementById('special-count');
+
+            // Variables pour les graphiques
+            let categoryChart = null;
+            let seriesChart = null;
+            let chartsInitialized = false;
+
+            // Données des cartes
+            let cards = [];
+            
+            // Initialiser le site
+            setTimeout(() => {
+                splashScreen.style.opacity = '0';
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    
+                    // Charger les cartes depuis le fichier JSON
+                    fetchCards().then(() => {
+                        // Afficher les cartes
+                        applyFilters();
+                        
+                        // Afficher les séries
+                        renderSeriesGrid();
+                        
+                        // Mettre à jour les statistiques
+                        updateStats();
+                        
+                        // Initialiser les graphiques
+                        initCharts();
+                    });
+                }, 1000);
+            }, 5000);
+            
+            // Récupérer les données des cartes depuis le fichier JSON
+            async function fetchCards() {
+                try {
+                    // Requête vers le fichier JSON
+                    const response = await fetch('/cards.json');
+                    
+                    // Vérification que la requête s'est bien passée
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                    }
+                    
+                    // Conversion de la réponse en JSON
+                    cards = await response.json();
+                    
+                    console.log("Cartes chargées:", cards.length);
+                    console.log("Exemple de carte:", cards[0]);
+                    
+                    // On ne modifie plus le displaySerie - on utilise directement la propriété serie
+                    cards = cards.map(card => {
+                        return {
+                            ...card,
+                            displaySerie: card.serie // Conserver la série originale
+                        };
+                    });
+                    
+                    return cards;
+                } catch (error) {
+                    console.error('Erreur lors du chargement des cartes:', error);
+                    showNotification('Erreur lors du chargement des cartes. Vérifiez que le fichier cards.json est accessible.', 'error');
+                    
+                    // En cas d'erreur, utiliser des données par défaut pour la démo
+                    cards = [
+                        {
+                            id: "BCCG-001",
+                            name: "Guts - Le Guerrier Noir",
+                            category: "heroes",
+                            serie: "serie1",
+                            displaySerie: "serie1",
+                            description: "Le protagoniste de Berserk, un mercenaire marqué par un passé violent et traumatisant. Il manie une épée gigantesque appelée Dragon Slayer et porte la Marque du Sacrifice qui attire les forces démoniaques.",
+                            image: "cartes/serie1/guts.jpg",
+                            backImage: "cartes/serie1/guts_back.jpg"
+                        },
+                        {
+                            id: "BCCG-002",
+                            name: "Griffith - Le Faucon",
+                            category: "godhand",
+                            serie: "serie1",
+                            displaySerie: "serie1",
+                            description: "Ancien leader de la Troupe du Faucon, devenu Femto, membre de la Main de Dieu. Son ambition sans limites l'a conduit à sacrifier ses compagnons lors de l'Éclipse pour réaliser son rêve.",
+                            image: "cartes/serie1/griffith.jpg",
+                            backImage: "cartes/serie1/griffith_back.jpg"
+                        }
+                    ];
+                    return cards;
+                }
+            }
+            
+            // Appliquer les filtres et afficher les cartes
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedSerie = filterSerie.value;
+                const selectedCategory = filterCategory.value;
+                const sortOption = filterSort.value;
+                
+                // Mettre à jour les boutons actifs
+                serieBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.serie === selectedSerie);
+                });
+                
+                categoryBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.category === selectedCategory);
+                });
+                
+                // Filtrer les cartes
+                let filteredCards = [...cards];
+                
+                // Filtrer par série
+                if (selectedSerie !== 'all') {
+                    // Utiliser le champ serie au lieu de displaySerie
+                    filteredCards = filteredCards.filter(card => card.serie === selectedSerie);
+                }
+                
+                // Filtrer par catégorie
+                if (selectedCategory !== 'all') {
+                    filteredCards = filteredCards.filter(card => card.category === selectedCategory);
+                }
+                
+                // Filtrer par recherche
+                if (searchTerm) {
+                    filteredCards = filteredCards.filter(card => 
+                        card.name.toLowerCase().includes(searchTerm) || 
+                        card.description.toLowerCase().includes(searchTerm) ||
+                        card.id.toLowerCase().includes(searchTerm)
+                    );
+                }
+                
+                // Trier les cartes
+                filteredCards = sortCards(filteredCards, sortOption);
+                
+                // Afficher les cartes
+                renderCards(filteredCards);
+            }
+            
+            // Trier les cartes
+            function sortCards(cardsToSort, sortOption) {
+                const sortedCards = [...cardsToSort];
+                
+                switch (sortOption) {
+                    case 'id-asc':
+                        sortedCards.sort((a, b) => a.id.localeCompare(b.id));
+                        break;
+                    case 'id-desc':
+                        sortedCards.sort((a, b) => b.id.localeCompare(a.id));
+                        break;
+                    case 'name-asc':
+                        sortedCards.sort((a, b) => a.name.localeCompare(b.name));
+                        break;
+                    case 'name-desc':
+                        sortedCards.sort((a, b) => b.name.localeCompare(a.name));
+                        break;
+                }
+                
+                return sortedCards;
+            }
+            
+            // Afficher les cartes dans la grille
+            function renderCards(cardsToRender) {
+                cardGrid.innerHTML = '';
+                
+                if (cardsToRender.length === 0) {
+                    cardGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                            <h3>Aucune carte trouvée</h3>
+                            <p>Essayez de modifier votre recherche ou vos filtres.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                cardsToRender.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'card-item';
+                    cardElement.dataset.id = card.id;
+                    
+                    let serieLabel = formatSerieName(card.serie);
+                    
+                    cardElement.innerHTML = `
+                        <div class="card-image">
+                            <img src="${card.image}" alt="${card.name}">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name">${card.name}</h3>
+                            <div class="card-serie">${serieLabel}</div>
+                            <div class="card-id-display">${card.id}</div>
+                        </div>
+                    `;
+                    
+                    cardElement.addEventListener('click', () => openCardModal(card));
+                    
+                    cardGrid.appendChild(cardElement);
+                });
+            }
+            
+            // Afficher les séries dans la grille
+            function renderSeriesGrid() {
+                // Obtenir les séries uniques basées sur la propriété serie
+                const uniqueSeries = [...new Set(cards.map(card => card.serie))];
+                
+                // Compter les cartes par série
+                const seriesCounts = uniqueSeries.reduce((acc, serie) => {
+                    acc[serie] = cards.filter(card => card.serie === serie).length;
+                    return acc;
+                }, {});
+                
+                seriesGrid.innerHTML = '';
+                
+                uniqueSeries.forEach(serie => {
+                    // Trouver une carte représentative de la série
+                    const representativeCard = cards.find(card => card.serie === serie);
+                    
+                    if (representativeCard) {
+                        const seriesElement = document.createElement('div');
+                        seriesElement.className = 'series-item';
+                        seriesElement.dataset.serie = serie;
+                        
+                        seriesElement.innerHTML = `
+                            <img src="${representativeCard.image}" alt="${formatSerieName(serie)}" class="series-image">
+                            <div class="series-overlay">
+                                <h3 class="series-name">${formatSerieName(serie)}</h3>
+                                <div class="series-count">${seriesCounts[serie]} cartes</div>
+                            </div>
+                        `;
+                        
+                        seriesElement.addEventListener('click', () => {
+                            // Changer à la section des cartes
+                            navItems.forEach(item => {
+                                item.classList.toggle('active', item.dataset.section === 'cards-section');
+                            });
+                            
+                            sections.forEach(section => {
+                                section.style.display = section.id === 'cards-section' ? 'block' : 'none';
+                            });
+                            
+                            // Appliquer le filtre de série
+                            filterSerie.value = serie;
+                            applyFilters();
+                            
+                            // Mettre à jour les boutons de série actifs
+                            serieBtns.forEach(btn => {
+                                btn.classList.toggle('active', btn.dataset.serie === serie);
+                            });
+                            
+                            // Faire défiler jusqu'à la grille de cartes
+                            cardGrid.scrollIntoView({ behavior: 'smooth' });
+                        });
+                        
+                        seriesGrid.appendChild(seriesElement);
+                    }
+                });
+            }
+            
+            // Mettre à jour les statistiques
+            function updateStats() {
+                totalCardsCount.textContent = cards.length;
+                
+                const uniqueSeries = new Set(cards.map(card => card.serie));
+                totalSeriesCount.textContent = uniqueSeries.size;
+                
+                const heroes = cards.filter(card => card.category === 'heroes').length;
+                heroesCount.textContent = heroes;
+                
+                const apostles = cards.filter(card => card.category === 'apostles').length;
+                apostlesCount.textContent = apostles;
+                
+                const godhand = cards.filter(card => card.category === 'godhand').length;
+                godhandCount.textContent = godhand;
+                
+                const special = cards.filter(card => card.category === 'special').length;
+                specialCount.textContent = special;
+            }
+            
+            // Initialiser les graphiques
+            function initCharts() {
+                if (chartsInitialized) {
+                    // Si les graphiques sont déjà initialisés, on les détruit pour les recréer
+                    if (categoryChart) categoryChart.destroy();
+                    if (seriesChart) seriesChart.destroy();
+                }
+                
+                // Préparer les données pour le graphique des catégories
+                const categories = {
+                    'heroes': { count: 0, color: '#4e73df', label: 'Héros' },
+                    'apostles': { count: 0, color: '#e74a3b', label: 'Apôtres' },
+                    'godhand': { count: 0, color: '#9932CC', label: 'Main de Dieu' },
+                    'special': { count: 0, color: '#f6c23e', label: 'Spéciale' }
+                };
+                
+                cards.forEach(card => {
+                    if (categories[card.category]) {
+                        categories[card.category].count++;
+                    }
+                });
+                
+                const categoryLabels = Object.values(categories).map(cat => cat.label);
+                const categoryData = Object.values(categories).map(cat => cat.count);
+                const categoryColors = Object.values(categories).map(cat => cat.color);
+                
+                // Créer le graphique en donut pour les catégories
+                const categoryChartContainer = document.getElementById('category-chart');
+                if (categoryChartContainer) {
+                    // Vérifier que le conteneur a un canvas
+                    let categoryCanvas = categoryChartContainer.querySelector('canvas');
+                    if (!categoryCanvas) {
+                        categoryCanvas = document.createElement('canvas');
+                        categoryChartContainer.appendChild(categoryCanvas);
+                    }
+                    
+                    const ctx = categoryCanvas.getContext('2d');
+                    categoryChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: categoryLabels,
+                            datasets: [{
+                                data: categoryData,
+                                backgroundColor: categoryColors,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'right',
+                                    labels: {
+                                        color: '#f0f0f0',
+                                        font: {
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Préparer les données pour le graphique des séries
+                // Obtenir les séries uniques
+                const uniqueSeries = [...new Set(cards.map(card => card.serie))];
+                
+                // Créer un objet avec les couleurs et labels pour chaque série
+                const series = {};
+                const seriesColors = ['#4e73df', '#e74a3b', '#f6c23e', '#00aa55', '#9932CC'];
+                
+                uniqueSeries.forEach((serie, index) => {
+                    series[serie] = {
+                        count: 0,
+                        color: seriesColors[index % seriesColors.length],
+                        label: formatSerieName(serie)
+                    };
+                });
+                
+                // Compter les cartes par série
+                cards.forEach(card => {
+                    if (series[card.serie]) {
+                        series[card.serie].count++;
+                    }
+                });
+                
+                const seriesLabels = Object.values(series).map(serie => serie.label);
+                const seriesData = Object.values(series).map(serie => serie.count);
+                const seriesBgColors = Object.values(series).map(serie => serie.color);
+                
+                // Créer le graphique en barres pour les séries
+                const seriesChartContainer = document.getElementById('series-chart');
+                if (seriesChartContainer) {
+                    // Vérifier que le conteneur a un canvas
+                    let seriesCanvas = seriesChartContainer.querySelector('canvas');
+                    if (!seriesCanvas) {
+                        seriesCanvas = document.createElement('canvas');
+                        seriesChartContainer.appendChild(seriesCanvas);
+                    }
+                    
+                    const ctx = seriesCanvas.getContext('2d');
+                    seriesChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: seriesLabels,
+                            datasets: [{
+                                label: 'Nombre de cartes',
+                                data: seriesData,
+                                backgroundColor: seriesBgColors,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    },
+                                    ticks: {
+                                        color: '#f0f0f0'
+                                    }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        color: '#f0f0f0'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                chartsInitialized = true;
+            }
+            
+            // Ouvrir le modal de détail de carte
+            function openCardModal(card) {
+                modalImage.src = card.image;
+                modalImage.dataset.frontImage = card.image;
+                modalImage.dataset.backImage = card.backImage || '';
+                modalImage.dataset.showingFront = 'true';
+                modalName.textContent = card.name;
+                
+                // Définir la série
+                modalSerie.textContent = formatSerieName(card.serie);
+                
+                // Définir la catégorie
+                let categoryLabel = formatCategoryName(card.category);
+                modalCategory.textContent = categoryLabel;
+                
+                // Définir la description et l'ID
+                modalDescription.textContent = card.description;
+                modalId.textContent = card.id;
+                
+                // Afficher/masquer le bouton de rotation selon qu'il y a une image verso
+                if (card.backImage) {
+                    flipCardBtn.style.display = 'flex';
+                } else {
+                    flipCardBtn.style.display = 'none';
+                }
+                
+                cardModal.style.display = 'block';
+            }
+            
+            // Retourner la carte dans le modal
+            function flipCard() {
+                const isFront = modalImage.dataset.showingFront === 'true';
+                const frontImage = modalImage.dataset.frontImage;
+                const backImage = modalImage.dataset.backImage;
+                
+                if (isFront && backImage) {
+                    modalImage.src = backImage;
+                    modalImage.dataset.showingFront = 'false';
+                } else {
+                    modalImage.src = frontImage;
+                    modalImage.dataset.showingFront = 'true';
+                }
+            }
+            
+            // Formater le nom de la série pour l'affichage
+            function formatSerieName(serieCode) {
+                switch(serieCode) {
+                    case 'serie1': return 'Série 1';
+                    case 'serie2': return 'Série 2';
+                    case 'serieSpeciale': return 'Série Spéciale';
+                    default: return serieCode;
+                }
+            }
+            
+            // Formater le nom de la catégorie pour l'affichage
+            function formatCategoryName(categoryCode) {
+                switch(categoryCode) {
+                    case 'heroes': return 'Héros';
+                    case 'apostles': return 'Apôtres';
+                    case 'godhand': return 'Main de Dieu';
+                    case 'special': return 'Spéciale';
+                    default: return categoryCode;
+                }
+            }
+            
+            // Afficher une notification
+            function showNotification(message, type) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = 'notification';
+                notification.classList.add(type);
+                notification.classList.add('show');
+                
+                // Masquer après 3 secondes
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Événements
+            
+            // Fermer le modal
+            modalClose.addEventListener('click', () => {
+                cardModal.style.display = 'none';
+            });
+            
+            // Retourner la carte
+            flipCardBtn.addEventListener('click', flipCard);
+            
+            // Basculer l'affichage des filtres
+            filterToggle.addEventListener('click', () => {
+                filterContainer.classList.toggle('expanded');
+            });
+            
+            // Filtrer lors du changement de sélection
+            filterSerie.addEventListener('change', applyFilters);
+            filterCategory.addEventListener('change', applyFilters);
+            filterSort.addEventListener('change', applyFilters);
+            
+            // Filtrer lors de la recherche
+            searchInput.addEventListener('input', applyFilters);
+            
+            // Boutons de série
+            serieBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    serieBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Mettre à jour le filtre de série
+                    filterSerie.value = btn.dataset.serie;
+                    
+                    // Filtrer les cartes
+                    applyFilters();
+                });
+            });
+            
+            // Boutons de catégorie
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Mettre à jour le filtre de catégorie
+                    filterCategory.value = btn.dataset.category;
+                    
+                    // Filtrer les cartes
+                    applyFilters();
+                });
+            });
+            
+            // Navigation principale
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Définir la classe active pour la navigation
+                    navItems.forEach(navItem => navItem.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Afficher la section appropriée
+                    if (item.dataset.section) {
+                        sections.forEach(section => {
+                            section.style.display = section.id === item.dataset.section ? 'block' : 'none';
+                        });
+                        
+                        // Redessiner les graphiques si la section est statistiques
+                        if (item.dataset.section === 'stats-section') {
+                            // Forcer la reconstruction des graphiques
+                            setTimeout(() => {
+                                initCharts();
+                            }, 100);
+                        }
+                    }
+                });
+            });
+            
+            // Fermer le modal en cliquant à l'extérieur
+            window.addEventListener('click', (e) => {
+                if (e.target === cardModal) {
+                    cardModal.style.display = 'none';
+                }
+            });
+            
+            // Redimensionner les graphiques lors du redimensionnement de la fenêtre
+            window.addEventListener('resize', () => {
+                if (document.getElementById('stats-section').style.display !== 'none') {
+                    if (categoryChart) categoryChart.resize();
+                    if (seriesChart) seriesChart.resize();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque des Tomes de Berserk - BerserkCCG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:wght@400;600;700&display=swap');
+        
+        /* Variables */
+        :root {
+            --primary-color: #8b0000;
+            --primary-dark: #650000;
+            --primary-light: #a52828;
+            --primary-accent: #d18282;
+            --background-color: #1a1a1a;
+            --background-light: #2a2a2a;
+            --background-dark: #111111;
+            --text-color: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --red-glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Stylisation générale */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Bannière */
+        .tomes-banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url('https://i.ibb.co/ZH7hhh2/berserk-tomes-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .tomes-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(26, 26, 26, 1) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(26, 26, 26, 0.4) 100%);
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .banner-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .banner-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-style: italic;
+        }
+        
+        /* Navigation par arcs */
+        .arcs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .arc-btn {
+            padding: 12px 20px;
+            background-color: var(--background-light);
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .arc-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+        
+        .arc-btn:hover {
+            background-color: var(--background-dark);
+            color: var(--primary-light);
+        }
+        
+        .arc-btn:hover::before,
+        .arc-btn.active::before {
+            transform: scaleX(1);
+        }
+        
+        .arc-btn.active {
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+        
+        /* Grille des tomes */
+        .tomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .tome-card {
+            background-color: var(--background-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .tome-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tome-cover {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .tome-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .tome-card:hover .tome-cover img {
+            transform: scale(1.05);
+        }
+        
+        .tome-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tome-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tome-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .tome-publication {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .tome-description {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .tome-btn {
+            align-self: flex-start;
+            padding: 8px 16px;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tome-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* Modal du tome */
+        .tome-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: var(--background-dark);
+            max-width: 900px;
+            margin: 50px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: modalOpen 0.4s ease;
+        }
+        
+        @keyframes modalOpen {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            padding-right: 40px;
+        }
+        
+        .modal-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px 20px;
+        }
+        
+        .modal-cover {
+            flex: 0 0 250px;
+        }
+        
+        .modal-cover img {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .detail-section {
+            margin-bottom: 25px;
+        }
+        
+        .detail-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+            border-bottom: 1px solid var(--primary-dark);
+            padding-bottom: 5px;
+        }
+        
+        .chapters-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .chapter-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .chapter-title {
+            font-weight: 600;
+        }
+        
+        .chapter-pages {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .key-events-list {
+            list-style: none;
+        }
+        
+        .event-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .event-item::before {
+            content: '\f054';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .related-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .card-link {
+            padding: 5px 10px;
+            background-color: var(--background-light);
+            border: 1px solid var(--primary-dark);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card-link:hover {
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .modal-footer {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--background-light);
+            border-top: 1px solid var(--primary-dark);
+        }
+        
+        .nav-button {
+            padding: 8px 16px;
+            background-color: var(--background-dark);
+            color: var(--text-color);
+            border: 1px solid var(--primary-dark);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Section Arc Overview */
+        .arc-overview {
+            padding: 20px;
+            background-color: var(--background-light);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        
+        .arc-overview.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .arc-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-light);
+        }
+        
+        .arc-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .arc-col {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .arc-image {
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .arc-image img {
+            width: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .arc-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .arc-desc {
+            margin-bottom: 20px;
+        }
+        
+        .arc-info {
+            background-color: var(--background-dark);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .arc-info-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-light);
+        }
+        
+        .arc-info-list {
+            list-style: none;
+        }
+        
+        .arc-info-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .arc-info-label {
+            font-weight: 700;
+            min-width: 120px;
+            color: var(--text-secondary);
+        }
+        
+        .arc-quote {
+            font-style: italic;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+        
+        .arc-quote-author {
+            text-align: right;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .arc-columns {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .arcs-nav {
+                flex-direction: column;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+            }
+            
+            .tomes-banner {
+                height: 200px;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+            
+            .modal-cover {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .tomes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Bannière -->
+        <div class="tomes-banner">
+            <div class="banner-content">
+                <h1 class="banner-title">Les Tomes de Berserk</h1>
+                <p class="banner-subtitle">Explorez la saga légendaire de Kentaro Miura</p>
+            </div>
+        </div>
+        
+        <!-- Navigation par arcs -->
+        <div class="arcs-nav" id="arcs-nav">
+            <button class="arc-btn active" data-arc="all">Tous les arcs</button>
+            <button class="arc-btn" data-arc="black-swordsman">L'Épéiste Noir</button>
+            <button class="arc-btn" data-arc="golden-age">L'Âge d'Or</button>
+            <button class="arc-btn" data-arc="conviction">La Tour de Conviction</button>
+            <button class="arc-btn" data-arc="falcon">Faucon Millénaire</button>
+            <button class="arc-btn" data-arc="fantasia">Fantasia</button>
+        </div>
+        
+        <!-- Aperçu des arcs -->
+        <div id="arc-black-swordsman" class="arc-overview" data-arc="black-swordsman">
+            <h2 class="arc-title">L'Arc de l'Épéiste Noir</h2>
+            
+            <div class="arc-columns">
+                <div class="arc-col">
+                    <div class="arc-image">
+                        <img src="https://i.ibb.co/r0ztpFM/black-swordsman-arc.jpg" alt="L'Arc de l'Épéiste Noir">
+                    </div>
+                    
+                    <div class="arc-info">
+                        <h3 class="arc-info-title">Informations</h3>
+                        <ul class="arc-info-list">
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Tomes:</span>
+                                <span>1 à 3</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Chapitres:</span>
+                                <span>0 à 14</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Publication:</span>
+                                <span>1989 - 1990</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arc-col">
+                    <div class="arc-desc">
+                        <p>L'Arc de l'Épéiste Noir est le premier de la série Berserk, nous présentant Guts sous sa forme la plus sombre : un guerrier impitoyable portant une énorme épée et chassant des démons appelés "apôtres". Chronologiquement, cet arc se déroule après les événements de l'Arc de l'Âge d'Or, mais narrativement, il sert d'introduction au monde brutal de Berserk.</p>
+                        
+                        <p>Dans cette partie de l'histoire, Guts pourchasse les apôtres pour les éliminer un par un, cherchant ultimement à atteindre Griffith/Femto et les autres membres de la Main de Dieu. Il est présenté comme un personnage froid et brutal, portant la Marque du Sacrifice qui attire les créatures démoniaques la nuit.</p>
+                        
+                        <p>L'arc établit de nombreux éléments fondamentaux de l'univers de Berserk : la Marque du Sacrifice, le Behelit, l'existence des apôtres et de la Main de Dieu, ainsi que la quête de vengeance implacable de Guts. C'est aussi dans cet arc que Guts rencontre Puck, un elfe qui deviendra son premier véritable compagnon depuis la tragédie de l'Éclipse.</p>
+                    </div>
+                    
+                    <div class="arc-quote">
+                        <p>"Dans ce monde, est-ce que la destinée de l'Homme est contrôlée par quelque loi transcendante, ou n'est-elle que le jouet d'un hasard démoniaque... Quoi qu'il en soit, l'Homme n'a pas d'emprise sur sa propre volonté."</p>
+                        <p class="arc-quote-author">— Inscription sur le Behelit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="arc-golden-age" class="arc-overview" data-arc="golden-age">
+            <h2 class="arc-title">L'Arc de l'Âge d'Or</h2>
+            
+            <div class="arc-columns">
+                <div class="arc-col">
+                    <div class="arc-image">
+                        <img src="https://i.ibb.co/FqxnHkV/golden-age-arc.jpg" alt="L'Arc de l'Âge d'Or">
+                    </div>
+                    
+                    <div class="arc-info">
+                        <h3 class="arc-info-title">Informations</h3>
+                        <ul class="arc-info-list">
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Tomes:</span>
+                                <span>3 à 14</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Chapitres:</span>
+                                <span>15 à 94</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Publication:</span>
+                                <span>1990 - 1997</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arc-col">
+                    <div class="arc-desc">
+                        <p>L'Arc de l'Âge d'Or est un long flashback qui nous ramène aux origines de Guts et retrace son parcours depuis son enfance difficile jusqu'à sa rencontre avec Griffith et la Troupe du Faucon. Considéré par beaucoup comme le sommet narratif de Berserk, cet arc explore la montée en puissance de la Troupe du Faucon, le triangle relationnel entre Guts, Griffith et Casca, et les événements tragiques qui ont façonné leurs destins.</p>
+                        
+                        <p>Cet arc nous montre comment Guts, initialement forcé à rejoindre la Troupe après avoir été vaincu par Griffith, finit par trouver un sentiment d'appartenance et de camaraderie parmi ces mercenaires. Il développe progressivement une relation complexe avec Griffith, mêlant admiration, rivalité et amitié profonde, ainsi qu'une romance tumultueuse avec Casca.</p>
+                        
+                        <p>La victoire de la Troupe du Faucon dans la bataille de Doldrey marque l'apogée de leur ascension, mais tout bascule lorsque Guts décide de quitter le groupe pour trouver son propre rêve. Cette décision déclenche une série d'événements catastrophiques culminant avec l'Éclipse, une cérémonie démoniaque durant laquelle Griffith sacrifie tous ses compagnons pour renaître en tant que Femto, membre de la Main de Dieu.</p>
+                    </div>
+                    
+                    <div class="arc-quote">
+                        <p>"Si je devais considérer comme ami celui qui partage simplement mon rêve, alors il ne serait pas mon égal. Pour moi, un ami doit être quelqu'un qui ne s'incline jamais devant mon rêve."</p>
+                        <p class="arc-quote-author">— Griffith</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="arc-conviction" class="arc-overview" data-arc="conviction">
+            <h2 class="arc-title">L'Arc de la Tour de Conviction</h2>
+            
+            <div class="arc-columns">
+                <div class="arc-col">
+                    <div class="arc-image">
+                        <img src="https://i.ibb.co/ByfPJT8/conviction-arc.jpg" alt="L'Arc de la Tour de Conviction">
+                    </div>
+                    
+                    <div class="arc-info">
+                        <h3 class="arc-info-title">Informations</h3>
+                        <ul class="arc-info-list">
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Tomes:</span>
+                                <span>14 à 21</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Chapitres:</span>
+                                <span>95 à 176</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Publication:</span>
+                                <span>1997 - 2002</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arc-col">
+                    <div class="arc-desc">
+                        <p>L'Arc de la Tour de Conviction suit Guts dans sa quête pour retrouver Casca, qui a été enlevée par des hérétiques alors qu'elle était sous la protection de Godo et Rickert. Cette recherche le mène jusqu'à la Tour de Conviction, un centre religieux où l'Inquisition, menée par le fanatique Mozgus, torture et exécute les hérétiques.</p>
+                        
+                        <p>Cet arc introduit de nouveaux personnages importants qui deviendront des compagnons de Guts, notamment Farnese et Serpico. Initialement antagonistes en tant que membres des Chevaliers de la Sainte Chaîne, leur vision du monde est remise en question par les événements surnaturels auxquels ils sont confrontés et par l'exemple de Guts lui-même.</p>
+                        
+                        <p>La Tour de Conviction devient le théâtre d'un événement majeur : une cérémonie similaire à l'Éclipse, appelée "la Naissance du Monde Parfait", qui permet la réincarnation physique de Griffith dans le monde matériel. Cet événement marque un tournant dans l'univers de Berserk, mettant fin à l'ère où le surnaturel restait relativement caché et amorçant une fusion progressive entre le monde physique et le plan astral.</p>
+                    </div>
+                    
+                    <div class="arc-quote">
+                        <p>"La douleur. La douleur est tout ce qui me raccroche à la réalité. Sans elle, je ne serais déjà plus moi-même."</p>
+                        <p class="arc-quote-author">— Guts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="arc-falcon" class="arc-overview" data-arc="falcon">
+            <h2 class="arc-title">L'Arc du Faucon Millénaire</h2>
+            
+            <div class="arc-columns">
+                <div class="arc-col">
+                    <div class="arc-image">
+                        <img src="https://i.ibb.co/pzKXZCs/falcon-arc.jpg" alt="L'Arc du Faucon Millénaire">
+                    </div>
+                    
+                    <div class="arc-info">
+                        <h3 class="arc-info-title">Informations</h3>
+                        <ul class="arc-info-list">
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Tomes:</span>
+                                <span>22 à 35</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Chapitres:</span>
+                                <span>177 à 306</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Publication:</span>
+                                <span>2002 - 2010</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arc-col">
+                    <div class="arc-desc">
+                        <p>L'Arc du Faucon Millénaire, ou Arc du Faucon du Monde Millénaire, marque un élargissement considérable de l'univers et des enjeux de Berserk. Il suit deux fils narratifs parallèles : d'un côté, Guts et ses nouveaux compagnons cherchant à atteindre l'île d'Elfhelm pour guérir Casca; de l'autre, Griffith rassemblant une nouvelle armée (les Néo-Faucons) et mettant en œuvre ses plans pour créer son propre royaume.</p>
+                        
+                        <p>Cet arc voit l'introduction de l'Armure du Berserker, une relique elfique qui augmente considérablement les capacités de combat de Guts mais au prix d'une perte progressive de son humanité. Schierke, une jeune sorcière, rejoint également le groupe et devient essentielle pour aider Guts à contrôler l'influence démoniaque de l'armure.</p>
+                        
+                        <p>Pendant ce temps, Griffith affronte l'Empire Kushan dirigé par Ganishka, un empereur apostolique qui défie la Main de Dieu. Leur confrontation finale provoque un événement cataclysmique, "la Confluance des Plans", qui transforme drastiquement le monde en fusionnant partiellement les plans physique et astral, permettant aux créatures fantastiques d'entrer dans le monde des humains.</p>
+                    </div>
+                    
+                    <div class="arc-quote">
+                        <p>"Je n'ai jamais cru être sur le bon chemin. Mais j'ai fait ce que j'ai considéré comme juste. C'est tout. Ce que je veux... ce pour quoi je me bats..."</p>
+                        <p class="arc-quote-author">— Guts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="arc-fantasia" class="arc-overview" data-arc="fantasia">
+            <h2 class="arc-title">L'Arc Fantasia</h2>
+            
+            <div class="arc-columns">
+                <div class="arc-col">
+                    <div class="arc-image">
+                        <img src="https://i.ibb.co/0YkKmGf/fantasia-arc.jpg" alt="L'Arc Fantasia">
+                    </div>
+                    
+                    <div class="arc-info">
+                        <h3 class="arc-info-title">Informations</h3>
+                        <ul class="arc-info-list">
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Tomes:</span>
+                                <span>35 à 41+ (en cours)</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Chapitres:</span>
+                                <span>307 à 364+ (en cours)</span>
+                            </li>
+                            <li class="arc-info-item">
+                                <span class="arc-info-label">Publication:</span>
+                                <span>2010 - présent</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arc-col">
+                    <div class="arc-desc">
+                        <p>L'Arc Fantasia débute après la transformation du monde suite à la Confluance des Plans. Le paysage mondial est radicalement modifié : des créatures fantastiques errent librement, et Falconia, la cité fondée par Griffith, devient le seul havre de paix pour l'humanité, lui conférant un statut messianique auprès de la population.</p>
+                        
+                        <p>Guts et ses compagnons poursuivent leur voyage vers Elfhelm, affrontant les dangers d'un monde devenu encore plus hostile. Ils parviennent finalement à atteindre l'île mystique, où ils rencontrent la Reine des Elfes, Danann. Grâce à son aide, ils entreprennent un voyage dans le subconscient fracturé de Casca pour tenter de la guérir de son traumatisme.</p>
+                        
+                        <p>Cet arc représente un tournant significatif pour plusieurs personnages, notamment Casca qui retrouve finalement ses souvenirs et sa santé mentale, bien que le traumatisme lié à Griffith persiste sous forme de blocage psychologique. L'histoire explore également plus en profondeur la nature du plan astral, les origines de la Main de Dieu, et suggère des révélations potentielles sur l'énigmatique Chevalier du Crâne.</p>
+                    </div>
+                    
+                    <div class="arc-quote">
+                        <p>"C'est un enfer... Mais tant que nous sommes ensemble, il y a toujours quelque chose à protéger."</p>
+                        <p class="arc-quote-author">— Guts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grille des tomes -->
+        <div class="tomes-grid" id="tomes-grid">
+            <!-- Tomes de l'Arc de l'Épéiste Noir -->
+            <div class="tome-card" data-arc="black-swordsman">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/G9rJVRC/tome1.jpg" alt="Berserk Tome 1">
+                    <div class="tome-number">Tome 1</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">Le Guerrier Noir</h3>
+                    <p class="tome-publication">Décembre 1990</p>
+                    <p class="tome-description">Introduction de Guts, le guerrier portant une épée démesurée et traquant des démons appelés "apôtres". Sa rencontre avec l'apôtre du village de Koka et le Behelit, un mystérieux artefact.</p>
+                    <button class="tome-btn" data-tome="1">Voir plus</button>
+                </div>
+            </div>
+            
+            <div class="tome-card" data-arc="black-swordsman">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/F08cXhQ/tome2.jpg" alt="Berserk Tome 2">
+                    <div class="tome-number">Tome 2</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">La Marque du Sacrifice</h3>
+                    <p class="tome-publication">Mars 1991</p>
+                    <p class="tome-description">Guts poursuit sa traque des apôtres et rencontre le Comte, un puissant démon. La Main de Dieu fait sa première apparition, et le passé mystérieux du guerrier noir est évoqué.</p>
+                    <button class="tome-btn" data-tome="2">Voir plus</button>
+                </div>
+            </div>
+            
+            <!-- Tomes de l'Arc de l'Âge d'Or -->
+            <div class="tome-card" data-arc="golden-age">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/9hBmxCJ/tome3.jpg" alt="Berserk Tome 3">
+                    <div class="tome-number">Tome 3</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">L'Initiation</h3>
+                    <p class="tome-publication">Octobre 1991</p>
+                    <p class="tome-description">Début du flashback sur la jeunesse de Guts. Son enfance sous la tutelle du mercenaire Gambino, ses premières batailles, et sa rencontre fatidique avec Griffith, chef charismatique de la Troupe du Faucon.</p>
+                    <button class="tome-btn" data-tome="3">Voir plus</button>
+                </div>
+            </div>
+            
+            <div class="tome-card" data-arc="golden-age">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/Phyk6FZ/tome4.jpg" alt="Berserk Tome 4">
+                    <div class="tome-number">Tome 4</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">L'Intégration</h3>
+                    <p class="tome-publication">Février 1992</p>
+                    <p class="tome-description">L'adaptation difficile de Guts au sein de la Troupe du Faucon. Sa rivalité naissante avec Casca et sa relation complexe avec Griffith se développent au fil des batailles.</p>
+                    <button class="tome-btn" data-tome="4">Voir plus</button>
+                </div>
+            </div>
+            
+            <!-- Tomes de l'Arc de la Conviction -->
+            <div class="tome-card" data-arc="conviction">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/VBdkPPH/tome14.jpg" alt="Berserk Tome 14">
+                    <div class="tome-number">Tome 14</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">Promesse sous les Larmes</h3>
+                    <p class="tome-publication">Avril 1997</p>
+                    <p class="tome-description">Transition vers l'Arc de la Conviction. Guts apprend que Casca a disparu et part à sa recherche, rencontrant Isidro en chemin. Première apparition des Chevaliers de la Sainte Chaîne.</p>
+                    <button class="tome-btn" data-tome="14">Voir plus</button>
+                </div>
+            </div>
+            
+            <div class="tome-card" data-arc="conviction">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/7v9gkY3/tome15.jpg" alt="Berserk Tome 15">
+                    <div class="tome-number">Tome 15</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">L'Inquisition</h3>
+                    <p class="tome-publication">Décembre 1997</p>
+                    <p class="tome-description">Guts poursuit sa route vers la Tour de Conviction, pourchassé par Farnese et les Chevaliers de la Sainte Chaîne. Introduction de Mozgus, inquisiteur fanatique aux méthodes brutales.</p>
+                    <button class="tome-btn" data-tome="15">Voir plus</button>
+                </div>
+            </div>
+            
+            <!-- Tomes de l'Arc du Faucon Millénaire -->
+            <div class="tome-card" data-arc="falcon">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/bRv9vcB/tome22.jpg" alt="Berserk Tome 22">
+                    <div class="tome-number">Tome 22</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">Renaissance</h3>
+                    <p class="tome-publication">Décembre 2001</p>
+                    <p class="tome-description">Début de l'Arc du Faucon Millénaire. Griffith rassemble une nouvelle armée tandis que Guts et ses nouveaux compagnons entreprennent un voyage vers le domaine de Flora, une puissante sorcière.</p>
+                    <button class="tome-btn" data-tome="22">Voir plus</button>
+                </div>
+            </div>
+            
+            <div class="tome-card" data-arc="falcon">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/5jkFVZB/tome23.jpg" alt="Berserk Tome 23">
+                    <div class="tome-number">Tome 23</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">Chevaliers du Dragon</h3>
+                    <p class="tome-publication">Juin 2002</p>
+                    <p class="tome-description">Introduction de Schierke, jeune apprentie sorcière. Griffith commence à affronter l'Empire Kushan et rencontre Zodd, qui se rallie à sa cause. Les mondes physique et astral commencent à se chevaucher davantage.</p>
+                    <button class="tome-btn" data-tome="23">Voir plus</button>
+                </div>
+            </div>
+            
+            <!-- Tomes de l'Arc Fantasia -->
+            <div class="tome-card" data-arc="fantasia">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/J7YF3LP/tome35.jpg" alt="Berserk Tome 35">
+                    <div class="tome-number">Tome 35</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">Duel à Vritannis</h3>
+                    <p class="tome-publication">Décembre 2009</p>
+                    <p class="tome-description">Le groupe de Guts affronte les pirates et les forces kushanes à Vritannis. Ils trouvent un navire pour se rendre à Skellig, et les destins de Guts et Griffith continuent de converger vers un inévitable affrontement.</p>
+                    <button class="tome-btn" data-tome="35">Voir plus</button>
+                </div>
+            </div>
+            
+            <div class="tome-card" data-arc="fantasia">
+                <div class="tome-cover">
+                    <img src="https://i.ibb.co/28wddx2/tome36.jpg" alt="Berserk Tome 36">
+                    <div class="tome-number">Tome 36</div>
+                </div>
+                <div class="tome-info">
+                    <h3 class="tome-title">L'Empereur Ganishka</h3>
+                    <p class="tome-publication">Octobre 2010</p>
+                    <p class="tome-description">Griffith affronte Ganishka, transformé en une entité colossale. Leur confrontation provoque la Confluance des Plans, un cataclysme qui modifie drastiquement le monde et donne naissance à Falconia.</p>
+                    <button class="tome-btn" data-tome="36">Voir plus</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal du tome -->
+        <div class="tome-modal" id="tome-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modal-title">Titre du Tome</h2>
+                    <p class="modal-subtitle" id="modal-subtitle">Numéro et Date</p>
+                    <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-cover">
+                        <img id="modal-cover" src="" alt="Couverture du tome">
+                    </div>
+                    
+                    <div class="modal-details">
+                        <div class="detail-section">
+                            <h3 class="detail-title">Synopsis</h3>
+                            <p id="modal-synopsis"></p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3 class="detail-title">Chapitres</h3>
+                            <ul class="chapters-list" id="modal-chapters"></ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3 class="detail-title">Événements Clés</h3>
+                            <ul class="key-events-list" id="modal-events"></ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h3 class="detail-title">Cartes Associées</h3>
+                            <div class="related-cards" id="modal-cards"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="nav-button" id="prev-tome"><i class="fas fa-chevron-left"></i> Tome Précédent</button>
+                    <button class="nav-button" id="next-tome">Tome Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Éléments DOM
+            const arcBtns = document.querySelectorAll('.arc-btn');
+            const arcOverviews = document.querySelectorAll('.arc-overview');
+            const tomeCards = document.querySelectorAll('.tome-card');
+            const tomeBtns = document.querySelectorAll('.tome-btn');
+            const tomeModal = document.getElementById('tome-modal');
+            const modalClose = document.getElementById('modal-close');
+            const prevTomeBtn = document.getElementById('prev-tome');
+            const nextTomeBtn = document.getElementById('next-tome');
+            
+            // Tomes data
+            const tomesData = [
+                {
+                    id: 1,
+                    title: "Le Guerrier Noir",
+                    number: "Tome 1",
+                    date: "Décembre 1990",
+                    coverUrl: "https://i.ibb.co/G9rJVRC/tome1.jpg",
+                    arc: "black-swordsman",
+                    synopsis: "Premier tome de Berserk, introduisant Guts, un guerrier solitaire portant une immense épée et chassant des créatures démoniaques appelées 'apôtres'. L'histoire commence dans un village où Guts traque l'apôtre local, dévoilant progressivement la nature surnaturelle de l'univers et les motivations du personnage principal.",
+                    chapters: [
+                        { title: "Le Guerrier Noir", pages: "p.7-90" },
+                        { title: "Le Dieu de la Peste", pages: "p.91-152" },
+                        { title: "Gardienne", pages: "p.153-196" }
+                    ],
+                    events: [
+                        "Première apparition de Guts, le Guerrier Noir",
+                        "Combat contre l'apôtre du village de Koka",
+                        "Rencontre avec Puck, un elfe capturé par des bandits",
+                        "Premier aperçu du Behelit, un mystérieux artefact"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-011", name: "Guts Spadassin Noir" },
+                        { id: "BCCG-018", name: "Puck Elfe de Lumière" },
+                        { id: "BCCG-026", name: "Behelit L'Œuf du Roi Démon" }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "La Marque du Sacrifice",
+                    number: "Tome 2",
+                    date: "Mars 1991",
+                    coverUrl: "https://i.ibb.co/F08cXhQ/tome2.jpg",
+                    arc: "black-swordsman",
+                    synopsis: "Le second tome poursuit la quête de Guts et révèle davantage la nature de son monde. Il traque le Comte, un apôtre puissant qui règne par la terreur sur une ville. Ce volume introduit la Main de Dieu, des entités quasi-divines qui gouvernent le destin du monde, et approfondit le mystère de la Marque du Sacrifice portée par Guts.",
+                    chapters: [
+                        { title: "Le Gardien", pages: "p.7-42" },
+                        { title: "La Marque", pages: "p.43-89" },
+                        { title: "Le Rêve", pages: "p.90-135" },
+                        { title: "La Main de Dieu", pages: "p.136-187" }
+                    ],
+                    events: [
+                        "Combat de Guts contre le Serpent Roi et les bandits",
+                        "Confrontation avec le Comte, un puissant apôtre",
+                        "Première apparition de la Main de Dieu",
+                        "Révélation sur la nature de la Marque du Sacrifice",
+                        "Premier aperçu de Griffith/Femto"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-005", name: "Femto L'Aile Noire" },
+                        { id: "BCCG-024", name: "Guts & Puck Premiers Voyages" },
+                        { id: "BCCG-028", name: "Guts Cicatrices" }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "L'Initiation",
+                    number: "Tome 3",
+                    date: "Octobre 1991",
+                    coverUrl: "https://i.ibb.co/9hBmxCJ/tome3.jpg",
+                    arc: "golden-age",
+                    synopsis: "Début d'un long flashback qui constitue l'Arc de l'Âge d'Or. Le tome retrace l'enfance traumatisante de Guts, élevé par le mercenaire Gambino dans un environnement brutal. Il couvre ses premières années de combat jusqu'à sa rencontre fatidique avec Griffith, le chef charismatique de la Troupe du Faucon, qui le défie en duel.",
+                    chapters: [
+                        { title: "L'Enfant du Cadavre", pages: "p.7-56" },
+                        { title: "Mercenaire", pages: "p.57-102" },
+                        { title: "La Troupe du Faucon", pages: "p.103-148" },
+                        { title: "Le Duel", pages: "p.149-194" }
+                    ],
+                    events: [
+                        "La naissance de Guts sous un arbre de pendus",
+                        "L'enfance de Guts sous la tutelle de Gambino",
+                        "Première bataille de Guts à l'âge de 9 ans",
+                        "Le meurtre de Gambino et la fuite de Guts",
+                        "Première rencontre et duel avec Griffith"
+                    ],
+                    relatedCards: [
+                        { id: "BCCG-020", name: "Guts Jeune Mercenaire" },
+                        { id: "BCCG-029", name: "Guts Solitaire" },
+                        { id: "BCCG-038", name: "Guts Né du Cadavre" }
+                    ]
+                }
+                // Plus de tomes peuvent être ajoutés ici
+            ];
+            
+            // Afficher les tomes selon l'arc sélectionné
+            function filterTomesByArc(arcId) {
+                tomeCards.forEach(card => {
+                    if (arcId === 'all' || card.dataset.arc === arcId) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Afficher l'aperçu de l'arc sélectionné
+            function showArcOverview(arcId) {
+                arcOverviews.forEach(overview => {
+                    if (overview.dataset.arc === arcId) {
+                        overview.classList.add('active');
+                    } else {
+                        overview.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Navigation par arc
+            arcBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mettre à jour les boutons
+                    arcBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const arcId = this.dataset.arc;
+                    
+                    // Filtrer les tomes
+                    filterTomesByArc(arcId);
+                    
+                    // Afficher l'aperçu de l'arc si ce n'est pas "tous"
+                    if (arcId !== 'all') {
+                        showArcOverview(arcId);
+                    } else {
+                        // Masquer tous les aperçus si "tous" est sélectionné
+                        arcOverviews.forEach(overview => {
+                            overview.classList.remove('active');
+                        });
+                    }
+                });
+            });
+            
+            // Ouvrir le modal du tome
+            tomeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tomeId = parseInt(this.dataset.tome);
+                    openTomeModal(tomeId);
+                });
+            });
+            
+            // Fermer le modal
+            modalClose.addEventListener('click', closeTomeModal);
+            tomeModal.addEventListener('click', function(e) {
+                if (e.target === tomeModal) {
+                    closeTomeModal();
+                }
+            });
+            
+            // Navigation entre les tomes
+            prevTomeBtn.addEventListener('click', function() {
+                const currentTome = parseInt(this.dataset.tomeId);
+                if (currentTome > 1) {
+                    openTomeModal(currentTome - 1);
+                }
+            });
+            
+            nextTomeBtn.addEventListener('click', function() {
+                const currentTome = parseInt(this.dataset.tomeId);
+                if (currentTome < tomesData.length) {
+                    openTomeModal(currentTome + 1);
+                }
+            });
+            
+            // Ouvrir le modal avec les détails du tome
+            function openTomeModal(tomeId) {
+                const tome = tomesData.find(t => t.id === tomeId);
+                if (!tome) return;
+                
+                // Mettre à jour les informations du modal
+                document.getElementById('modal-title').textContent = tome.title;
+                document.getElementById('modal-subtitle').textContent = `${tome.number} - ${tome.date}`;
+                document.getElementById('modal-cover').src = tome.coverUrl;
+                document.getElementById('modal-synopsis').textContent = tome.synopsis;
+                
+                // Chapitres
+                const chaptersContainer = document.getElementById('modal-chapters');
+                chaptersContainer.innerHTML = '';
+                tome.chapters.forEach(chapter => {
+                    const li = document.createElement('li');
+                    li.className = 'chapter-item';
+                    li.innerHTML = `
+                        <div class="chapter-title">${chapter.title}</div>
+                        <div class="chapter-pages">${chapter.pages}</div>
+                    `;
+                    chaptersContainer.appendChild(li);
+                });
+                
+                // Événements clés
+                const eventsContainer = document.getElementById('modal-events');
+                eventsContainer.innerHTML = '';
+                tome.events.forEach(event => {
+                    const li = document.createElement('li');
+                    li.className = 'event-item';
+                    li.textContent = event;
+                    eventsContainer.appendChild(li);
+                });
+                
+                // Cartes associées
+                const cardsContainer = document.getElementById('modal-cards');
+                cardsContainer.innerHTML = '';
+                tome.relatedCards.forEach(card => {
+                    const link = document.createElement('a');
+                    link.className = 'card-link';
+                    link.href = '#';
+                    link.textContent = card.id;
+                    link.title = card.name;
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        alert(`Affichage de la carte: ${card.name} (${card.id})`);
+                        // Ici vous pourriez rediriger vers la page de la carte
+                    });
+                    cardsContainer.appendChild(link);
+                });
+                
+                // Configurer les boutons de navigation
+                prevTomeBtn.dataset.tomeId = tomeId;
+                nextTomeBtn.dataset.tomeId = tomeId;
+                
+                // Désactiver les boutons si nécessaire
+                prevTomeBtn.disabled = tomeId <= 1;
+                nextTomeBtn.disabled = tomeId >= tomesData.length;
+                
+                // Afficher le modal
+                tomeModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement
+            }
+            
+            // Fermer le modal
+            function closeTomeModal() {
+                tomeModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restaurer le défilement
+            }
+            
+            // Gestion des touches clavier
+            document.addEventListener('keydown', function(e) {
+                if (tomeModal.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeTomeModal();
+                    } else if (e.key === 'ArrowLeft' && !prevTomeBtn.disabled) {
+                        const currentTome = parseInt(prevTomeBtn.dataset.tomeId);
+                        openTomeModal(currentTome - 1);
+                    } else if (e.key === 'ArrowRight' && !nextTomeBtn.disabled) {
+                        const currentTome = parseInt(nextTomeBtn.dataset.tomeId);
+                        openTomeModal(currentTome + 1);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

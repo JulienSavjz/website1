@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "BCCG-001",
+    "name": "Rosine Enfant",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Jeune fille transformée en apôtre à l'apparence de fée. Après une enfance traumatisante, elle a créé un royaume fantastique perverti où les enfants sont transformés en pseudo-elfes à travers des jeux mortels.",
+    "image": "cartes/serie1/1.png"
+  },
+  {
+    "id": "BCCG-002",
+    "name": "Rosine Forme Apostolique",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Forme démoniaque de Rosine, rappelant une fée maléfique aux ailes de papillon. Cette jeune fille transformée règne sur un royaume fantaisiste corrompu, où elle piège les enfants en les transformant en créatures féeriques damnées.",
+    "image": "cartes/serie1/2.png"
+  },
+  {
+    "id": "BCCG-003",
+    "name": "Zodd Humain",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Immortel guerrier apostolique qui vit pour le combat. Sous sa forme humaine, ce mercenaire imposant est déjà un combattant redoutable qui a survécu à des siècles de batailles sans jamais connaître la défaite.",
+    "image": "cartes/serie1/3.png"
+  },
+  {
+    "id": "BCCG-004",
+    "name": "Skull Knight Cavalier",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Mystérieux chevalier qui combat les apôtres et la Main de Dieu. Montant un destrier spectral, il porte une armure ornée de crânes et manie une épée capable de déchirer le voile entre les dimensions.",
+    "image": "cartes/serie1/4.png"
+  },
+  {
+    "id": "BCCG-005",
+    "name": "Femto L'Aile Noire",
+    "category": "godhand",
+    "serie": "serie1",
+    "description": "Forme démoniaque de Griffith après son ascension en tant que membre de la Main de Dieu. Vêtu d'une armure semblable à un faucon noir, il possède des pouvoirs presque divins de manipulation de la réalité et incarne l'ambition dévorante.",
+    "image": "cartes/serie1/5.png"
+  },
+  {
+    "id": "BCCG-006",
+    "name": "Guts Armure du Berserker",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts revêtu de l'Armure du Berserker, qui supprime sa douleur et ses limites humaines. Cette armure maudite transforme son porteur en machine de guerre indomptable, au risque qu'il perde son humanité et soit consumé par la Bête des Ténèbres.",
+    "image": "cartes/serie1/6.png"
+  },
+  {
+    "id": "BCCG-007",
+    "name": "Empereur Ganishka Souverain",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Empereur de l'empire Kushan et apôtre rebelle qui défie la Main de Dieu. Sa forme démoniaque est celle d'une entité brumeuse gigantesque, et sa quête de pouvoir l'a conduit à défier l'ordre même établi par les entités supérieures.",
+    "image": "cartes/serie1/7.png"
+  },
+  {
+    "id": "BCCG-008",
+    "name": "Rakshas L'Ombre",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Apôtre mystérieux au service de Griffith, ancien membre du clan Bakiraka. Sa forme apostolique est une créature d'ombre capable de manipuler son corps comme un liquide, le rendant presque impossible à blesser par des moyens conventionnels.",
+    "image": "cartes/serie1/8.png"
+  },
+  {
+    "id": "BCCG-009",
+    "name": "Grunbeld Dragon de Feu",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Massif guerrier apôtre au service de Griffith, connu sous le nom de 'Dragon de Feu'. Sa forme apostolique est celle d'un dragon colossal couvert d'écailles de cristal et capable de cracher des flammes dévastatrices.",
+    "image": "cartes/serie1/9.png"
+  },
+  {
+    "id": "BCCG-010",
+    "name": "Isma Fille de la Mer",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Jeune fille au sang mêlé, mi-humaine mi-créature marine. Son caractère enjoué et sa connaissance de la mer ont été d'une aide précieuse pour le groupe de Guts. Sa nature hybride lui confère des capacités aquatiques extraordinaires.",
+    "image": "cartes/serie1/10.png"
+  },
+  {
+    "id": "BCCG-011",
+    "name": "Guts Spadassin Noir",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Version assombrie de Guts après l'Éclipse, consumé par sa vengeance contre Griffith et les apôtres. Équipé de son arsenal d'armes et de son immense épée Dragon Slayer, il est devenu une force implacable connue sous le nom de 'Spadassin Noir'.",
+    "image": "cartes/serie1/11.png"
+  },
+  {
+    "id": "BCCG-012",
+    "name": "Casca Durant l'Éclipse",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Casca pendant l'horreur de la cérémonie de l'Éclipse. Ce moment traumatisant où elle fut témoin du sacrifice de ses compagnons et victime de Femto a brisé son esprit, la laissant dans un état de régression mentale pendant des années.",
+    "image": "cartes/serie1/12.png"
+  },
+  {
+    "id": "BCCG-013",
+    "name": "Guts & Griffith Confrontation",
+    "category": "special",
+    "serie": "serie1",
+    "description": "L'affrontement postérieur à l'Éclipse entre l'ancien mercenaire et celui qui fut son meilleur ami. Cette confrontation symbolise la trahison ultime et la transformation de leur rivalité amicale en une haine implacable qui transcende le destin même.",
+    "image": "cartes/serie1/13.png"
+  },
+  {
+    "id": "BCCG-014",
+    "name": "Zodd Forme Bestiale",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Forme démoniaque de l'immortel Nosferatu Zodd. Cette créature titanesque mi-taureau mi-démon possède une force colossale, des cornes acérées et des ailes puissantes, faisant de lui l'un des plus redoutables apôtres jamais connus.",
+    "image": "cartes/serie1/14.png"
+  },
+  {
+    "id": "BCCG-015",
+    "name": "Zodd Bestial en Combat",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Nosferatu Zodd sous sa forme apostolique, capturé en pleine action. Ce guerrier immortel vieux de trois siècles cherche sans cesse des adversaires dignes de lui, vivant uniquement pour le frisson du combat et le sang versé sur le champ de bataille.",
+    "image": "cartes/serie1/15.png"
+  },
+  {
+    "id": "BCCG-016",
+    "name": "Morda Sorcière Rebelle",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Jeune sorcière au tempérament provocateur qui a rejoint le groupe de Guts. Son approche non-conventionnelle de la magie et son attitude rebelle contrastent avec l'approche plus traditionnelle de Schierke, créant une dynamique intéressante.",
+    "image": "cartes/serie1/16.png"
+  },
+  {
+    "id": "BCCG-017",
+    "name": "Skull Knight Épée Dimensionnelle",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Le Chevalier du Crâne brandissant son épée capable de fendre les dimensions. Ennemi juré de la Main de Dieu, ce guerrier énigmatique semble lié au Roi Gaiseric et intervient à des moments cruciaux pour aider Guts dans sa lutte contre le destin.",
+    "image": "cartes/serie1/17.png"
+  },
+  {
+    "id": "BCCG-018",
+    "name": "Puck Elfe de Lumière",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Petit elfe de la vallée de la brume qui accompagne Guts dans ses aventures. Malgré sa petite taille, il possède des pouvoirs curatifs et offre un soulagement comique face à l'atmosphère sombre de leur voyage, se proclamant souvent 'compagnon de voyage' de Guts.",
+    "image": "cartes/serie1/18.png"
+  },
+  {
+    "id": "BCCG-019",
+    "name": "Guts Bras Mécanique",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts après l'Éclipse, son regard reflétant sa détermination inébranlable. Marqué par le sacrifice, il a juré de poursuivre sa vengeance contre Griffith et les apôtres malgré les forces cosmiques alignées contre lui, symbolisant la résistance humaine face au destin.",
+    "image": "cartes/serie1/19.png"
+  },
+  {
+    "id": "BCCG-020",
+    "name": "Guts Jeune Mercenaire",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts dans sa période au sein de la Troupe du Faucon. Ce jeune mercenaire talentueux, récemment intégré dans l'unité de Griffith, commence tout juste à trouver un sentiment d'appartenance après une enfance solitaire et violente.",
+    "image": "cartes/serie1/20.png"
+  },
+  {
+    "id": "BCCG-021",
+    "name": "Puck & Evarella Duo Elfique",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Puck et Evarella, deux elfes qui accompagnent le groupe de Guts. Tandis que Puck apporte une touche d'humour avec ses pitreries, Evarella assiste Schierke dans ses pratiques magiques, formant un duo complémentaire de créatures féeriques.",
+    "image": "cartes/serie1/21.png"
+  },
+  {
+    "id": "BCCG-022",
+    "name": "Guerriers Kushans",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Les redoutables guerriers de l'Empire Kushan, dirigés par l'Empereur Ganishka. Ces combattants exotiques venus de l'Est représentent une menace majeure pour Midland, utilisant des tactiques brutales et des créatures démoniaques pour étendre leur empire.",
+    "image": "cartes/serie1/22.png"
+  },
+  {
+    "id": "BCCG-023",
+    "name": "Puck Malicieux",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Portrait de Puck dans l'une de ses poses espiègles. Son caractère jovial et ses interventions comiques offrent un contrepoint nécessaire à l'atmosphère sombre de l'univers de Berserk, apportant une touche de légèreté bienvenue dans le voyage de Guts.",
+    "image": "cartes/serie1/23.png"
+  },
+  {
+    "id": "BCCG-024",
+    "name": "Guts & Puck Premiers Voyages",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts accompagné de Puck dans ses premiers voyages après l'Éclipse. Malgré la réticence initiale du guerrier à accepter un compagnon, le petit elfe s'est imposé comme une présence constante, apportant soins et légèreté au parcours sombre du Spadassin Noir.",
+    "image": "cartes/serie1/24.png"
+  },
+  {
+    "id": "BCCG-025",
+    "name": "Guts & Schierke Lien Astral",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts guidé par Schierke dans le plan astral. La jeune sorcière utilise sa projection astrale pour aider le guerrier à maintenir son humanité lorsqu'il porte l'Armure du Berserker, formant un lien spirituel qui protège Guts de la folie meurtrière.",
+    "image": "cartes/serie1/25.png"
+  },
+  {
+    "id": "BCCG-026",
+    "name": "Behelit L'Œuf du Roi Démon",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Un Behelit, l'Œuf du Roi Démon, tenu dans une main. Cet artefact mystique aux traits faciaux désordonnés sert de clé pour ouvrir une brèche vers le plan astral, permettant à son possesseur de sacrifier ses proches pour renaître en tant qu'apôtre.",
+    "image": "cartes/serie1/26.png"
+  },
+  {
+    "id": "BCCG-027",
+    "name": "Isidro Jeune Épéiste",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Jeune garçon aspirant à devenir un grand épéiste qui a rejoint le groupe de Guts. Téméraire et impulsif, Isidro compense son manque d'expérience par son agilité et son adaptabilité, maniant avec adresse une dague elfique capable de générer des flammes.",
+    "image": "cartes/serie1/27.png"
+  },
+  {
+    "id": "BCCG-028",
+    "name": "Guts Cicatrices",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Portrait de Guts dans les années suivant l'Éclipse, marqué physiquement et mentalement par ce traumatisme. Son œil perdu, ses cicatrices et son regard dur témoignent des horreurs qu'il a traversées et de sa détermination à poursuivre sa vengeance.",
+    "image": "cartes/serie1/28.png"
+  },
+  {
+    "id": "BCCG-029",
+    "name": "Guts Solitaire",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts dans ses jeunes années de mercenaire solitaire, avant sa rencontre avec Griffith et la Troupe du Faucon. Déjà combattant exceptionnel malgré son jeune âge, il parcourait les champs de bataille en vendant son épée au plus offrant.",
+    "image": "cartes/serie1/29.png"
+  },
+  {
+    "id": "BCCG-030",
+    "name": "Skull Knight et Son Destrier",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Le Chevalier du Crâne monté sur son destrier spectral. Cette figure énigmatique semble transcender le temps lui-même, apparaissant providentiellement aux moments critiques et guidant Guts dans sa lutte contre la causalité imposée par la Main de Dieu.",
+    "image": "cartes/serie1/30.png"
+  },
+  {
+    "id": "BCCG-031",
+    "name": "Guts Compagnon du Faucon",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts durant ses jours au sein de la Troupe du Faucon, avant que les tragédies ne le transforment. À cette époque, il commençait à s'ouvrir aux autres et à forger des liens, trouvant une place parmi les mercenaires dirigés par Griffith.",
+    "image": "cartes/serie1/31.png"
+  },
+  {
+    "id": "BCCG-032",
+    "name": "Couverture Tome 6",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Illustration emblématique de la couverture du Tome 6 de Berserk, capturant l'essence de l'œuvre de Kentaro Miura. Cette image symbolique représente un moment pivot dans la narration où les destins des personnages principaux se cristallisent.",
+    "image": "cartes/serie1/32.png"
+  },
+  {
+    "id": "BCCG-033",
+    "name": "Guts Contre les Hordes Nocturnes",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts affrontant les hordes de créatures démoniaques attirées chaque nuit par sa Marque du Sacrifice. Cette lutte perpétuelle contre des ennemis surnaturels est devenue son quotidien, forgeant sa réputation de tueur d'apôtres implacable.",
+    "image": "cartes/serie1/33.png"
+  },
+  {
+    "id": "BCCG-034",
+    "name": "Guts Âge d'Or",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts lors de son appartenance à la Troupe du Faucon, période qui représente un rare moment de paix relative dans son existence tourmentée. Cette ère dorée où il a trouvé un semblant de famille et de but reste un souvenir précieux malgré la trahison qui suivra.",
+    "image": "cartes/serie1/35.png"
+  },
+  {
+    "id": "BCCG-035",
+    "name": "Guts & Griffith Camaraderie",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Guts et Griffith à l'époque dorée de la Troupe du Faucon, liés par une amitié complexe et une admiration mutuelle. Cette relation profonde entre deux hommes aux ambitions différentes est l'axe central autour duquel tourne la tragédie de Berserk.",
+    "image": "cartes/serie1/36.png"
+  },
+  {
+    "id": "BCCG-036",
+    "name": "Casca & Puck Après le Trauma",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Casca dans son état régressif après l'Éclipse, accompagnée par Puck qui tente de la réconforter. L'esprit brisé de la fière guerrière contraste douloureusement avec son ancienne force, illustrant le coût psychologique des horreurs vécues.",
+    "image": "cartes/serie1/37.png"
+  },
+  {
+    "id": "BCCG-037",
+    "name": "Guts vs Griffith Duel Fatidique",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Le duel emblématique entre Guts et Griffith, moment pivot de leur relation. Cette victoire de Guts, obtenue au prix d'un combat acharné, marque sa décision de quitter la Troupe pour trouver son propre rêve et déclenche la spirale d'événements menant à l'Éclipse.",
+    "image": "cartes/serie1/38.png"
+  },
+  {
+    "id": "BCCG-038",
+    "name": "Guts Né du Cadavre",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "La naissance tragique de Guts, trouvé sous le cadavre pendu de sa mère dans un champ de bataille. Cette venue au monde sous le signe de la mort et du sang présage le destin exceptionnel et terrible qui l'attend, marqué par la souffrance et la lutte.",
+    "image": "cartes/serie1/39.png"
+  },
+  {
+    "id": "BCCG-039",
+    "name": "Casca en Robe Blanche",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Casca dans un rare moment de vulnérabilité et de féminité, vêtue d'une robe blanche. Cette image de la commandante habituellement stoïque révèle la complexité de son personnage, tiraillée entre sa vocation de guerrière et ses sentiments refoulés.",
+    "image": "cartes/serie1/40.png"
+  },
+  {
+    "id": "BCCG-040",
+    "name": "Bataille de Doldrey",
+    "category": "special",
+    "serie": "serie1",
+    "description": "L'assaut légendaire de la Troupe du Faucon sur la forteresse réputée imprenable de Doldrey. Cette victoire impossible, obtenue grâce à la stratégie audacieuse de Griffith et à la bravoure de ses troupes, a définitivement cimenté leur place dans l'histoire.",
+    "image": "cartes/serie1/42.png"
+  },
+  {
+    "id": "BCCG-041",
+    "name": "Guts Jeune Guerrier",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts au combat durant l'époque de la Troupe du Faucon, se jetant sans peur au cœur de la mêlée. Sa force brute et son style de combat agressif en ont fait une arme redoutable dans l'arsenal de Griffith, capable de renverser à lui seul le cours d'une bataille.",
+    "image": "cartes/serie1/43.png"
+  },
+  {
+    "id": "BCCG-042",
+    "name": "Couverture Tome 30",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Illustration emblématique représentant l'horreur cosmique de l'Éclipse. Cette cérémonie macabre où Griffith a sacrifié la Troupe du Faucon pour renaître en tant que Femto constitue le point de non-retour du récit, basculant définitivement dans le fantastique sombre.",
+    "image": "cartes/serie1/44.png"
+  },
+  {
+    "id": "BCCG-043",
+    "name": "Couverture Tome 36",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Illustration mystique évoquant la prophétie du Faucon de Lumière. Les prophéties et prédestinations jouent un rôle central dans l'univers de Berserk, où les personnages luttent pour définir leur propre destin malgré les forces cosmiques qui les manipulent.",
+    "image": "cartes/serie1/45.png"
+  },
+  {
+    "id": "BCCG-044",
+    "name": "Prologue Original 1990",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Illustration du prologue original de Berserk paru en 1990. Ce premier aperçu de l'univers sombre créé par Kentaro Miura contient déjà les germes des thèmes qui seront explorés tout au long de cette œuvre majeure du manga.",
+    "image": "cartes/serie1/46.png"
+  },
+  {
+    "id": "BCCG-045",
+    "name": "Guts Face à l'Apostat",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts affrontant un puissant apostat dans un combat brutal. Ces confrontations constantes contre des êtres démoniaques ont forgé sa technique et sa détermination, chaque victoire le rapprochant de son ultime objectif: atteindre Griffith.",
+    "image": "cartes/serie1/47.png"
+  },
+  {
+    "id": "BCCG-046",
+    "name": "Le Triangle Tragique",
+    "category": "special",
+    "serie": "serie1",
+    "description": "La relation complexe entre Guts, Casca et Griffith après une bataille. Ce triangle d'émotions mêlant admiration, amour, jalousie et loyauté est au cœur de la tragédie qui se déroule, chacun des trois influençant profondément le destin des deux autres.",
+    "image": "cartes/serie1/48.png"
+  },
+  {
+    "id": "BCCG-047",
+    "name": "Casca Moment de Paix",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Casca dans un rare moment de détente au bord de l'eau. Cette image inhabituelle montre la commandante loin des champs de bataille, rappelant qu'avant les tragédies qui ont bouleversé leur vie, les membres de la Troupe connaissaient aussi des instants de bonheur.",
+    "image": "cartes/serie1/49.png"
+  },
+  {
+    "id": "BCCG-048",
+    "name": "Griffith & Guts Aube de l'Âge d'Or",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Guts et Griffith au début de leur relation, à l'aube de l'âge d'or de la Troupe du Faucon. Cette période représente un rare moment de paix relative dans leurs existences tourmentées, avant que leurs ambitions divergentes ne les séparent tragiquement.",
+    "image": "cartes/serie1/50.png"
+  },
+  {
+    "id": "BCCG-049",
+    "name": "Guts & Puck Contre l'Apôtre",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts et son compagnon elfique Puck affrontant ensemble un apôtre. Malgré les protestations de Guts, Puck est devenu un allié précieux dans sa quête, apportant non seulement des soins mais aussi une humanité dont le Spadassin Noir a désespérément besoin.",
+    "image": "cartes/serie1/51.png"
+  },
+  {
+    "id": "BCCG-050",
+    "name": "Griffith le Faucon Blanc",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Griffith à l'apogée de sa gloire en tant que chef de la Troupe du Faucon. Son charisme magnétique, sa beauté surnaturelle et son génie tactique lui ont permis de rassembler autour de lui des hommes et des femmes prêts à donner leur vie pour son rêve.",
+    "image": "cartes/serie1/52.png"
+  },
+  {
+    "id": "BCCG-051",
+    "name": "Grunbeld Forme Draconique",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Grunbeld sous sa forme apostolique de dragon colossal. Ce guerrier d'élite au service de Griffith est l'un des plus puissants apôtres, sa carapace de cristal et son souffle de feu en font un adversaire redoutable même pour Guts en armure du Berserker.",
+    "image": "cartes/serie1/53.png"
+  },
+  {
+    "id": "BCCG-052",
+    "name": "Couverture Tome 33",
+    "category": "godhand",
+    "serie": "serie1",
+    "description": "Le regard perçant et ambitieux de Griffith, reflétant son désir insatiable de pouvoir. Derrière la beauté angélique de ses traits se cache une volonté de fer prête à tout sacrifier pour atteindre son château dans le ciel.",
+    "image": "cartes/serie1/54.png"
+  },
+  {
+    "id": "BCCG-053",
+    "name": "Symboles des Rivaux",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Composition symbolique réunissant l'épée de Guts et les casques emblématiques des deux protagonistes. Ces armes et armures reflètent la personnalité de leurs porteurs: brute et directe pour Guts, élégante et précise pour Griffith.",
+    "image": "cartes/serie1/55.png"
+  },
+  {
+    "id": "BCCG-054",
+    "name": "Couverture Tome 12",
+    "category": "special",
+    "serie": "serie1",
+    "description": "Illustration emblématique de la couverture du Tome 12, capturant l'essence de l'Âge d'Or de la Troupe du Faucon. Cette période représente à la fois l'apogée et le prélude à la chute, où les rêves semblaient encore à portée de main avant que tout ne bascule.",
+    "image": "cartes/serie1/56.png"
+  },
+  {
+    "id": "BCCG-055",
+    "name": "Griffith Réincarné",
+    "category": "godhand",
+    "serie": "serie1",
+    "description": "Griffith après sa renaissance dans le monde physique suite à la cérémonie d'incarnation. Ayant retrouvé son apparence humaine mais conservant ses pouvoirs divins, il apparaît comme un messie dans un monde désespéré, dissimulant sa véritable nature démoniaque.",
+    "image": "cartes/serie1/57.png"
+  },
+  {
+    "id": "BCCG-056",
+    "name": "Femto La Naissance",
+    "category": "godhand",
+    "serie": "serie1",
+    "description": "Le moment fatidique où Griffith devient Femto, cinquième membre de la Main de Dieu. Cette transformation représente l'abandon complet de son humanité et le sacrifice ultime de ceux qui lui étaient le plus chers, tout cela pour satisfaire son ambition.",
+    "image": "cartes/serie1/58.png"
+  },
+  {
+    "id": "BCCG-057",
+    "name": "Guts Rage Incarnée",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts submergé par une rage pure et destructrice. Ce visage déformé par la haine et la douleur révèle les limites de l'humanité face à des traumatismes insurmontables, et la fine frontière qui sépare l'homme de la bête qu'il combat en lui-même.",
+    "image": "cartes/serie1/59.png"
+  },
+  {
+    "id": "BCCG-058",
+    "name": "Grunbeld Apparence Humaine",
+    "category": "apostles",
+    "serie": "serie1",
+    "description": "Grunbeld sous son apparence humaine, guerrier massif aux cheveux flamboyants. Même sous cette forme, cet ancien héros devenu apôtre est un combattant redoutable maniant un bouclier cannibale et une lance massive avec une dextérité surprenante pour sa taille.",
+    "image": "cartes/serie1/60.png"
+  },
+  {
+    "id": "BCCG-059",
+    "name": "Guts & Schierke Fusion Spirituelle",
+    "category": "heroes",
+    "serie": "serie1",
+    "description": "Guts en Armure du Berserker guidé par la conscience astrale de Schierke. Ce lien spirituel entre le guerrier et la jeune sorcière permet de contenir la frénésie de l'armure et la Bête des Ténèbres, préservant l'humanité de Guts au cœur de la bataille.",
+    "image": "cartes/serie1/61.png"
+  },
+  {
+    "id": "BCCG-060",
+    "name": "Griffith Souverain de Falconia",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Griffith durant l'arc Fantasia, ayant atteint son objectif de créer son propre royaume. Sous cette apparence humaine parfaite se cache toujours l'entité démoniaque Femto, manipulant les événements du monde à sa guise.",
+    "image": "cartes/serie2/62.png"
+  },
+  {
+    "id": "BCCG-061",
+    "name": "Guts Regard Déterminé",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Portrait de Guts reflétant sa détermination inébranlable. Malgré les innombrables épreuves et blessures, la volonté de fer du guerrier noir continue de le porter vers son objectif, faisant de lui l'incarnation même de la persévérance humaine.",
+    "image": "cartes/serie2/63.png"
+  },
+  {
+    "id": "BCCG-062",
+    "name": "Couverture Tome 9",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Illustration emblématique de la couverture du Tome 9 de Berserk. Cette œuvre de Kentaro Miura capture un moment important de la saga, témoignant du talent artistique exceptionnel de l'auteur et de sa capacité à évoquer l'atmosphère unique de son univers.",
+    "image": "cartes/serie2/64.png"
+  },
+  {
+    "id": "BCCG-063",
+    "name": "Daiba",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Daiba est un puissant sorcier kouchan. Il était un proche conseiller de l'empereur Ganishka et le chef des Pishacha gana, supervisant les harashada qui contrôlaient les troupes militaires kouchanes.",
+    "image": "cartes/serie2/65.png"
+  },
+  {
+    "id": "BCCG-064",
+    "name": "Le Trio de Jeunes Aventuriers",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Les jeunes membres du groupe de Guts: Isidro l'apprenti épéiste impétueux, Schierke la jeune sorcière talentueuse, et Isma la fille de la mer aux pouvoirs aquatiques. Leur jeunesse et leurs capacités diverses apportent un équilibre essentiel à la quête de Guts.",
+    "image": "cartes/serie2/66.png"
+  },
+  {
+    "id": "BCCG-065",
+    "name": "Schierke en Apprentissage",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "La jeune sorcière Schierke plongée dans l'étude d'un grimoire ancien. Son dévouement à l'apprentissage des arts mystiques et sa connaissance du plan astral font d'elle un pilier essentiel du groupe, malgré son jeune âge et son tempérament parfois difficile.",
+    "image": "cartes/serie2/67.png"
+  },
+  {
+    "id": "BCCG-066",
+    "name": "Guts Chasseur d'Apôtres",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts en plein combat contre un puissant apostat. Son style de combat brutal et efficace, associé à son immense épée Dragon Slayer qui a absorbé le sang de nombreuses créatures démoniaques, fait de lui un chasseur d'apôtres redouté dans tout le royaume.",
+    "image": "cartes/serie2/68.png"
+  },
+  {
+    "id": "BCCG-067",
+    "name": "Femto Émergence du Cocon",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Le moment fatidique où Femto émerge de son cocon sanglant lors de l'Éclipse. Cette naissance démoniaque marque la transformation complète de Griffith, ayant abandonné son humanité et sacrifié ses compagnons pour devenir le cinquième membre de la Main de Dieu.",
+    "image": "cartes/serie2/69.png"
+  },
+  {
+    "id": "BCCG-068",
+    "name": "Couverture Tome 13",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Illustration de la couverture du Tome 13 de Berserk. L'art détaillé de Kentaro Miura saisit la dualité entre beauté et horreur qui caractérise son œuvre, évoquant les thèmes de sacrifice et de destin qui traversent l'histoire.",
+    "image": "cartes/serie2/70.png"
+  },
+  {
+    "id": "BCCG-069",
+    "name": "Couverture Tome 23",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture artistique du Tome 23 de Berserk. Cette illustration puissante reflète l'évolution de l'histoire vers des territoires plus sombres et mystiques, alors que les personnages s'enfoncent plus profondément dans un monde où la limite entre réalité et cauchemar s'estompe.",
+    "image": "cartes/serie2/71.png"
+  },
+  {
+    "id": "BCCG-070",
+    "name": "Couverture Tome 27",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'impressionnante couverture du Tome 27 de Berserk. Cette illustration captivante témoigne de l'évolution constante du style artistique de Miura, devenant toujours plus détaillé et expressif à mesure que l'histoire progresse vers des territoires plus complexes.",
+    "image": "cartes/serie2/72.png"
+  },
+  {
+    "id": "BCCG-071",
+    "name": "Couverture Tome 34",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture du Tome 34 de Berserk, représentant un moment crucial de la saga. L'intensité émotionnelle et la richesse des détails caractéristiques du style de Miura sont pleinement exprimées dans cette illustration qui capture l'essence même du récit.",
+    "image": "cartes/serie2/74.png"
+  },
+  {
+    "id": "BCCG-072",
+    "name": "Volume 1 Édition 2016",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture revisitée du premier volume de Berserk, créée en 2016. Cette version modernisée du classique original démontre l'évolution du style artistique de Miura tout en honorant les racines de cette œuvre qui a redéfini les standards du manga dark fantasy.",
+    "image": "cartes/serie2/75.png"
+  },
+  {
+    "id": "BCCG-073",
+    "name": "Casque de l'Armure Maudite",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Le casque emblématique de l'Armure du Berserker, rappelant un crâne démoniaque aux yeux luisants. Cette pièce d'armure maudite, créée par les elfes et imprégnée de magie ancienne, symbolise la frontière ténue entre l'humanité de Guts et la bête qu'il porte en lui.",
+    "image": "cartes/serie2/76.png"
+  },
+  {
+    "id": "BCCG-074",
+    "name": "Couverture Tome 37",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture artistique du Tome 37 de Berserk. Cette illustration magistrale démontre la maîtrise absolue de Kentaro Miura dans l'art du dessin et sa capacité à créer des images d'une beauté saisissante même au sein d'un univers empreint de noirceur et de violence.",
+    "image": "cartes/serie2/77.png"
+  },
+  {
+    "id": "BCCG-075",
+    "name": "Couverture Tome 28",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'illustration de couverture du Tome 28 de Berserk. Cette œuvre captivante reflète la progression narrative de l'histoire vers des territoires plus mystiques et fantastiques, tout en conservant l'atmosphère sombre et oppressante caractéristique de la série.",
+    "image": "cartes/serie2/78.png"
+  },
+  {
+    "id": "BCCG-076",
+    "name": "Couverture Tome 19",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture artistique du Tome 19 de Berserk. Cette illustration emblématique capture un moment pivot de l'histoire, reflétant les thèmes de sacrifice, de destin et de volonté qui sont au cœur de l'œuvre de Kentaro Miura.",
+    "image": "cartes/serie2/80.png"
+  },
+  {
+    "id": "BCCG-077",
+    "name": "Couverture Tome 24",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'illustration de couverture du Tome 24 de Berserk. Les contrastes saisissants entre lumière et ténèbres, typiques du style de Miura, sont particulièrement mis en valeur dans cette œuvre qui évoque la lutte éternelle entre le bien et le mal au sein de l'univers de Berserk.",
+    "image": "cartes/serie2/81.png"
+  },
+  {
+    "id": "BCCG-078",
+    "name": "Guts Portrait Intense",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Portrait saisissant de Guts, le guerrier noir. Son visage marqué par les cicatrices et son regard intense racontent l'histoire d'un homme qui a traversé l'enfer et continue de lutter malgré tout, incarnant la résilience humaine face à un destin implacable.",
+    "image": "cartes/serie2/83.png"
+  },
+  {
+    "id": "BCCG-079",
+    "name": "Guts Blessé et Schierke",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts blessé après un combat, veillé par la jeune sorcière Schierke. Cette scène illustre le lien particulier qui s'est formé entre le guerrier endurci et l'enfant prodige de la magie, chacun apportant à l'autre ce qui lui manque: force physique et sagesse spirituelle.",
+    "image": "cartes/serie2/84.png"
+  },
+  {
+    "id": "BCCG-080",
+    "name": "Guts Furie Déchainée",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts dans un moment de rage pure et destructrice. Ce panel iconique capture l'instant où la fureur du guerrier noir atteint son paroxysme, révélant la bête intérieure qu'il combat constamment et qui menace de consumer son humanité dans les flammes de la vengeance.",
+    "image": "cartes/serie2/85.png"
+  },
+  {
+    "id": "BCCG-081",
+    "name": "Couverture Tome 40",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'illustration de couverture du Tome 40 de Berserk. Cette œuvre magistrale témoigne de la maturité artistique atteinte par Kentaro Miura, combinant une technique de dessin perfectionnée avec une profondeur narrative qui transcende les limites conventionnelles du manga.",
+    "image": "cartes/serie2/86.png"
+  },
+  {
+    "id": "BCCG-082",
+    "name": "Couverture Tome 5",
+    "category": "special",
+    "serie": "serie2",
+    "description": "La couverture emblématique du Tome 5 de Berserk. Cette illustration précoce mais déjà maîtrisée annonce les thèmes qui définiront l'œuvre: la lutte contre un destin cruel, la quête de sens dans un monde impitoyable, et le prix à payer pour défier l'ordre établi.",
+    "image": "cartes/serie2/87.png"
+  },
+  {
+    "id": "BCCG-083",
+    "name": "Puck Espiègle",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Portrait détaillé de Puck dans l'une de ses expressions espiègles. Malgré sa petite taille et son apparence inoffensive, ce compagnon fidèle apporte non seulement des soins grâce à sa poussière elfique, mais aussi une touche d'humour indispensable au voyage de Guts.",
+    "image": "cartes/serie2/88.png"
+  },
+  {
+    "id": "BCCG-084",
+    "name": "Armure Berserker en Attente",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'Armure du Berserker reposant dans une grotte avant que Guts ne la revête. Cette relique elfique imprégnée de magie ancienne représente à la fois le salut et la malédiction pour son porteur, offrant une puissance surhumaine au prix de son humanité.",
+    "image": "cartes/serie2/89.png"
+  },
+  {
+    "id": "BCCG-085",
+    "name": "Guts Bête Intérieure",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts dans un état proche de la transformation bestiale sous l'influence de l'Armure du Berserker. Cette manifestation physique de sa rage intérieure révèle la lutte constante du guerrier pour maintenir son humanité face aux forces surnaturelles qui tentent de le consumer.",
+    "image": "cartes/serie2/90.png"
+  },
+  {
+    "id": "BCCG-086",
+    "name": "Berserker Déchaîné",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts enragé sous l'emprise de l'Armure du Berserker. Dans cet état, il devient une véritable machine de guerre dénuée de peur et de douleur, capable de tenir tête aux plus puissants apôtres mais risquant à chaque instant de perdre définitivement son humanité.",
+    "image": "cartes/serie2/91.png"
+  },
+  {
+    "id": "BCCG-087",
+    "name": "Schierke Jeune Prodige",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Portrait de Schierke, la jeune apprentie sorcière aux cheveux verts. Élevée loin de la civilisation par sa mentor Flora, elle possède des connaissances magiques impressionnantes pour son âge et joue un rôle crucial dans le groupe de Guts.",
+    "image": "cartes/serie2/92.png"
+  },
+  {
+    "id": "BCCG-088",
+    "name": "Guts Veillant sur Casca",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts veillant sur Casca dans son état régressif après l'Éclipse. Cette scène poignante illustre la dévotion du guerrier envers celle qu'il aime, malgré la barrière psychologique qui les sépare désormais et la douleur des souvenirs partagés qui les hantent tous deux.",
+    "image": "cartes/serie2/93.png"
+  },
+  {
+    "id": "BCCG-089",
+    "name": "Guts Mercenaire du Faucon",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Guts durant son appartenance à la Troupe du Faucon, période qui représente l'âge d'or de son existence. Ce jeune guerrier talentueux n'avait pas encore connu les horreurs qui allaient définir sa vie future, profitant d'un rare sentiment d'appartenance et de camaraderie.",
+    "image": "cartes/serie2/94.png"
+  },
+  {
+    "id": "BCCG-090",
+    "name": "Rosine Avant la Métamorphose",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Rosine sous son apparence humaine, avant sa transformation en apôtre. Cette jeune fille à l'imagination débordante cherchait désespérément à échapper à une réalité familiale brutale, rêvant de rejoindre les elfes qu'elle idolâtrait dans les contes de son enfance.",
+    "image": "cartes/serie2/95.png"
+  },
+  {
+    "id": "BCCG-091",
+    "name": "Confrontation Arc Millénaire",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Confrontation entre Guts et Griffith durant l'arc du Faucon Millénaire. Cette rencontre chargée de tension et d'émotions contradictoires illustre parfaitement le cœur du drame de Berserk: l'opposition irréconciliable entre deux anciens amis devenus ennemis mortels par la force du destin.",
+    "image": "cartes/serie2/96.png"
+  },
+  {
+    "id": "BCCG-092",
+    "name": "Farnese de Vandimion",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Portrait de Farnese, ancienne commandante des Chevaliers de la Sainte Chaîne devenue disciple de Schierke. Son parcours illustre l'un des thèmes centraux de Berserk: la capacité de changement et de rédemption, même pour ceux dont la foi aveugle a causé souffrance et destruction.",
+    "image": "cartes/serie2/97.png"
+  },
+  {
+    "id": "BCCG-093",
+    "name": "Guts en Action",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Panel emblématique mettant en scène Guts au combat. L'intensité de l'action et la maestria artistique de Miura se rejoignent dans cette composition dynamique qui capture l'essence même du protagoniste: une force implacable mue par une volonté de fer face à l'adversité.",
+    "image": "cartes/serie2/98.png"
+  },
+  {
+    "id": "BCCG-094",
+    "name": "Skull Knight Énigmatique",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Panel mémorable présentant le Chevalier du Crâne. Cette figure énigmatique, cavalier spectral qui défie la Main de Dieu, apparaît comme un contrepoint à Guts dans sa lutte contre la causalité, symbolisant à la fois guide, avertissement et sombre présage de ce qui pourrait advenir.",
+    "image": "cartes/serie2/99.png"
+  },
+  {
+    "id": "BCCG-095",
+    "name": "Zodd à la Corne Brisée",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Nosferatu Zodd sous sa forme apostolique avec une corne brisée, séquelle de son combat contre Guts. Cette blessure rare sur le corps de l'immortel témoigne du statut unique de Guts, l'un des rares guerriers à avoir réussi à marquer durablement le légendaire apôtre en combat.",
+    "image": "cartes/serie2/100.png"
+  },
+  {
+    "id": "BCCG-096",
+    "name": "Casca Innocence Retrouvée",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Casca dans son état régressif après l'Éclipse, savourant un fruit. Cette scène simple mais poignante illustre la vulnérabilité de l'ancienne commandante, désormais incapable de communiquer ou de se défendre seule, trouvant du réconfort dans les plaisirs les plus élémentaires.",
+    "image": "cartes/serie2/101.png"
+  },
+  {
+    "id": "BCCG-097",
+    "name": "Griffith Ambitieux",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Griffith au début de son ascension en tant que leader de la Troupe du Faucon. Ce jeune homme d'une beauté presque surnaturelle cachait derrière son charisme et son assurance une ambition dévorante qui le pousserait ultimement à sacrifier ceux qui lui étaient le plus chers.",
+    "image": "cartes/serie2/102.png"
+  },
+  {
+    "id": "BCCG-098",
+    "name": "Griffith Faucon de Lumière",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Griffith monté sur son cheval blanc, baigné de lumière divine. Cette image messianique du Faucon de Lumière incarne la dualité du personnage: perçu comme un sauveur par le peuple ignorant de sa véritable nature, il est en réalité l'incarnation même du mal qu'il prétend combattre.",
+    "image": "cartes/serie2/103.png"
+  },
+  {
+    "id": "BCCG-099",
+    "name": "Griffith Chef de Guerre",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Griffith à l'apogée de sa gloire en tant que chef de la Troupe du Faucon. Son génie tactique et son charisme magnétique lui ont permis de transformer une bande de mercenaires en une force militaire d'élite, attirant l'admiration et la loyauté de tous ceux qui le suivaient.",
+    "image": "cartes/serie2/104.png"
+  },
+  {
+    "id": "BCCG-100",
+    "name": "Griffith Maître de Falconia",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Griffith dans sa splendeur durant l'arc Fantasia, régnant sur la cité de Falconia. Ayant finalement atteint son château dans le ciel, il se présente comme le sauveur de l'humanité tout en dissimulant sa véritable nature démoniaque derrière une façade de perfection et de noblesse.",
+    "image": "cartes/serie2/105.png"
+  },
+  {
+    "id": "BCCG-101",
+    "name": "Casca Commandante",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Casca en armure durant son service dans la Troupe du Faucon. Seule femme commandante parmi les mercenaires, elle a dû faire preuve d'une force et d'une détermination exceptionnelles pour gagner sa place et le respect de ses hommes dans ce monde dominé par les guerriers masculins.",
+    "image": "cartes/serie2/106.png"
+  },
+  {
+    "id": "BCCG-102",
+    "name": "Griffith et la Colline aux Épées",
+    "category": "special",
+    "serie": "serie2",
+    "description": "Griffith contemplant la colline des épées, lieu symbolique où il a forgé son rêve. Cette scène emblématique représente la vision qui a guidé toutes ses actions: le désir d'échapper à sa condition et de s'élever au-dessus du commun des mortels, peu importe le prix à payer.",
+    "image": "cartes/serie2/107.png"
+  },
+  {
+    "id": "BCCG-103",
+    "name": "Griffith Tenue Royale",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Griffith en tenue complète d'apparat durant l'arc Fantasia. Cette apparence immaculée et majestueuse, combinant éléments royaux et martiaux, reflète son nouveau statut de souverain quasi-divin de Falconia, incarnation terrestre d'une entité démoniaque manipulant le destin du monde.",
+    "image": "cartes/serie2/108.png"
+  },
+  {
+    "id": "BCCG-104",
+    "name": "Griffith Divinité Terrestre",
+    "category": "godhand",
+    "serie": "serie2",
+    "description": "Portrait de Griffith durant l'arc Fantasia, capturant la beauté surnaturelle et l'aura de perfection qui émanent de lui. Cette apparence angélique masque la nature démoniaque de Femto, permettant au membre de la Main de Dieu de manipuler les masses qui le vénèrent comme un sauveur.",
+    "image": "cartes/serie2/109.png"
+  },
+  {
+    "id": "BCCG-105",
+    "name": "Casca Moment d'Intimité",
+    "category": "heroes",
+    "serie": "serie2",
+    "description": "Casca dans un rare moment d'intimité, se baignant durant l'époque de la Troupe du Faucon. Cette scène mémorable révèle la féminité souvent dissimulée sous l'armure de la commandante, et marque un tournant dans sa relation complexe avec Guts.",
+    "image": "cartes/serie2/110.png"
+  },
+  {
+    "id": "BCCG-106",
+    "name": "Irvine Forme Apostolique",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Irvine sous sa forme apostolique, combinant traits humains et caractéristiques de créature mythique. Ce tireur d'élite démoniaque au service de Griffith se distingue des autres apôtres par son calme et sa retenue, préférant la solitude et manifestant même une forme d'empathie envers certains humains.",
+    "image": "cartes/serie2/111.png"
+  },
+  {
+    "id": "BCCG-107",
+    "name": "Irvine l'Archer Solitaire",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Irvine sous son apparence humaine, archer silencieux et solitaire. Ce membre des Néo-Faucons se distingue par son caractère réservé et méditatif, contrastant avec la nature souvent chaotique et sanguinaire des autres apôtres au service de Griffith.",
+    "image": "cartes/serie2/112.png"
+  },
+  {
+    "id": "BCCG-108",
+    "name": "Locus Chevalier Démon",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Portrait de Locus, l'apôtre connu sous le nom de 'Chevalier Démon des Lances'. Sous son apparence humaine, ce guerrier honorable aux manières aristocratiques cache sa véritable nature démoniaque, servant Griffith avec une loyauté absolue au sein des Néo-Faucons.",
+    "image": "cartes/serie2/113.png"
+  },
+  {
+    "id": "BCCG-109",
+    "name": "Locus Armé pour la Bataille",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Locus revêtu de son armure de combat distinctive. Ce commandant des Néo-Faucons, expert dans l'art de la lance, est reconnu pour son sens de l'honneur et son élégance martiale, qualités rares parmi les apôtres qui servent habituellement leurs instincts les plus bas.",
+    "image": "cartes/serie2/114.png"
+  },
+  {
+    "id": "BCCG-110",
+    "name": "Zodd Puissance Démoniaque",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Nosferatu Zodd dans toute la puissance de sa forme apostolique. Cette créature colossale mi-taureau mi-démon incarne la force brute et le chaos des apôtres, sa soif de bataille inextinguible et sa longévité légendaire faisant de lui une figure mythique parmi les guerriers.",
+    "image": "cartes/serie2/115.png"
+  },
+  {
+    "id": "BCCG-111",
+    "name": "Zodd Humain Légendaire",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Zodd l'Immortel sous son apparence humaine. Même sans sa transformation bestiale, ce guerrier massif aux traits féroces inspire la terreur sur les champs de bataille, sa réputation de combattant invincible le précédant partout où il apparaît depuis des siècles.",
+    "image": "cartes/serie2/116.png"
+  },
+  {
+    "id": "BCCG-112",
+    "name": "Zodd Guerrier Immortel",
+    "category": "apostles",
+    "serie": "serie2",
+    "description": "Zodd dans sa forme apostolique en plein combat. La sauvagerie brute et la puissance destructrice de ce démon millénaire en font l'un des apôtres les plus redoutés, sa soif de bataille n'étant égalée que par sa loyauté envers Griffith après leur rencontre fatidique.",
+    "image": "cartes/serie2/117.png"
+  },
+  {
+    "id": "BCCG-113",
+    "name": "Couverture Tome 21",
+    "category": "special",
+    "serie": "serie2",
+    "description": "L'illustration de couverture du Tome 21 de Berserk. Cette œuvre captivante de Kentaro Miura reflète l'évolution de l'histoire vers des territoires plus fantastiques et mystiques, tout en conservant l'intensité émotionnelle et la noirceur qui caractérisent la série.",
+    "image": "cartes/serie2/118.png"
+  },
+  {
+    "id": "BCCG-114",
+    "name": "Slan Membre de la Main de Dieu",
+    "category": "godhand",
+    "serie": "serieSpeciale",
+    "description": "La seule femme parmi les membres de la Main de Dieu, incarnation de la luxure et du désir. Slan se manifeste souvent sous une forme sensuelle et attirante, mais cache une cruauté sans limite et une fascination malsaine pour la souffrance.",
+    "image": "cartes/serieSpeciale/7.png"
+  },
+  {
+    "id": "BCCG-115",
+    "name": "Guts contre Zodd",
+    "category": "special",
+    "serie": "serieSpeciale",
+    "description": "Affrontement épique entre Guts et l'apôtre immortel Zodd. Ces deux guerriers d'exception se sont affrontés à plusieurs reprises, développant un respect mutuel malgré leur antagonisme, unis par leur quête perpétuelle d'adversaires dignes de leur puissance.",
+    "image": "cartes/serieSpeciale/affrontement.png"
+  },
+  {
+    "id": "BCCG-116",
+    "name": "La Bête des Ténèbres",
+    "category": "special",
+    "serie": "serieSpeciale",
+    "description": "Manifestation de la rage et des instincts les plus sombres de Guts, cette créature spectrale le hante constamment, cherchant à prendre le contrôle lorsqu'il porte l'Armure du Berserker. Elle représente la lutte intérieure de Guts contre sa propre haine destructrice.",
+    "image": "cartes/serieSpeciale/beast.png"
+  },
+  {
+    "id": "BCCG-117",
+    "name": "Casca Guerrière d'Élite",
+    "category": "heroes",
+    "serie": "serieSpeciale",
+    "description": "Casca durant l'âge d'or de la Troupe du Faucon, commandante respectée aux compétences martiales exceptionnelles. Sa détermination et sa loyauté envers Griffith l'ont propulsée au rang de bras droit, faisant d'elle la seule femme à diriger des hommes dans ce monde de mercenaires.",
+    "image": "cartes/serieSpeciale/eciplse1.png"
+  },
+  {
+    "id": "BCCG-118",
+    "name": "Guts Face à l'Éclipse",
+    "category": "heroes",
+    "serie": "serieSpeciale",
+    "description": "Guts durant la cérémonie de l'Éclipse, moment où il a assisté impuissant au sacrifice de ses compagnons et à la transformation de Griffith. Cette épreuve traumatisante a marqué sa chair par la Marque du Sacrifice et forgé sa détermination inébranlable de vengeance.",
+    "image": "cartes/serieSpeciale/eciplse2.png"
+  },
+  {
+    "id": "BCCG-119",
+    "name": "Slan Avatar de la Luxure",
+    "category": "godhand",
+    "serie": "serieSpeciale",
+    "description": "Slan manifestée dans un panel emblématique. Cette entité cruelle représente les aspects les plus pervers du désir dans l'univers de Berserk, apparaissant souvent pour tenter Guts et le pousser à céder à ses instincts les plus sombres et primitifs.",
+    "image": "cartes/serieSpeciale/godhand_series7.png"
+  },
+  {
+    "id": "BCCG-120",
+    "name": "Guts Fureur Brûlante",
+    "category": "heroes",
+    "serie": "serieSpeciale",
+    "description": "L'expression de la rage absolue de Guts face aux injustices et aux horreurs qu'il a endurées. Cette colère ardente qui l'anime est à la fois sa plus grande force et sa plus grande faiblesse, lui permettant de surpasser les limites humaines tout en menaçant de consumer son humanité.",
+    "image": "cartes/serieSpeciale/guts2.png"
+  },
+  {
+    "id": "BCCG-121",
+    "name": "Guts l'Indomptable",
+    "category": "heroes",
+    "serie": "serieSpeciale",
+    "description": "Portrait de Guts comme survivant ultime, après avoir traversé d'innombrables épreuves mortelles. Sa résilience exceptionnelle et sa volonté de vivre, même face aux pires atrocités et aux forces surnaturelles qui le poursuivent, font de lui l'incarnation de la persévérance humaine.",
+    "image": "cartes/serieSpeciale/guts3.png"
+  },
+  {
+    "id": "BCCG-122",
+    "name": "Illustration Volume 1 Édition 2016",
+    "category": "special",
+    "serie": "serieSpeciale",
+    "description": "Illustration spéciale réalisée pour la réédition 2016 du premier volume de Berserk. Cette œuvre revisitée témoigne de l'évolution du style artistique de Kentaro Miura tout en préservant l'intensité viscérale qui caractérise la série depuis ses débuts.",
+    "image": "cartes/serieSpeciale/guts4.png"
+  },
+  {
+    "id": "BCCG-123",
+    "name": "Young Animal #13",
+    "category": "special",
+    "serie": "serieSpeciale",
+    "description": "Illustration commémorative de la série publiée dans le magazine Young Animal en 2022. Cette œuvre représentant Guts et Puck célèbre l'héritage de Berserk et l'influence durable que le chef-d'œuvre de Kentaro Miura continue d'exercer sur le monde du manga.",
+    "image": "cartes/serieSpeciale/gutsetpuck.png"
+  },
+  {
+    "id": "BCCG-124",
+    "name": "Rakshas le Métamorphe",
+    "category": "apostles",
+    "serie": "serieSpeciale",
+    "description": "Portrait de Rakshas, l'apôtre dont le corps peut se distordre et prendre diverses formes. Ancien membre du clan Bakiraka et maintenant au service de Griffith dans les Néo-Faucons, sa nature spectrale et polymorphe en fait un assassin particulièrement redoutable et insaisissable.",
+    "image": "cartes/serieSpeciale/rakshas1.png"
+  },
+  {
+    "id": "BCCG-125",
+    "name": "Skull Knight Gardien de l'Équilibre",
+    "category": "special",
+    "serie": "serieSpeciale",
+    "description": "Le mystérieux Chevalier du Crâne, figure énigmatique qui s'oppose à la Main de Dieu. Potentiellement lié au légendaire roi Gaiseric, ce guerrier immortel intervient dans les moments cruciaux pour préserver l'équilibre face aux machinations des forces divines et démoniaques.",
+    "image": "cartes/serieSpeciale/skullknight.png"
+  }
+]
